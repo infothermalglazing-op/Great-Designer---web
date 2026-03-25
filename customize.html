@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREAT DESIGNER — Promotional Clothing Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ee;--bg2:#ece8e1;--surface:#fff;
+  --border:#e0dbd3;--border2:#cbc4bb;
+  --accent:#e63329;--dark:#111;--dark2:#1a1a2e;
+  --muted:#777;--muted2:#aaa;--green:#15803d;
+  --c1:#e63329;--c2:#2563eb;--c3:#15803d;--c4:#9333ea;--c5:#b45309;--c6:#0891b2;--c7:#be185d;--c8:#1a1a2e;
+  --r:.75rem;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;}
+img{display:block;}
+
+/* ══ NAV ══ */
+nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;}
+.logo-wrap{cursor:pointer;}
+.logo-m{font-family:'Anton',sans-serif;font-size:1.45rem;letter-spacing:.07em;color:var(--accent);}
+.logo-s{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;}
+.nav-links>li{position:relative;}
+.nav-links>li>a,.nav-links>li>.nav-dd-trigger{font-size:.82rem;font-weight:500;color:var(--muted);padding:.48rem 1rem;border-radius:2rem;transition:color .2s,background .2s;display:flex;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.nav-links>li>a:hover,.nav-links>li>.nav-dd-trigger:hover{color:var(--dark);background:var(--bg2);}
+.nav-links>li>a.active,.nav-links>li>.nav-dd-trigger.active{color:var(--dark);font-weight:700;}
+.dd-arrow{font-size:.55rem;transition:transform .2s;}
+.nav-links>li:hover .dd-arrow{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.5rem;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:100;}
+.nav-links>li:hover .nav-dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.dd-item{display:flex;align-items:center;gap:.75rem;padding:.6rem .85rem;border-radius:.5rem;font-size:.82rem;font-weight:500;color:var(--muted);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+.dd-item:hover{background:var(--bg2);color:var(--dark);}
+.dd-item.active{color:var(--accent);font-weight:700;}
+.dd-item-icon{font-size:1rem;}
+.dd-item-sub{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);display:block;margin-top:.06rem;}
+.dd-sep{height:1px;background:var(--border);margin:.3rem 0;}
+.nav-r{display:flex;gap:.8rem;align-items:center;}
+.nav-cta{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
+
+/* ══ HERO ══ */
+.hero{
+  background:var(--dark2);
+  padding:3.5rem 3.5rem 0;
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;min-height:320px;
+  position:relative;
+}
+.hero::before{content:'CUSTOMIZE';position:absolute;font-family:'Anton',sans-serif;font-size:16rem;color:rgba(255,255,255,.022);right:-1rem;bottom:-2rem;letter-spacing:.02em;pointer-events:none;line-height:1;}
+.hero-left{padding-bottom:3rem;display:flex;flex-direction:column;justify-content:center;}
+.h-ey{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.6rem;display:flex;align-items:center;gap:.55rem;}
+.h-ey::before{content:'';width:16px;height:2px;background:var(--accent);}
+.h-title{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.02em;color:#fff;line-height:.93;margin-bottom:1rem;}
+.h-title em{font-style:normal;color:var(--accent);}
+.h-desc{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.75;max-width:460px;margin-bottom:1.8rem;}
+.h-tags{display:flex;gap:.5rem;flex-wrap:wrap;}
+.h-tag{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2rem;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
+.h-tag.hot{border-color:rgba(230,51,41,.5);color:var(--accent);background:rgba(230,51,41,.1);}
+
+/* Hero image strip */
+.hero-right{
+  display:flex;align-items:flex-end;gap:.6rem;padding-bottom:0;
+  overflow:hidden;
+}
+.hero-img-col{display:flex;flex-direction:column;gap:.6rem;flex:1;}
+.hero-img-col img{width:100%;object-fit:cover;border-radius:.5rem .5rem 0 0;flex:1;transition:transform .5s;}
+.hero-img-col:hover img{transform:scale(1.03);}
+.hic-tall{height:200px;}
+.hic-short{height:150px;}
+
+/* ══ FILTER BAR ══ */
+.filter-sticky{
+  position:sticky;top:64px;z-index:100;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+}
+.filter-inner{
+  display:flex;align-items:center;gap:.6rem;
+  padding:1rem 3.5rem;flex-wrap:wrap;
+}
+.fi-label{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-right:.2rem;white-space:nowrap;}
+.fb{font-size:.74rem;font-weight:600;padding:.4rem .95rem;border-radius:2rem;border:1.5px solid var(--border2);background:transparent;color:var(--muted);transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:.3rem;}
+.fb:hover{border-color:var(--dark);color:var(--dark);}
+.fb.on-all{background:var(--dark);border-color:var(--dark);color:#fff;}
+.fb.on-sport{background:#e63329;border-color:#e63329;color:#fff;}
+.fb.on-corp{background:#2563eb;border-color:#2563eb;color:#fff;}
+.fb.on-event{background:#15803d;border-color:#15803d;color:#fff;}
+.fb.on-school{background:#9333ea;border-color:#9333ea;color:#fff;}
+.fb.on-esport{background:#0891b2;border-color:#0891b2;color:#fff;}
+.fb.on-fashion{background:#be185d;border-color:#be185d;color:#fff;}
+.fb.on-party{background:#b45309;border-color:#b45309;color:#fff;}
+
+/* ══ CATALOG GRID ══ */
+.catalog-wrap{padding:2rem 3.5rem 3rem;}
+.cw-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
+.cw-title{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:.03em;}
+.cw-count{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;}
+.catalog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+
+/* ══ DESIGN CARD ══ */
+.dc{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;cursor:pointer;
+  transition:transform .25s,box-shadow .25s;
+  position:relative;
+}
+.dc:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.13);}
+.dc.hide{display:none;}
+
+.dc-img{position:relative;height:240px;overflow:hidden;background:var(--bg2);}
+.dc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.dc:hover .dc-img img{transform:scale(1.08);}
+
+/* category color tag */
+.dc-cat{
+  position:absolute;top:.7rem;left:.7rem;
+  font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.25rem .65rem;border-radius:2rem;color:#fff;
+}
+.cat-sport{background:#e63329;}
+.cat-corp{background:#2563eb;}
+.cat-event{background:#15803d;}
+.cat-school{background:#9333ea;}
+.cat-esport{background:#0891b2;}
+.cat-fashion{background:#be185d;}
+.cat-party{background:#b45309;}
+
+/* design number badge */
+.dc-num{
+  position:absolute;top:.7rem;right:.7rem;
+  font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(0,0,0,.45);color:rgba(255,255,255,.85);
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+
+/* hover overlay */
+.dc-overlay{
+  position:absolute;inset:0;
+  background:rgba(20,20,20,.5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;
+  opacity:0;transition:opacity .2s;
+}
+.dc:hover .dc-overlay{opacity:1;}
+.dc-ov-btn{
+  font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border:none;
+  padding:.55rem 1.3rem;border-radius:2rem;
+  transition:transform .15s;
+}
+.dc-ov-btn:hover{transform:scale(1.05);}
+.dc-ov-btn2{
+  font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;
+  background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);
+  padding:.46rem 1.1rem;border-radius:2rem;
+  transition:background .15s;
+}
+.dc-ov-btn2:hover{background:rgba(255,255,255,.25);}
+
+.dc-body{padding:.95rem 1.1rem 1.15rem;}
+.dc-name{font-weight:700;font-size:.93rem;line-height:1.3;margin-bottom:.3rem;}
+.dc-desc{font-size:.73rem;color:var(--muted);line-height:1.55;margin-bottom:.6rem;}
+.dc-footer{display:flex;align-items:center;justify-content:space-between;}
+.dc-technique{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);background:var(--bg2);padding:.22rem .55rem;border-radius:.3rem;}
+.dc-quotation-lbl{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+
+/* ══ QUOTATION PANEL (slide in from right) ══ */
+.q-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);}
+.q-backdrop.show{opacity:1;pointer-events:all;}
+.q-panel{
+  position:fixed;right:0;top:0;bottom:0;
+  width:480px;background:var(--surface);
+  z-index:500;transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+  display:flex;flex-direction:column;
+  box-shadow:-12px 0 48px rgba(0,0,0,.14);
+  overflow:hidden;
+}
+.q-panel.open{transform:translateX(0);}
+
+.qp-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 1.6rem;border-bottom:1px solid var(--border);flex-shrink:0;
+  background:var(--dark2);
+}
+.qp-title{font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:.04em;color:#fff;}
+.qp-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.qp-close:hover{background:var(--accent);}
+
+/* Selected design preview in panel */
+.qp-design-preview{
+  display:flex;gap:1rem;align-items:center;
+  padding:1.1rem 1.6rem;background:var(--bg2);
+  border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.qp-design-img{width:72px;height:72px;border-radius:.5rem;object-fit:cover;border:2px solid var(--border);flex-shrink:0;}
+.qp-design-info{}
+.qp-design-cat{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.2rem;}
+.qp-design-name{font-weight:700;font-size:.92rem;line-height:1.3;margin-bottom:.2rem;}
+.qp-design-tech{font-size:.73rem;color:var(--muted);}
+
+.qp-body{flex:1;overflow-y:auto;padding:1.4rem 1.6rem;}
+
+/* Form */
+.qp-section{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;margin-top:1.6rem;display:flex;align-items:center;gap:.5rem;}
+.qp-section:first-child{margin-top:0;}
+.qp-section::after{content:'';flex:1;height:1px;background:var(--border);}
+.fg{margin-bottom:1rem;}
+.fg label{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem;}
+.fg label span{color:var(--accent);}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);color:var(--dark);padding:.72rem .88rem;font-family:'DM Sans',sans-serif;font-size:.87rem;border-radius:.5rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,51,41,.08);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23888' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.3rem;}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+
+/* Color chips */
+.color-chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.3rem;}
+.cc{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:transform .15s;outline:2.5px solid transparent;outline-offset:2px;}
+.cc:hover{transform:scale(1.12);}
+.cc.sel{outline-color:var(--accent);}
+
+/* Print technique chips */
+.pt-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem;}
+.pt-chip{font-size:.74rem;font-weight:500;padding:.38rem .85rem;border:1.5px solid var(--border);border-radius:2rem;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;user-select:none;}
+.pt-chip:hover{border-color:var(--dark);color:var(--dark);}
+.pt-chip.on{background:var(--dark2);border-color:var(--dark2);color:#fff;}
+
+/* Upload */
+.upload-zone{border:2px dashed var(--border2);border-radius:.6rem;padding:1.1rem;text-align:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s;}
+.upload-zone:hover{border-color:var(--accent);background:rgba(230,51,41,.02);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.uz-icon{font-size:1.3rem;margin-bottom:.3rem;}
+.uz-txt{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);line-height:1.65;}
+.uz-file{font-size:.78rem;color:var(--accent);margin-top:.4rem;font-weight:600;display:none;}
+
+.qp-footer{
+  padding:1.2rem 1.6rem;border-top:1px solid var(--border);flex-shrink:0;
+  display:flex;gap:.7rem;
+}
+.q-submit{flex:1;font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.9rem;border-radius:.5rem;transition:transform .15s,box-shadow .15s;}
+.q-submit:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(230,51,41,.32);}
+.q-cancel{font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:var(--muted);border:1.5px solid var(--border2);padding:.88rem 1.2rem;border-radius:.5rem;transition:all .2s;}
+.q-cancel:hover{border-color:var(--dark);color:var(--dark);}
+
+/* ══ HOW IT WORKS ══ */
+.how-section{background:var(--dark2);padding:4rem 3.5rem;}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem;}
+.how-step{text-align:center;}
+.how-num{font-family:'Anton',sans-serif;font-size:3rem;color:var(--accent);line-height:1;margin-bottom:.6rem;opacity:.7;}
+.how-icon{font-size:1.8rem;margin-bottom:.6rem;}
+.how-title{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:.04em;color:#fff;margin-bottom:.4rem;}
+.how-desc{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;}
+.how-arrow{display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:rgba(255,255,255,.15);padding-top:1.5rem;}
+
+/* ══ TECHNIQUES STRIP ══ */
+.tech-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 3.5rem;}
+.ts-inner{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;justify-content:center;}
+.ts-item{display:flex;align-items:center;gap:.6rem;font-size:.82rem;font-weight:600;}
+.ts-icon{font-size:1.2rem;}
+.ts-label{color:var(--dark);}
+.ts-sub{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-top:.05rem;}
+
+/* ══ SUCCESS MODAL ══ */
+.suc-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(5px);}
+.suc-bg.show{opacity:1;pointer-events:all;}
+.suc-box{background:var(--surface);border-radius:1.3rem;padding:3rem;max-width:460px;width:90%;text-align:center;transform:translateY(20px);transition:transform .3s;box-shadow:0 16px 52px rgba(0,0,0,.14);}
+.suc-bg.show .suc-box{transform:translateY(0);}
+.suc-icon{font-size:3rem;margin-bottom:.8rem;}
+.suc-title{font-family:'Anton',sans-serif;font-size:2rem;color:var(--accent);letter-spacing:.03em;margin-bottom:.5rem;}
+.suc-ref{font-family:'DM Mono',monospace;font-size:.72rem;font-weight:600;background:var(--bg2);border:1px solid var(--border);padding:.45rem 1.1rem;border-radius:.4rem;display:inline-block;margin-bottom:1rem;letter-spacing:.1em;}
+.suc-body{color:var(--muted);font-size:.86rem;line-height:1.75;margin-bottom:1.5rem;}
+.suc-btns{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;}
+.suc-btn{font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.72rem 1.7rem;border-radius:.4rem;cursor:pointer;transition:transform .15s;}
+.suc-btn:hover{transform:translateY(-1px);}
+.suc-btn2{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--dark);border:1.5px solid var(--border2);padding:.68rem 1.5rem;border-radius:.4rem;cursor:pointer;transition:border-color .2s;}
+.suc-btn2:hover{border-color:var(--dark);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--accent);display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.5);}
+.fl{font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:.07em;color:#fff;}
+.fls{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.27);margin-top:.18rem;}
+.fr{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-align:right;line-height:1.8;}
+
+@media(max-width:1100px){.catalog-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:900px){
+  nav{padding:0 1.2rem;}.nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}.hero-right{display:none;}
+  .hero{padding:2.5rem 1.2rem 2rem;}
+  .filter-inner{padding:.9rem 1.2rem;}
+  .catalog-wrap{padding:1.5rem 1.2rem 3rem;}
+  .catalog-grid{grid-template-columns:repeat(2,1fr);}
+  .q-panel{width:100%;}
+  .how-section{padding:3rem 1.2rem;}
+  .how-grid{grid-template-columns:1fr 1fr;}
+  .tech-strip{padding:1.2rem 1.2rem;}
+  footer{flex-direction:column;gap:1rem;padding:2rem 1.2rem;}.fr{text-align:center;}
+  .fgr{grid-template-columns:1fr;}
+}
+@media(max-width:500px){.catalog-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap" onclick="location.href='index.html'">
+    <div class="logo-m">GREAT DESIGNER</div>
+    <div class="logo-s">The Best Customized Clothing</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="customize.html" class="active">Get Quotation</a></li>
+    <li><a href="my-orders.html">Tracking</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="nav-cta" onclick="openQuotePanel()">Get Free Quote →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <p class="h-ey">Promotional Clothing Studio</p>
+    <h1 class="h-title">PICK A DESIGN.<br><em>WE MAKE IT</em><br>YOURS.</h1>
+    <p class="h-desc">Browse our catalog of 40+ customizable designs. Sports jerseys, corporate polos, event tees, school batches — pick a style, add your logo and colors, get your free quotation.</p>
+    <div class="h-tags">
+      <span class="h-tag hot">🔥 Sublimation Printing</span>
+      <span class="h-tag">🪡 Embroidery</span>
+      <span class="h-tag">🖨️ Screen Print</span>
+      <span class="h-tag">💎 DTF Transfer</span>
+      <span class="h-tag">🇱🇰 Sri Lanka</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-col">
+      <img class="hic-tall" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80&auto=format&fit=crop" alt="">
+      <img class="hic-short" src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=400&q=80&auto=format&fit=crop" alt="">
+    </div>
+    <div class="hero-img-col">
+      <img class="hic-short" src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400&q=80&auto=format&fit=crop" alt="">
+      <img class="hic-tall" src="https://images.unsplash.com/photo-1598522325074-042db73aa4e6?w=400&q=80&auto=format&fit=crop" alt="">
+    </div>
+    <div class="hero-img-col">
+      <img class="hic-tall" src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=400&q=80&auto=format&fit=crop" alt="">
+      <img class="hic-short" src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&q=80&auto=format&fit=crop" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- TECHNIQUE STRIP -->
+<div class="tech-strip">
+  <div class="ts-inner">
+    <div class="ts-item"><span class="ts-icon">🌈</span><div><span class="ts-label">Sublimation</span><span class="ts-sub">Full all-over print</span></div></div>
+    <div class="ts-item"><span class="ts-icon">🪡</span><div><span class="ts-label">Embroidery</span><span class="ts-sub">Premium raised logo</span></div></div>
+    <div class="ts-item"><span class="ts-icon">🖨️</span><div><span class="ts-label">Screen Print</span><span class="ts-sub">Bold thick ink</span></div></div>
+    <div class="ts-item"><span class="ts-icon">💎</span><div><span class="ts-label">DTF Transfer</span><span class="ts-sub">High-detail digital</span></div></div>
+    <div class="ts-item"><span class="ts-icon">📦</span><div><span class="ts-label">Bulk Orders</span><span class="ts-sub">Team & corporate rates</span></div></div>
+    <div class="ts-item"><span class="ts-icon">🚚</span><div><span class="ts-label">Island-wide</span><span class="ts-sub">Delivery anywhere LK</span></div></div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-sticky">
+  <div class="filter-inner">
+    <span class="fi-label">Category:</span>
+    <button class="fb on-all" id="fb-all"     onclick="filt('all',this,'on-all')">All (40)</button>
+    <button class="fb"        id="fb-sport"   onclick="filt('sport',this,'on-sport')">⚽ Sports</button>
+    <button class="fb"        id="fb-corp"    onclick="filt('corp',this,'on-corp')">🏢 Corporate</button>
+    <button class="fb"        id="fb-event"   onclick="filt('event',this,'on-event')">🎉 Events</button>
+    <button class="fb"        id="fb-school"  onclick="filt('school',this,'on-school')">🎓 School / Club</button>
+    <button class="fb"        id="fb-esport"  onclick="filt('esport',this,'on-esport')">🎮 Esports</button>
+    <button class="fb"        id="fb-fashion" onclick="filt('fashion',this,'on-fashion')">👗 Fashion</button>
+    <button class="fb"        id="fb-party"   onclick="filt('party',this,'on-party')">🎊 Party</button>
+  </div>
+</div>
+
+<!-- CATALOG GRID -->
+<div class="catalog-wrap">
+  <div class="cw-header">
+    <div class="cw-title" id="cw-title">All Designs</div>
+    <div class="cw-count" id="cw-count">Showing 40 designs — click any to get a free quotation</div>
+  </div>
+
+  <div class="catalog-grid" id="cat-grid">
+
+<!-- ════ SPORTS (10) ════ -->
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">⚽ Sports</span><span class="dc-num">01</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Football Team Jersey — Sublimation</div><div class="dc-desc">Full all-over sublimation polo jersey. Team name, number & logo placement. Moisture-wicking performance fabric.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">⚽ Sports</span><span class="dc-num">02</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Cricket Match Jersey — V-Neck</div><div class="dc-desc">Classic V-neck cricket jersey. Custom sublimation print with team badge and player name/number.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🏸 Sports</span><span class="dc-num">03</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Badminton Performance Jersey</div><div class="dc-desc">Lightweight dry-fit sublimation jersey. Bold side panel design, breathable mesh zones, team branding.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🏐 Sports</span><span class="dc-num">04</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Volleyball Team Kit</div><div class="dc-desc">Full sublimation volleyball jersey. Club colors, diagonal design pattern with gradient. Matching shorts available.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1546519638492-cef1b0f21e99?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🏀 Sports</span><span class="dc-num">05</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Basketball Reversible Jersey</div><div class="dc-desc">Reversible basketball jersey with two colorways. Player number front & back, team logo. Lightweight mesh.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🎾 Sports</span><span class="dc-num">06</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Tennis Polo Jersey</div><div class="dc-desc">Smart polo-collar sublimation jersey for tennis. Clean geometric patterns, club logo, player name.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1544298621-35a764eed06a?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🏉 Sports</span><span class="dc-num">07</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Rugby Team Jersey — Heavy Duty</div><div class="dc-desc">Heavy-duty sublimation rugby jersey. Reinforced seams, bold graphic panels, team badge & number.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🏎️ Sports</span><span class="dc-num">08</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Racing Pit Crew Polo</div><div class="dc-desc">Full sublimation racing polo with sponsor logo zones. Dynamic racing stripe design. Team number on sleeve.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🚴 Sports</span><span class="dc-num">09</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Cycling Team Jersey</div><div class="dc-desc">Aerodynamic sublimation cycling jersey. Zippered neck, back pocket strip, sponsor logos, team colors.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="sport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-sport">🏃 Sports</span><span class="dc-num">10</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Athletics Running Vest</div><div class="dc-desc">Lightweight sublimation running vest. Club name front, number back, breathable side panels.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<!-- ════ CORPORATE (8) ════ -->
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">11</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Corporate Polo — Embroidered Logo</div><div class="dc-desc">Premium cotton piqué polo with embroidered company logo on left chest. Smart, professional, durable.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">12</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Staff Uniform Polo — Branded</div><div class="dc-desc">Dry-fit polo with screen-printed company name & logo. Ideal for retail staff, hospitality, and frontline teams.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">13</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Promotional T-Shirt — Company Brand</div><div class="dc-desc">Lightweight promotional tee with bold company branding. Great for trade fairs, product launches, giveaways.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">14</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Striped Corporate Shirt</div><div class="dc-desc">Seersucker or oxford stripe button-up with embroidered logo. Perfect for office casual days and corporate events.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">15</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Oxford Button-Down — Branded</div><div class="dc-desc">Smart oxford button-down with embroidered company name. Premium look for client meetings and formal events.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">16</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Oversized Corporate Casual Tee</div><div class="dc-desc">Modern oversized tee with bold company logo print. Popular for tech companies, startups, casual Friday wear.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">17</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Graphic Corporate Tee</div><div class="dc-desc">Creative graphic tee with company branding. Great for company anniversaries, team building, and gifts.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="corp" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1614495975369-4e0588d80e4b?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-corp">🏢 Corporate</span><span class="dc-num">18</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Flannel Corporate Casual Shirt</div><div class="dc-desc">Branded flannel check shirt for team outings and casual branded wear. Embroidered logo on chest.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<!-- ════ EVENTS (6) ════ -->
+<div class="dc" data-cat="event" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-event">🎉 Events</span><span class="dc-num">19</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Event Crew T-Shirt</div><div class="dc-desc">Matching crew tee for event staff and volunteers. Event name, date, role printed front and back.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="event" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-event">🎉 Events</span><span class="dc-num">20</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Concert & Music Event Tee</div><div class="dc-desc">Bold oversized tee for concerts, music festivals, and performances. Artist name, tour dates, custom artwork.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="event" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-event">🎉 Events</span><span class="dc-num">21</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Charity Run — Event Tee</div><div class="dc-desc">Lightweight dry-fit tee for charity runs, marathons, and fundraiser events. Sponsor logos on back.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="event" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-event">🎉 Events</span><span class="dc-num">22</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Tie-Dye Event Tee</div><div class="dc-desc">Custom tie-dye style print tee for festivals, beach events, and creative gatherings. Bold vibrant colors.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="event" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-event">🎉 Events</span><span class="dc-num">23</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Raglan Event Jersey</div><div class="dc-desc">Two-tone raglan jersey for themed events and group outings. Custom text and graphic on front.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="event" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1569982175971-d92b01cf8694?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-event">🎉 Events</span><span class="dc-num">24</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Aloha Event Shirt</div><div class="dc-desc">Vibrant printed aloha shirt for beach parties, resort events, and themed occasions. Bold all-over print.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<!-- ════ SCHOOL / CLUB (5) ════ -->
+<div class="dc" data-cat="school" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-school">🎓 School</span><span class="dc-num">25</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">School Batch Tee — Long Sleeve</div><div class="dc-desc">Classic batch tee with school name, batch year, and student names. Screen printed. Bulk rates for 20+ students.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="school" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-school">🎓 School</span><span class="dc-num">26</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">University Batch Crop Tee</div><div class="dc-desc">Trendy crop tee for university batch wear. Batch motto, year, and faculty name. Great for fresher parties.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="school" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-school">🏫 Club</span><span class="dc-num">27</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Club Denim Shirt — Branded</div><div class="dc-desc">Club-branded denim shirt with embroidered logo. Used by student societies, clubs, and associations.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="school" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1618354691438-25bc04584c23?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-school">🎓 School</span><span class="dc-num">28</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">School House Tee</div><div class="dc-desc">House color tee for inter-house sports meets and school events. House name, animal/mascot, student name.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="school" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-school">🏫 Club</span><span class="dc-num">29</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Camp Collar Club Shirt</div><div class="dc-desc">Short-sleeve camp collar shirt for clubs and societies. Logo embroidery, matching buttons. Smart casual.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<!-- ════ ESPORTS (4) ════ -->
+<div class="dc" data-cat="esport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-esport">🎮 Esports</span><span class="dc-num">30</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Esports Team Jersey — Full Sublimation</div><div class="dc-desc">Full all-over sublimation esports jersey. Team name, player tag, role, sponsor logos. Gaming-style graphic design.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="esport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-esport">🎮 Esports</span><span class="dc-num">31</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Gaming Polo — Team Edition</div><div class="dc-desc">Polo-collar esports jersey with team branding. Player name on back, team logo front, coach edition available.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="esport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-esport">🎮 Esports</span><span class="dc-num">32</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Esports Fan Merch Tee</div><div class="dc-desc">Fan merchandise tee for esports teams. Team logo, season year, bold graphic design. Screen print or DTF.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="esport" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-esport">🎮 Esports</span><span class="dc-num">33</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Tournament Staff Polo</div><div class="dc-desc">Esports tournament staff polo. Organiser logo, role label (STAFF / CREW / REFEREE), event name.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<!-- ════ FASHION (4) ════ -->
+<div class="dc" data-cat="fashion" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-fashion">👗 Fashion</span><span class="dc-num">34</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Custom Graphic Streetwear Tee</div><div class="dc-desc">Your artwork on a premium oversized streetwear tee. Great for personal branding, small fashion labels.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="fashion" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1598522325074-042db73aa4e6?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-fashion">👗 Fashion</span><span class="dc-num">35</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Cuban Collar Print Shirt</div><div class="dc-desc">Custom all-over printed Cuban collar shirt. Your pattern, artwork, or brand design. Summer fashion staple.</div><div class="dc-footer"><span class="dc-technique">Sublimation</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="fashion" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-fashion">👗 Fashion</span><span class="dc-num">36</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Brand Label Polo</div><div class="dc-desc">Start your clothing label. Custom woven label, embroidered logo, branded packaging options available.</div><div class="dc-footer"><span class="dc-technique">Embroidery</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="fashion" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-fashion">👗 Fashion</span><span class="dc-num">37</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Crop Tee — Custom Print</div><div class="dc-desc">Custom crop tee for fashion brands. Your graphic, slogan, or artwork. DTF print for full-detail results.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<!-- ════ PARTY (3) ════ -->
+<div class="dc" data-cat="party" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1522470953794-aa9c70b0fb9d?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-party">🎊 Party</span><span class="dc-num">38</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Birthday Party Matching Tees</div><div class="dc-desc">Matching tee set for birthday parties. "Birthday Squad", custom name, age. Fun prints for groups.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="party" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-party">🎊 Party</span><span class="dc-num">39</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Hen & Stag Party Tees</div><div class="dc-desc">Custom hen/stag party matching tees. Bride's name, fun slogans, date. Made fast for last-minute orders.</div><div class="dc-footer"><span class="dc-technique">DTF Transfer</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+<div class="dc" data-cat="party" onclick="openQ(this)">
+  <div class="dc-img"><img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80&auto=format&fit=crop" alt=""><span class="dc-cat cat-party">🎊 Party</span><span class="dc-num">40</span><div class="dc-overlay"><button class="dc-ov-btn" onclick="event.stopPropagation();openQ(this.closest('.dc'))">Get Quotation →</button><button class="dc-ov-btn2">Quick View</button></div></div>
+  <div class="dc-body"><div class="dc-name">Family Reunion Tee</div><div class="dc-desc">Custom family reunion tee. Family crest, reunion year, family name. All sizes from kids to 3XL.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
+</div>
+
+  </div><!-- end grid -->
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.5rem;display:flex;align-items:center;gap:.55rem;"><span style="width:16px;height:2px;background:var(--accent);display:inline-block"></span>How It Works</div>
+      <div style="font-family:'Anton',sans-serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:.02em;color:#fff;line-height:1;">FROM DESIGN<br><span style="color:var(--accent)">TO DELIVERY</span></div>
+    </div>
+  </div>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">01</div>
+      <div class="how-icon">👆</div>
+      <div class="how-title">PICK A DESIGN</div>
+      <div class="how-desc">Browse our 40 designs. Click any card to open the quotation panel and select your style.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">02</div>
+      <div class="how-icon">📝</div>
+      <div class="how-title">FILL THE FORM</div>
+      <div class="how-desc">Tell us your colors, quantity, print technique, and upload your logo or design brief.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">03</div>
+      <div class="how-icon">💬</div>
+      <div class="how-title">GET YOUR QUOTE</div>
+      <div class="how-desc">We send a detailed price breakdown + digital mock-up to your WhatsApp within 24 hours.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">04</div>
+      <div class="how-icon">🚚</div>
+      <div class="how-title">WE DELIVER</div>
+      <div class="how-desc">Approve the design, we produce with premium materials and deliver island-wide.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><div class="fl">GREAT DESIGNER</div><div class="fls">The Best Customized Clothing — Sri Lanka</div></div>
+  <div class="fr">© 2025 Great Designer · All rights reserved<br>Sports · Corporate · Events · School · Esports · Fashion · Party</div>
+</footer>
+
+<!-- ══ QUOTATION PANEL ══ -->
+<div class="q-backdrop" id="q-backdrop" onclick="closeQ()"></div>
+<div class="q-panel" id="q-panel">
+  <div class="qp-header">
+    <div class="qp-title">Get Free Quotation</div>
+    <button class="qp-close" onclick="closeQ()">✕</button>
+  </div>
+
+  <!-- Selected design -->
+  <div class="qp-design-preview">
+    <img class="qp-design-img" id="qp-img" src="" alt="">
+    <div class="qp-design-info">
+      <div class="qp-design-cat" id="qp-cat">—</div>
+      <div class="qp-design-name" id="qp-name">—</div>
+      <div class="qp-design-tech" id="qp-tech">—</div>
+    </div>
+  </div>
+
+  <div class="qp-body">
+
+    <div class="qp-section">Your Details</div>
+    <div class="fgr">
+      <div class="fg"><label>First Name <span>*</span></label><input type="text" id="q-fname" placeholder="Kamal"></div>
+      <div class="fg"><label>Last Name <span>*</span></label><input type="text" id="q-lname" placeholder="Perera"></div>
+    </div>
+    <div class="fgr">
+      <div class="fg"><label>WhatsApp <span>*</span></label><input type="tel" id="q-phone" placeholder="07X XXX XXXX"></div>
+      <div class="fg"><label>Email</label><input type="email" id="q-email" placeholder="you@email.com"></div>
+    </div>
+    <div class="fg"><label>Company / Team / Organisation</label><input type="text" id="q-org" placeholder="e.g. ABC Pvt Ltd, Colombo FC, Grade 12 Batch..."></div>
+
+    <div class="qp-section">Order Details</div>
+    <div class="fgr">
+      <div class="fg">
+        <label>Quantity <span>*</span></label>
+        <select id="q-qty">
+          <option value="">-- Select --</option>
+          <option>1 – 5 pieces</option>
+          <option>6 – 20 pieces</option>
+          <option>21 – 50 pieces (Bulk)</option>
+          <option>51 – 100 pieces</option>
+          <option>100+ pieces (Large Bulk)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Timeline</label>
+        <select id="q-time">
+          <option value="">-- Select --</option>
+          <option>Urgent (1–3 days)</option>
+          <option>Standard (5–7 days)</option>
+          <option>Relaxed (2 weeks)</option>
+          <option>Flexible</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="qp-section">Print Technique</div>
+    <div class="pt-chips" id="pt-chips">
+      <span class="pt-chip" onclick="toggleChip(this)">🌈 Sublimation</span>
+      <span class="pt-chip" onclick="toggleChip(this)">🪡 Embroidery</span>
+      <span class="pt-chip" onclick="toggleChip(this)">🖨️ Screen Print</span>
+      <span class="pt-chip" onclick="toggleChip(this)">💎 DTF Transfer</span>
+      <span class="pt-chip" onclick="toggleChip(this)">Not Sure — Advise Me</span>
+    </div>
+
+    <div class="qp-section">Colors</div>
+    <div class="fg">
+      <label>Preferred Base Color(s)</label>
+      <div class="color-chips" id="q-colors">
+        <div class="cc" style="background:#1a1a1a" title="Black" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#fff;border:2.5px solid #ccc" title="White" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#1a2a4a" title="Navy" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#7f1d1d" title="Maroon" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#e63329" title="Red" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#15803d" title="Green" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#b45309" title="Gold" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#6d28d9" title="Purple" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#0891b2" title="Teal" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#ea580c" title="Orange" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#be185d" title="Pink" onclick="toggleCC(this)"></div>
+        <div class="cc" style="background:#f59e0b" title="Yellow" onclick="toggleCC(this)"></div>
+      </div>
+    </div>
+
+    <div class="qp-section">Design Brief</div>
+    <div class="fg">
+      <label>Describe Your Requirements <span>*</span></label>
+      <textarea id="q-desc" placeholder="Tell us about your design:
+• Any specific text (team name, slogan, names)
+• Logo placement (chest, back, sleeve)
+• Style preferences or references
+• Any other special requirements..."></textarea>
+    </div>
+    <div class="fg">
+      <label>Upload Logo / Reference (Optional)</label>
+      <div class="upload-zone">
+        <input type="file" accept="image/*,.pdf,.ai,.eps" onchange="handleFile(event)">
+        <div class="uz-icon">📎</div>
+        <div class="uz-txt">Click or drag — PNG · JPG · PDF · AI · EPS</div>
+        <div class="uz-file" id="q-file-name"></div>
+      </div>
+    </div>
+
+    <div class="qp-section">Delivery</div>
+    <div class="fg"><label>Delivery Address</label><textarea id="q-addr" style="min-height:65px" placeholder="No. 12, Main Street, Colombo 03, Sri Lanka"></textarea></div>
+
+  </div>
+
+  <div class="qp-footer">
+    <button class="q-cancel" onclick="closeQ()">Cancel</button>
+    <button class="q-submit" onclick="submitQ()">SEND QUOTATION REQUEST →</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="suc-bg" id="suc-modal">
+  <div class="suc-box">
+    <div class="suc-icon">🎉</div>
+    <div class="suc-title">Quotation Sent!</div>
+    <div class="suc-ref" id="suc-ref">REF #GD-2025-0000</div>
+    <div class="suc-body">Thank you! Your quotation request has been received. We'll send a detailed price + mock-up to your WhatsApp within 24 hours. We can't wait to create something amazing for you!</div>
+    <div class="suc-btns">
+      <button class="suc-btn" onclick="location.href='my-orders.html'">Track My Order →</button>
+      <button class="suc-btn2" onclick="document.getElementById('suc-modal').classList.remove('show')">Browse More Designs</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── FILTER ── */
+const catNames={all:'All Designs',sport:'⚽ Sports Jerseys',corp:'🏢 Corporate Clothing',event:'🎉 Event Wear',school:'🎓 School & Club',esport:'🎮 Esports Jerseys',fashion:'👗 Fashion & Custom',party:'🎊 Party Wear'};
+const clsMap={all:'on-all',sport:'on-sport',corp:'on-corp',event:'on-event',school:'on-school',esport:'on-esport',fashion:'on-fashion',party:'on-party'};
+
+function filt(cat,btn,cls){
+  document.querySelectorAll('.fb').forEach(b=>b.className='fb');
+  btn.classList.add(cls);
+  let n=0;
+  document.querySelectorAll('.dc').forEach(c=>{
+    const show=cat==='all'||c.dataset.cat===cat;
+    c.classList.toggle('hide',!show);
+    if(show)n++;
+  });
+  document.getElementById('cw-title').textContent=catNames[cat]||'All Designs';
+  document.getElementById('cw-count').textContent='Showing '+n+' design'+(n!==1?'s':'')+' — click any to get a free quotation';
+}
+
+/* ── QUOTATION PANEL ── */
+let currentDesign=null;
+
+function openQ(card){
+  currentDesign=card;
+  const img=card.querySelector('.dc-img img');
+  const name=card.querySelector('.dc-name').textContent;
+  const cat=card.querySelector('.dc-cat').textContent;
+  const tech=card.querySelector('.dc-technique').textContent;
+
+  document.getElementById('qp-img').src=img?img.src:'';
+  document.getElementById('qp-name').textContent=name;
+  document.getElementById('qp-cat').textContent=cat;
+  document.getElementById('qp-tech').textContent='Technique: '+tech;
+
+  // Pre-select matching technique chip
+  document.querySelectorAll('.pt-chip').forEach(c=>c.classList.remove('on'));
+  document.querySelectorAll('.pt-chip').forEach(c=>{
+    if(c.textContent.toLowerCase().includes(tech.toLowerCase().split(' ')[0])) c.classList.add('on');
+  });
+
+  document.getElementById('q-panel').classList.add('open');
+  document.getElementById('q-backdrop').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function openQuotePanel(){
+  // Open panel without pre-selected design
+  document.getElementById('qp-img').src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&q=80';
+  document.getElementById('qp-name').textContent='General Quotation Request';
+  document.getElementById('qp-cat').textContent='Any Category';
+  document.getElementById('qp-tech').textContent='Technique: To be decided';
+  document.getElementById('q-panel').classList.add('open');
+  document.getElementById('q-backdrop').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeQ(){
+  document.getElementById('q-panel').classList.remove('open');
+  document.getElementById('q-backdrop').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+/* ── CHIPS / COLORS ── */
+function toggleChip(el){el.classList.toggle('on');}
+function toggleCC(el){el.classList.toggle('sel');}
+
+/* ── FILE UPLOAD ── */
+function handleFile(e){
+  const f=e.target.files[0];
+  if(!f)return;
+  const fn=document.getElementById('q-file-name');
+  fn.textContent='📎 '+f.name;
+  fn.style.display='block';
+}
+
+/* ── SUBMIT ── */
+function submitQ(){
+  const fn=document.getElementById('q-fname').value.trim();
+  const ph=document.getElementById('q-phone').value.trim();
+  const desc=document.getElementById('q-desc').value.trim();
+  const qty=document.getElementById('q-qty').value;
+  if(!fn){alert('Please enter your first name.');return;}
+  if(!ph){alert('Please enter your WhatsApp number.');return;}
+  if(!qty){alert('Please select quantity.');return;}
+  if(!desc){alert('Please describe your requirements.');return;}
+  const ref='GD-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*9000)+1000);
+  document.getElementById('suc-ref').textContent='REF #'+ref;
+  closeQ();
+  document.getElementById('suc-modal').classList.add('show');
+}
+</script>
+</body>
+</html>

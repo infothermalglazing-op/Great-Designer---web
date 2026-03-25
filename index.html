@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREAT DESIGNER — The Best Customized Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ee;--bg2:#ece8e1;--surface:#fff;
+  --border:#e0dbd3;--border2:#cbc4bb;
+  --accent:#e63329;--accent2:#c0251b;
+  --dark:#111111;--dark2:#1a1a2e;
+  --muted:#777;--muted2:#aaa;
+  --r:.75rem;
+  --shadow:0 2px 16px rgba(0,0,0,.07);
+  --shadow-lg:0 16px 52px rgba(0,0,0,.13);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;}
+img{display:block;}
+
+/* ═══════════ NAV ═══════════ */
+#nav{
+  position:sticky;top:0;z-index:300;
+  height:68px;
+  background:rgba(245,242,238,.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4rem;
+  transition:box-shadow .3s;
+}
+#nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.08);}
+.nav-brand{display:flex;flex-direction:column;line-height:1.05;}
+.nav-brand-m{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.07em;color:var(--accent);}
+.nav-brand-s{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;}
+.nav-links > li{position:relative;}
+.nav-links > li > a,
+.nav-links > li > .nav-dd-trigger{font-size:.82rem;font-weight:500;color:var(--muted);padding:.48rem 1rem;border-radius:2rem;transition:color .2s,background .2s;display:flex;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer;font-family:"DM Sans",sans-serif;}
+.nav-links > li > a:hover,.nav-links > li > .nav-dd-trigger:hover{color:var(--dark);background:var(--bg2);}
+.nav-links > li > a.active,.nav-links > li > .nav-dd-trigger.active{color:var(--dark);font-weight:700;}
+.dd-arrow{font-size:.55rem;transition:transform .2s;}
+.nav-links > li:hover .dd-arrow{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.5rem;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:100;}
+.nav-links > li:hover .nav-dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.dd-item{display:flex;align-items:center;gap:.75rem;padding:.6rem .85rem;border-radius:.5rem;font-size:.82rem;font-weight:500;color:var(--muted);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+.dd-item:hover{background:var(--bg2);color:var(--dark);}
+.dd-item.active{color:var(--accent);font-weight:700;}
+.dd-item-icon{font-size:1rem;}
+.dd-item-sub{font-family:"DM Mono",monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);display:block;margin-top:.06rem;}
+.dd-sep{height:1px;background:var(--border);margin:.3rem 0;}
+.nav-r{display:flex;align-items:center;gap:.8rem;}
+.nav-tag{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border2);padding:.28rem .7rem;border-radius:2rem;}
+.nav-cta{font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.54rem 1.3rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,51,41,.35);}
+
+/* ═══════════ HERO ═══════════ */
+.hero{
+  min-height:92vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+}
+.hero-l{
+  padding:5.5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--surface);
+  position:relative;z-index:2;
+}
+.hero-l::after{
+  content:'';position:absolute;right:-40px;top:0;bottom:0;
+  width:80px;background:var(--surface);transform:skewX(-3deg);z-index:1;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:.7rem;
+  animation:fadeUp .5s ease both;
+}
+.hero-eyebrow::before{content:'';width:24px;height:2px;background:var(--accent);}
+.hero-h1{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(3.8rem,7.5vw,7.2rem);
+  line-height:.92;letter-spacing:.01em;
+  margin-bottom:1rem;
+  animation:fadeUp .5s .1s ease both;
+}
+.hero-h1 em{font-style:normal;color:var(--accent);}
+.hero-tagline{
+  font-family:'DM Mono',monospace;
+  font-size:.78rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);
+  border-left:3px solid var(--accent);
+  padding-left:.9rem;
+  margin-bottom:1.8rem;
+  animation:fadeUp .5s .18s ease both;
+}
+.hero-desc{
+  font-size:1rem;color:var(--muted);
+  line-height:1.78;max-width:420px;
+  margin-bottom:2.5rem;
+  animation:fadeUp .5s .25s ease both;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .5s .32s ease both;}
+.btn-red{font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.9rem 2.2rem;border-radius:.35rem;transition:transform .15s,box-shadow .15s;}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,51,41,.38);}
+.btn-outline{font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:var(--dark);border:1.5px solid var(--border2);padding:.9rem 2.2rem;border-radius:.35rem;transition:border-color .2s,color .2s;}
+.btn-outline:hover{border-color:var(--dark);color:var(--dark);}
+.hero-stats{
+  display:flex;gap:2.5rem;
+  margin-top:3rem;padding-top:2rem;
+  border-top:1px solid var(--border);
+  animation:fadeUp .5s .4s ease both;
+}
+.s-num{font-family:'Anton',sans-serif;font-size:1.9rem;color:var(--accent);}
+.s-lbl{font-size:.68rem;color:var(--muted);margin-top:.08rem;}
+
+/* Hero right */
+.hero-r{position:relative;overflow:hidden;}
+.hero-r-img{width:100%;height:100%;object-fit:cover;object-position:center;animation:heroZ 10s ease-in-out infinite alternate;}
+@keyframes heroZ{from{transform:scale(1);}to{transform:scale(1.06);}}
+.hero-r-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.1),transparent 50%);}
+.hero-pills{position:absolute;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;}
+.hpill{font-family:'DM Mono',monospace;font-size:.56rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .82rem;border-radius:2rem;color:#fff;animation:slideL .4s ease both;}
+.hpill.s1{background:#15803d;animation-delay:.3s;}
+.hpill.s2{background:#b45309;animation-delay:.45s;}
+.hpill.s3{background:#1d4ed8;animation-delay:.6s;}
+.hpill.s4{background:#be185d;animation-delay:.75s;}
+@keyframes slideL{from{opacity:0;transform:translateX(14px);}to{opacity:1;transform:translateX(0);}}
+
+/* ═══════════ MARQUEE ═══════════ */
+.mq{background:var(--dark2);overflow:hidden;padding:.82rem 0;}
+.mqt{display:flex;gap:2rem;animation:mqr 30s linear infinite;width:max-content;}
+@keyframes mqr{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.mi{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.58);white-space:nowrap;}
+.md{color:var(--accent);}
+
+/* ═══════════ SECTION SHARED ═══════════ */
+.sec{padding:5.5rem 4rem;}
+.sec-ey{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:.55rem;display:flex;align-items:center;gap:.65rem;}
+.sec-ey::before{content:'';width:20px;height:2px;background:var(--accent);}
+.sec-title{font-family:'Anton',sans-serif;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:.02em;line-height:.97;}
+.sec-sub{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:520px;margin-top:.9rem;}
+
+/* ═══════════ SPORTS CAROUSEL ═══════════ */
+.sports-carousel-wrap{
+  margin-top:2.5rem;
+  position:relative;
+  overflow:hidden;
+}
+/* fade edges */
+.sports-carousel-wrap::before,
+.sports-carousel-wrap::after{
+  content:'';
+  position:absolute;top:0;bottom:0;
+  width:80px;z-index:10;pointer-events:none;
+}
+.sports-carousel-wrap::before{
+  left:0;
+  background:linear-gradient(to right,var(--bg) 0%,transparent 100%);
+}
+.sports-carousel-wrap::after{
+  right:0;
+  background:linear-gradient(to left,var(--bg) 0%,transparent 100%);
+}
+
+.sports-track{
+  display:flex;
+  gap:1rem;
+  width:max-content;
+  animation:sportsSlide 32s linear infinite;
+}
+.sports-track:hover{animation-play-state:paused;}
+
+@keyframes sportsSlide{
+  0%  {transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+.sport-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+  cursor:pointer;
+  position:relative;
+  width:240px;
+  height:210px;
+  flex-shrink:0;
+  transition:transform .3s,box-shadow .3s;
+}
+.sport-card:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:var(--shadow-lg);
+  z-index:5;
+}
+.sport-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.sport-card:hover img{transform:scale(1.1);}
+.sport-card-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.05) 60%);
+}
+.sport-card:hover .sport-card-ov{
+  background:linear-gradient(to top,rgba(230,51,41,.85) 0%,rgba(0,0,0,.1) 65%);
+}
+.sport-card-body{position:absolute;bottom:0;left:0;right:0;padding:1rem;}
+.sport-card-icon{font-size:1.5rem;margin-bottom:.3rem;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));}
+.sport-card-name{
+  font-family:'Anton',sans-serif;font-size:1.1rem;
+  letter-spacing:.06em;color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+
+/* Nav arrows */
+.carousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:20;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--surface);border:1.5px solid var(--border2);
+  color:var(--dark);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.carousel-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-50%) scale(1.1);}
+.carousel-btn.prev{left:8px;}
+.carousel-btn.next{right:8px;}
+
+/* Dot indicators */
+.carousel-dots{
+  display:flex;gap:.4rem;justify-content:center;
+  margin-top:1.2rem;
+}
+.c-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border2);
+  transition:background .3s,transform .3s;
+  cursor:pointer;
+}
+.c-dot.active{background:var(--accent);transform:scale(1.4);}
+
+/* ═══════════ SERVICES ═══════════ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:2.5rem;}
+.svc-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2rem;
+  transition:box-shadow .2s,transform .2s;
+}
+.svc-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);}
+.svc-icon{font-size:2.2rem;margin-bottom:1rem;}
+.svc-title{font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:.04em;margin-bottom:.6rem;}
+.svc-desc{font-size:.84rem;color:var(--muted);line-height:1.72;}
+
+/* ═══════════ TECHNIQUES ═══════════ */
+.tech-sec{background:var(--dark2);padding:5.5rem 4rem;}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;margin-top:2.5rem;}
+.tech-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--r);padding:2rem 1.5rem;
+  text-align:center;
+  transition:background .2s,border-color .2s;
+}
+.tech-card:hover{background:rgba(255,255,255,.09);border-color:rgba(230,51,41,.4);}
+.tech-icon{font-size:2.5rem;margin-bottom:1rem;}
+.tech-title{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:.04em;color:#fff;margin-bottom:.5rem;}
+.tech-desc{font-size:.8rem;color:rgba(255,255,255,.48);line-height:1.7;}
+
+/* ═══════════ PRODUCT PREVIEW (4 cards) ═══════════ */
+.prod-prev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;margin-top:2.5rem;}
+.pp-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  cursor:pointer;transition:transform .25s,box-shadow .25s;
+  text-decoration:none;color:inherit;display:block;
+}
+.pp-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.pp-card-img{height:220px;overflow:hidden;background:var(--bg2);position:relative;}
+.pp-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.pp-card:hover .pp-card-img img{transform:scale(1.07);}
+.pp-card-overlay{position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.pp-card:hover .pp-card-overlay{opacity:1;}
+.pp-card-btn{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff;color:var(--dark);border:none;padding:.52rem 1.2rem;border-radius:2rem;}
+.pp-card-body{padding:1.1rem 1.2rem 1.3rem;}
+.pp-card-cat{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;}
+.pp-card-name{font-weight:700;font-size:.96rem;line-height:1.3;}
+.pp-view-all{text-align:center;margin-top:2rem;}
+
+/* ═══════════ CTA BANNER ═══════════ */
+.cta-sec{
+  margin:0 4rem 5.5rem;
+  background:var(--accent);
+  border-radius:1.3rem;
+  padding:4rem;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  overflow:hidden;position:relative;
+}
+.cta-sec::before{
+  content:'GD';
+  position:absolute;font-family:'Anton',sans-serif;
+  font-size:20rem;color:rgba(255,255,255,.06);
+  right:-3rem;top:50%;transform:translateY(-50%);
+  letter-spacing:-.02em;pointer-events:none;
+}
+.cta-eyebrow{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.8rem;}
+.cta-title{font-family:'Anton',sans-serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:.02em;color:#fff;line-height:1;}
+.cta-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-white{font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:#fff;color:var(--dark);border:none;padding:.9rem 2.2rem;border-radius:.35rem;transition:transform .15s;}
+.btn-white:hover{transform:translateY(-2px);}
+.btn-outline-white{font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:.9rem 2.2rem;border-radius:.35rem;transition:border-color .2s;}
+.btn-outline-white:hover{border-color:#fff;}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{
+  background:var(--dark2);
+  border-top:3px solid var(--accent);
+  padding:3.5rem 4rem 2rem;
+}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.foot-logo-m{font-family:'Anton',sans-serif;font-size:1.6rem;letter-spacing:.07em;color:#fff;}
+.foot-tagline{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:.3rem;margin-bottom:1rem;}
+.foot-desc{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.75;}
+.foot-col-title{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem;}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.foot-links a{font-size:.82rem;color:rgba(255,255,255,.55);transition:color .2s;}
+.foot-links a:hover{color:#fff;}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.foot-copy{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.07em;color:rgba(255,255,255,.28);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:1024px){
+  #nav{padding:0 1.5rem;}
+  .nav-links{display:none;}.nav-tag{display:none;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-l{padding:3.5rem 1.5rem;}.hero-l::after{display:none;}
+  .hero-r{height:280px;}
+  .sec{padding:3.5rem 1.5rem;}
+  .sports-carousel-wrap{margin-top:2rem;}
+  .sport-card{width:200px;height:180px;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .tech-sec{padding:3.5rem 1.5rem;}
+  .tech-grid{grid-template-columns:1fr 1fr;}
+  .prod-prev-grid{grid-template-columns:1fr 1fr;}
+  .cta-sec{margin:0 1.5rem 3.5rem;padding:2.5rem;flex-direction:column;gap:1.5rem;}
+  footer{padding:3rem 1.5rem 1.5rem;}
+  .foot-top{grid-template-columns:1fr 1fr;gap:2rem;}
+  .foot-bottom{flex-direction:column;gap:.8rem;text-align:center;}
+}
+@media(max-width:700px){
+  .sport-card{width:160px;height:150px;}
+  .sport-card-name{font-size:.85rem;}
+  .services-grid{grid-template-columns:1fr;}
+  .tech-grid{grid-template-columns:1fr;}
+  .prod-prev-grid{grid-template-columns:1fr 1fr;}
+  .foot-top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">
+    <span class="nav-brand-m">GREAT DESIGNER</span>
+    <span class="nav-brand-s">The Best Customized Clothing</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+    <li><a href="customize.html">Get Quotation</a></li>
+    <li><a href="my-orders.html">Tracking</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <span class="nav-tag">🇱🇰 Sri Lanka</span>
+    <button class="nav-cta" onclick="location.href='customize.html'">Get Quotation</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <p class="hero-eyebrow">Sri Lanka's Premier Custom Clothing Studio</p>
+    <h1 class="hero-h1">WEAR WHAT<br>YOU <em>DESIGN.</em></h1>
+    <p class="hero-tagline">The Best Customized Clothing</p>
+    <p class="hero-desc">From sports jerseys to corporate uniforms, event wear to party outfits — we craft every piece exactly as you imagine it. Premium materials, world-class printing.</p>
+    <div class="hero-actions">
+      <button class="btn-red" onclick="location.href='shop.html'">Explore Products →</button>
+      <button class="btn-outline" onclick="location.href='customize.html'">Get a Quotation</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="s-num">500+</div><div class="s-lbl">Happy Clients</div></div>
+      <div><div class="s-num">10+</div><div class="s-lbl">Sports Covered</div></div>
+      <div><div class="s-num">4</div><div class="s-lbl">Print Techniques</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img class="hero-r-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80&auto=format&fit=crop" alt="Custom sports clothing">
+    <div class="hero-r-overlay"></div>
+    <div class="hero-pills">
+      <span class="hpill s1">⚽ Football</span>
+      <span class="hpill s2">🏏 Cricket</span>
+      <span class="hpill s3">🏸 Badminton</span>
+      <span class="hpill s4">🎾 Tennis</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq"><div class="mqt">
+  <span class="mi">Football Kits</span><span class="md"> ● </span>
+  <span class="mi">Cricket Jerseys</span><span class="md"> ● </span>
+  <span class="mi">Sublimation Printing</span><span class="md"> ● </span>
+  <span class="mi">Embroidery</span><span class="md"> ● </span>
+  <span class="mi">Screen Printing</span><span class="md"> ● </span>
+  <span class="mi">Corporate Uniforms</span><span class="md"> ● </span>
+  <span class="mi">Event Clothing</span><span class="md"> ● </span>
+  <span class="mi">Party Outfits</span><span class="md"> ● </span>
+  <span class="mi">Team Orders Welcome</span><span class="md"> ● </span>
+  <span class="mi">Premium Quality</span><span class="md"> ● </span>
+  <span class="mi">Island-wide Delivery</span><span class="md"> ● </span>
+  <span class="mi">Football Kits</span><span class="md"> ● </span>
+  <span class="mi">Cricket Jerseys</span><span class="md"> ● </span>
+  <span class="mi">Sublimation Printing</span><span class="md"> ● </span>
+  <span class="mi">Embroidery</span><span class="md"> ● </span>
+  <span class="mi">Screen Printing</span><span class="md"> ● </span>
+  <span class="mi">Corporate Uniforms</span><span class="md"> ● </span>
+  <span class="mi">Event Clothing</span><span class="md"> ● </span>
+  <span class="mi">Party Outfits</span><span class="md"> ● </span>
+  <span class="mi">Team Orders Welcome</span><span class="md"> ● </span>
+  <span class="mi">Premium Quality</span><span class="md"> ● </span>
+  <span class="mi">Island-wide Delivery</span><span class="md"> ● </span>
+</div></div>
+
+<!-- SPORTS WE COVER -->
+<section class="sec">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:0;">
+    <div>
+      <div class="sec-ey">// Sports We Cover</div>
+      <div class="sec-title">WE DESIGN FOR<br>EVERY SPORT</div>
+      <div class="sec-sub">From professional team kits to individual jerseys — if it's a sport, we design for it.</div>
+    </div>
+    <div style="display:flex;gap:.5rem;">
+      <button class="carousel-btn prev" onclick="shiftCarousel(-1)" aria-label="Previous">‹</button>
+      <button class="carousel-btn next" onclick="shiftCarousel(1)" aria-label="Next">›</button>
+    </div>
+  </div>
+
+  <div class="sports-carousel-wrap" id="carousel-wrap">
+    <div class="sports-track" id="sports-track">
+
+      <!-- SET 1 (original) -->
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80&auto=format&fit=crop" alt="Football" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">⚽</span><div class="sport-card-name">FOOTBALL</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=500&q=80&auto=format&fit=crop" alt="Cricket" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏏</span><div class="sport-card-name">CRICKET</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=500&q=80&auto=format&fit=crop" alt="Volleyball" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏐</span><div class="sport-card-name">VOLLEYBALL</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=500&q=80&auto=format&fit=crop" alt="Badminton" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏸</span><div class="sport-card-name">BADMINTON</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=500&q=80&auto=format&fit=crop" alt="Tennis" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🎾</span><div class="sport-card-name">TENNIS</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1546519638492-cef1b0f21e99?w=500&q=80&auto=format&fit=crop" alt="Basketball" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏀</span><div class="sport-card-name">BASKETBALL</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1544298621-35a764eed06a?w=500&q=80&auto=format&fit=crop" alt="Rugby" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏉</span><div class="sport-card-name">RUGBY</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=500&q=80&auto=format&fit=crop" alt="Cycling" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🚴</span><div class="sport-card-name">CYCLING</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Racing" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏎️</span><div class="sport-card-name">RACING</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=500&q=80&auto=format&fit=crop" alt="Athletics" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏃</span><div class="sport-card-name">ATHLETICS</div></div>
+      </div>
+
+      <!-- SET 2 (duplicate for seamless loop) -->
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80&auto=format&fit=crop" alt="Football" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">⚽</span><div class="sport-card-name">FOOTBALL</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=500&q=80&auto=format&fit=crop" alt="Cricket" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏏</span><div class="sport-card-name">CRICKET</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=500&q=80&auto=format&fit=crop" alt="Volleyball" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏐</span><div class="sport-card-name">VOLLEYBALL</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=500&q=80&auto=format&fit=crop" alt="Badminton" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏸</span><div class="sport-card-name">BADMINTON</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=500&q=80&auto=format&fit=crop" alt="Tennis" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🎾</span><div class="sport-card-name">TENNIS</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1546519638492-cef1b0f21e99?w=500&q=80&auto=format&fit=crop" alt="Basketball" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏀</span><div class="sport-card-name">BASKETBALL</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1544298621-35a764eed06a?w=500&q=80&auto=format&fit=crop" alt="Rugby" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏉</span><div class="sport-card-name">RUGBY</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=500&q=80&auto=format&fit=crop" alt="Cycling" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🚴</span><div class="sport-card-name">CYCLING</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Racing" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏎️</span><div class="sport-card-name">RACING</div></div>
+      </div>
+      <div class="sport-card" onclick="location.href='customize.html'">
+        <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=500&q=80&auto=format&fit=crop" alt="Athletics" loading="lazy">
+        <div class="sport-card-ov"></div>
+        <div class="sport-card-body"><span class="sport-card-icon">🏃</span><div class="sport-card-name">ATHLETICS</div></div>
+      </div>
+
+    </div><!-- end track -->
+  </div><!-- end carousel-wrap -->
+
+  <!-- Dot indicators -->
+  <div class="carousel-dots" id="carousel-dots">
+    <div class="c-dot active" onclick="dotJump(0)"></div>
+    <div class="c-dot" onclick="dotJump(1)"></div>
+    <div class="c-dot" onclick="dotJump(2)"></div>
+    <div class="c-dot" onclick="dotJump(3)"></div>
+    <div class="c-dot" onclick="dotJump(4)"></div>
+    <div class="c-dot" onclick="dotJump(5)"></div>
+    <div class="c-dot" onclick="dotJump(6)"></div>
+    <div class="c-dot" onclick="dotJump(7)"></div>
+    <div class="c-dot" onclick="dotJump(8)"></div>
+    <div class="c-dot" onclick="dotJump(9)"></div>
+  </div>
+</section>
+
+<!-- SERVICES WE OFFER -->
+<section class="sec" style="padding-top:0">
+  <div class="sec-ey">// What We Do</div>
+  <div class="sec-title">BEYOND SPORTS —<br>WE DO IT ALL</div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">⚽🏏🏸</div>
+      <div class="svc-title">SPORTS CLOTHING</div>
+      <div class="svc-desc">Full team kits, jerseys, shorts, training wear for all sports. Individual names, numbers, and team logos printed to perfection.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏢👔</div>
+      <div class="svc-title">CORPORATE & PROMOTIONAL</div>
+      <div class="svc-desc">Company T-shirts, branded uniforms, promotional clothing for events and campaigns. Your logo, your brand, your colors.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎉🎊</div>
+      <div class="svc-title">EVENTS & PARTIES</div>
+      <div class="svc-desc">Matching outfits for parties, functions, school events, concerts, and special occasions. Stand out together.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">👗✨</div>
+      <div class="svc-title">FASHION CUSTOM WEAR</div>
+      <div class="svc-desc">Bespoke graphic tees, oversized fits, custom bottoms, shorts, pants, and casual shirts — your design on premium fabric.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎓🏫</div>
+      <div class="svc-title">SCHOOL & CLUBS</div>
+      <div class="svc-desc">School uniforms, batch tees, club jerseys, and fan merchandise. Bulk-friendly pricing for large orders.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎮💻</div>
+      <div class="svc-title">ESPORTS & GAMING</div>
+      <div class="svc-desc">Full-sublimation esports jerseys, gaming team kits, hoodies, and merch. Next-level designs for next-level teams.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINT TECHNIQUES -->
+<section class="tech-sec">
+  <div class="sec-ey" style="color:rgba(255,255,255,.38)">// Print Techniques</div>
+  <div class="sec-title" style="color:#fff">PREMIUM PRINTING<br><span style="color:var(--accent)">& MATERIALS</span></div>
+  <div class="sec-sub" style="color:rgba(255,255,255,.45)">We use only the finest techniques and materials to ensure your clothing looks stunning and lasts longer.</div>
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-icon">🌈</div>
+      <div class="tech-title">SUBLIMATION PRINTING</div>
+      <div class="tech-desc">Full all-over color printing that becomes part of the fabric. Never fades, cracks, or peels. Perfect for jerseys and full-color designs.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🪡</div>
+      <div class="tech-title">EMBROIDERY</div>
+      <div class="tech-desc">Premium raised thread embroidery for logos and text. Adds a luxurious, professional feel to polo shirts, caps, and uniforms.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🖨️</div>
+      <div class="tech-title">SCREEN PRINTING</div>
+      <div class="tech-desc">Bold, vibrant prints ideal for large runs. Thick ink, sharp edges — perfect for graphic tees, event shirts, and merchandise.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">💎</div>
+      <div class="tech-title">DTF & HEAT TRANSFER</div>
+      <div class="tech-desc">Digital Transfer Film printing for complex designs and small quantities. High detail, full color, works on any fabric.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="sec">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:0">
+    <div>
+      <div class="sec-ey">// Featured Products</div>
+      <div class="sec-title">POPULAR<br>PICKS</div>
+    </div>
+    <a href="shop.html" style="font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.4rem;">View All Products →</a>
+  </div>
+  <div class="prod-prev-grid">
+    <a class="pp-card" href="shop.html">
+      <div class="pp-card-img">
+        <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&q=80&auto=format&fit=crop" alt="Sublimation Tee">
+        <div class="pp-card-overlay"><button class="pp-card-btn">View Product</button></div>
+      </div>
+      <div class="pp-card-body">
+        <div class="pp-card-cat">T-Shirt</div>
+        <div class="pp-card-name">Sublimation All-Over Print Tee</div>
+      </div>
+    </a>
+    <a class="pp-card" href="shop.html">
+      <div class="pp-card-img">
+        <img src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=500&q=80&auto=format&fit=crop" alt="Football Jersey">
+        <div class="pp-card-overlay"><button class="pp-card-btn">View Product</button></div>
+      </div>
+      <div class="pp-card-body">
+        <div class="pp-card-cat">Sports Jersey</div>
+        <div class="pp-card-name">Football Match Jersey</div>
+      </div>
+    </a>
+    <a class="pp-card" href="shop.html">
+      <div class="pp-card-img">
+        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=500&q=80&auto=format&fit=crop" alt="Cargo Shorts">
+        <div class="pp-card-overlay"><button class="pp-card-btn">View Product</button></div>
+      </div>
+      <div class="pp-card-body">
+        <div class="pp-card-cat">Shorts</div>
+        <div class="pp-card-name">Cargo Shorts</div>
+      </div>
+    </a>
+    <a class="pp-card" href="shop.html">
+      <div class="pp-card-img">
+        <img src="https://images.unsplash.com/photo-1598522325074-042db73aa4e6?w=500&q=80&auto=format&fit=crop" alt="Casual Shirt">
+        <div class="pp-card-overlay"><button class="pp-card-btn">View Product</button></div>
+      </div>
+      <div class="pp-card-body">
+        <div class="pp-card-cat">Casual Shirt</div>
+        <div class="pp-card-name">Cuban Collar Shirt</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-sec">
+  <div>
+    <div class="cta-eyebrow">// Ready to create something amazing?</div>
+    <div class="cta-title">GET YOUR<br>FREE QUOTATION</div>
+  </div>
+  <div class="cta-actions">
+    <button class="btn-white" onclick="location.href='customize.html'">Get Quotation →</button>
+    <button class="btn-outline-white" onclick="location.href='shop.html'">Browse Products</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo-m">GREAT DESIGNER</div>
+      <div class="foot-tagline">The Best Customized Clothing</div>
+      <div class="foot-desc">Sri Lanka's premier custom clothing studio. Sports kits, corporate wear, event clothing — all crafted to your exact design.</div>
+    </div>
+    <div>
+      <div class="foot-col-title">Quick Links</div>
+      <ul class="foot-links">
+        <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+        <li><a href="customize.html">Get Quotation</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Products</div>
+      <ul class="foot-links">
+        <li><a href="shop.html">T-Shirts</a></li>
+        <li><a href="shop.html">Shorts</a></li>
+        <li><a href="shop.html">Bottoms & Pants</a></li>
+        <li><a href="shop.html">Casual Shirts</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Contact</div>
+      <ul class="foot-links">
+        <li><a href="#">📞 WhatsApp Us</a></li>
+        <li><a href="#">📧 Email Us</a></li>
+        <li><a href="#">📍 Sri Lanka</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2025 GREAT DESIGNER. All rights reserved. The Best Customized Clothing — Sri Lanka.</div>
+    <div class="foot-copy">Football · Cricket · Volleyball · Badminton · Tennis · Basketball · Rugby · Cycling · Racing · Athletics</div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+
+/* ── SPORTS CAROUSEL ── */
+(function(){
+  const CARD_W = 240 + 16; // card width + gap
+  const TOTAL  = 10;       // original items count
+  let manualOffset = 0;
+  let paused = false;
+  const track = document.getElementById('sports-track');
+
+  // pause on hover (CSS handles it too, but dots need sync)
+  track.addEventListener('mouseenter', () => { paused = true; });
+  track.addEventListener('mouseleave', () => { paused = false; });
+
+  // manual arrow shift
+  window.shiftCarousel = function(dir) {
+    manualOffset += dir * CARD_W;
+    // clamp within one set
+    if (manualOffset < 0) manualOffset = (TOTAL - 1) * CARD_W;
+    if (manualOffset > (TOTAL - 1) * CARD_W) manualOffset = 0;
+    // pause auto-anim momentarily, snap to position
+    track.style.animationPlayState = 'paused';
+    track.style.transform = `translateX(-${manualOffset}px)`;
+    updateDots(Math.round(manualOffset / CARD_W) % TOTAL);
+    setTimeout(() => {
+      track.style.transform = '';
+      track.style.animationPlayState = 'running';
+    }, 1200);
+  };
+
+  // dot jump
+  window.dotJump = function(idx) {
+    manualOffset = idx * CARD_W;
+    track.style.animationPlayState = 'paused';
+    track.style.transform = `translateX(-${manualOffset}px)`;
+    updateDots(idx);
+    setTimeout(() => {
+      track.style.transform = '';
+      track.style.animationPlayState = 'running';
+    }, 1200);
+  };
+
+  function updateDots(active) {
+    document.querySelectorAll('.c-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === active % TOTAL);
+    });
+  }
+
+  // auto-update dots in sync with CSS animation
+  let dotTimer = 0;
+  setInterval(() => {
+    if (paused) return;
+    dotTimer++;
+    // full cycle = 32s, each card ~3.2s
+    const idx = Math.floor((dotTimer * 100 / 3200) % TOTAL);
+    updateDots(idx);
+  }, 100);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREAT DESIGNER — Tracking</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ee;--bg2:#ece8e1;--surface:#fff;
+  --border:#e0dbd3;--border2:#cbc4bb;
+  --accent:#e63329;--dark:#111;--dark2:#1a1a2e;
+  --muted:#777;--muted2:#aaa;
+  --green:#15803d;--green-bg:rgba(21,128,61,.07);--green-border:rgba(21,128,61,.2);
+  --amber:#b45309;--amber-bg:rgba(180,83,9,.07);--amber-border:rgba(180,83,9,.2);
+  --blue:#1d4ed8;--blue-bg:rgba(29,78,216,.07);--blue-border:rgba(29,78,216,.2);
+  --r:.75rem;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;}
+img{display:block;}
+
+/* ═══ NAV ═══ */
+nav{
+  position:sticky;top:0;z-index:200;height:64px;
+  background:rgba(245,242,238,.97);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3.5rem;
+}
+.logo-m{font-family:'Anton',sans-serif;font-size:1.45rem;letter-spacing:.07em;color:var(--accent);}
+.logo-s{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;}
+.nav-links > li{position:relative;}
+.nav-links > li > a,
+.nav-links > li > .nav-dd-trigger{font-size:.82rem;font-weight:500;color:var(--muted);padding:.48rem 1rem;border-radius:2rem;transition:color .2s,background .2s;display:flex;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer;font-family:"DM Sans",sans-serif;}
+.nav-links > li > a:hover,.nav-links > li > .nav-dd-trigger:hover{color:var(--dark);background:var(--bg2);}
+.nav-links > li > a.active,.nav-links > li > .nav-dd-trigger.active{color:var(--dark);font-weight:700;}
+.dd-arrow{font-size:.55rem;transition:transform .2s;}
+.nav-links > li:hover .dd-arrow{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.5rem;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:100;}
+.nav-links > li:hover .nav-dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.dd-item{display:flex;align-items:center;gap:.75rem;padding:.6rem .85rem;border-radius:.5rem;font-size:.82rem;font-weight:500;color:var(--muted);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+.dd-item:hover{background:var(--bg2);color:var(--dark);}
+.dd-item.active{color:var(--accent);font-weight:700;}
+.dd-item-icon{font-size:1rem;}
+.dd-item-sub{font-family:"DM Mono",monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);display:block;margin-top:.06rem;}
+.dd-sep{height:1px;background:var(--border);margin:.3rem 0;}
+.nav-r{display:flex;gap:.8rem;align-items:center;}
+.nav-cta{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
+
+/* ═══ HERO ═══ */
+.hero{
+  background:var(--dark2);padding:3.5rem 3.5rem 3rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'ORDERS';font-family:'Anton',sans-serif;
+  font-size:14rem;color:rgba(255,255,255,.022);
+  position:absolute;right:-1rem;top:50%;transform:translateY(-50%);
+  letter-spacing:.02em;pointer-events:none;line-height:1;
+}
+.hero-ey{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.55rem;display:flex;align-items:center;gap:.55rem;}
+.hero-ey::before{content:'';width:16px;height:2px;background:var(--accent);}
+.hero-h{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.02em;color:#fff;line-height:.93;margin-bottom:.9rem;}
+.hero-h em{font-style:normal;color:var(--accent);}
+.hero-d{font-size:.88rem;color:rgba(255,255,255,.42);max-width:520px;line-height:1.72;}
+
+/* ═══ LOOKUP BOX ═══ */
+.lookup-wrap{
+  padding:2.5rem 3.5rem;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.lookup-inner{
+  max-width:620px;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.lookup-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem;}
+.lookup-row{display:flex;gap:.8rem;align-items:stretch;}
+.lookup-input{
+  flex:1;background:var(--bg);border:1.5px solid var(--border);
+  color:var(--dark);padding:.85rem 1.1rem;
+  font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  border-radius:.5rem;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.lookup-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,51,41,.08);}
+.lookup-input::placeholder{font-size:.82rem;letter-spacing:.05em;text-transform:none;color:var(--muted2);}
+.lookup-btn{
+  font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border:none;
+  padding:.85rem 1.8rem;border-radius:.5rem;
+  transition:transform .15s,box-shadow .15s;white-space:nowrap;
+}
+.lookup-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
+.lookup-hint{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.5rem;}
+.lookup-hint a{color:var(--accent);font-weight:600;}
+.lookup-error{
+  display:none;
+  background:rgba(230,51,41,.07);border:1px solid rgba(230,51,41,.18);
+  border-radius:.5rem;padding:.8rem 1rem;
+  font-size:.82rem;color:var(--accent);
+  display:flex;align-items:center;gap:.6rem;
+}
+.lookup-error.show{display:flex;}
+
+/* ═══ EMPTY STATE ═══ */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:6rem 2rem;text-align:center;
+}
+.empty-icon{font-size:4rem;margin-bottom:1.5rem;opacity:.5;}
+.empty-title{font-family:'Anton',sans-serif;font-size:1.8rem;letter-spacing:.03em;margin-bottom:.6rem;color:var(--muted);}
+.empty-sub{font-size:.88rem;color:var(--muted2);line-height:1.7;max-width:340px;}
+
+/* ═══ ORDER RESULT ═══ */
+.order-result{display:none;padding:2.5rem 3.5rem 5rem;}
+.order-result.show{display:block;}
+
+/* Order header card */
+.order-header-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2rem 2.5rem;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:2rem;margin-bottom:2rem;flex-wrap:wrap;
+}
+.ohc-left{}
+.ohc-ref{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;}
+.ohc-product{font-family:'Anton',sans-serif;font-size:1.8rem;letter-spacing:.03em;line-height:1;margin-bottom:.5rem;}
+.ohc-meta{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.ohc-meta-item{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.35rem;}
+.ohc-meta-item strong{color:var(--dark);}
+.ohc-right{text-align:right;flex-shrink:0;}
+.status-badge{
+  font-family:'DM Mono',monospace;font-size:.65rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.45rem 1.1rem;border-radius:2rem;
+  display:inline-block;margin-bottom:.6rem;
+}
+.status-quoted{background:var(--blue-bg);border:1px solid var(--blue-border);color:var(--blue);}
+.status-confirmed{background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber);}
+.status-production{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);color:#7c3aed;}
+.status-quality{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);color:#0891b2;}
+.status-dispatch{background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber);}
+.status-delivered{background:var(--green-bg);border:1px solid var(--green-border);color:var(--green);}
+.ohc-eta{font-size:.78rem;color:var(--muted);}
+.ohc-eta strong{color:var(--dark);}
+
+/* ═══ TIMELINE ═══ */
+.timeline-section{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2.5rem;
+  margin-bottom:2rem;
+}
+.ts-heading{
+  font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:.03em;
+  margin-bottom:.3rem;
+}
+.ts-sub{font-size:.8rem;color:var(--muted);margin-bottom:2.5rem;}
+
+/* Horizontal timeline */
+.timeline-track{
+  position:relative;
+  padding:0 0 0 0;
+}
+/* connector line */
+.tl-line{
+  position:absolute;
+  top:28px;left:28px;right:28px;
+  height:3px;
+  background:var(--border);
+  z-index:0;
+  border-radius:2px;
+  overflow:hidden;
+}
+.tl-line-fill{
+  height:100%;background:var(--accent);
+  width:0%;border-radius:2px;
+  transition:width 1.5s cubic-bezier(.25,.46,.45,.94) .3s;
+}
+
+.tl-stages{
+  display:grid;
+  position:relative;z-index:1;
+  gap:0;
+}
+
+/* Each stage */
+.tl-stage{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  position:relative;
+}
+
+/* circle */
+.tl-circle{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  border:3px solid var(--border2);
+  background:var(--surface);
+  transition:all .4s ease;
+  position:relative;z-index:2;
+  flex-shrink:0;
+}
+.tl-stage.done .tl-circle{
+  background:var(--green);border-color:var(--green);
+  box-shadow:0 0 0 5px var(--green-bg);
+  animation:none;
+}
+.tl-stage.active .tl-circle{
+  background:var(--accent);border-color:var(--accent);
+  box-shadow:0 0 0 5px rgba(230,51,41,.12);
+  animation:pulse-ring 2s ease-in-out infinite;
+}
+.tl-stage.pending .tl-circle{
+  background:var(--bg2);border-color:var(--border2);
+  opacity:.55;
+}
+@keyframes pulse-ring{
+  0%,100%{box-shadow:0 0 0 5px rgba(230,51,41,.12);}
+  50%{box-shadow:0 0 0 10px rgba(230,51,41,.06);}
+}
+
+/* checkmark for done */
+.tl-stage.done .tl-circle::after{
+  content:'✓';
+  position:absolute;
+  font-size:1.1rem;color:#fff;font-weight:700;
+  font-family:'DM Sans',sans-serif;
+}
+.tl-stage.done .tl-circle-icon{display:none;}
+
+/* stage label */
+.tl-label{
+  margin-top:.8rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:.75rem;font-weight:600;
+  color:var(--muted);line-height:1.3;
+  transition:color .3s;
+  max-width:90px;
+}
+.tl-stage.done .tl-label{color:var(--green);}
+.tl-stage.active .tl-label{color:var(--accent);font-weight:700;}
+
+.tl-date{
+  margin-top:.3rem;
+  font-family:'DM Mono',monospace;
+  font-size:.56rem;letter-spacing:.06em;
+  color:var(--muted2);
+}
+.tl-stage.done .tl-date{color:var(--green);}
+.tl-stage.active .tl-date{color:var(--accent);}
+
+/* Stage detail card (shown below active) */
+.tl-detail{
+  display:none;
+  grid-column:1/-1;
+  background:rgba(230,51,41,.04);
+  border:1.5px solid rgba(230,51,41,.15);
+  border-radius:.6rem;padding:1.2rem 1.5rem;
+  margin-top:1.5rem;
+  animation:fadeUp .4s ease both;
+}
+.tl-detail.show{display:block;}
+.tl-detail-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;}
+.tl-detail-text{font-size:.85rem;color:var(--muted);line-height:1.72;}
+.tl-detail-progress{margin-top:.8rem;}
+.tl-detail-bar-wrap{background:var(--border);border-radius:4px;height:6px;margin-top:.4rem;overflow:hidden;}
+.tl-detail-bar{height:100%;background:var(--accent);border-radius:4px;width:0%;transition:width 1.2s ease .5s;}
+
+/* ═══ ORDER DETAILS SECTION ═══ */
+.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+.detail-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.5rem;
+}
+.dc-title{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.dc-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.dc-row{display:flex;justify-content:space-between;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--border);gap:.5rem;}
+.dc-row:last-child{border-bottom:none;}
+.dc-key{font-size:.78rem;color:var(--muted);flex-shrink:0;}
+.dc-val{font-size:.82rem;font-weight:600;text-align:right;}
+.dc-val.accent{color:var(--accent);}
+.dc-val.green{color:var(--green);}
+
+/* Updates feed */
+.updates-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.5rem;
+  margin-bottom:1.5rem;
+}
+.update-feed{display:flex;flex-direction:column;gap:0;}
+.update-item{
+  display:flex;gap:1rem;padding:.9rem 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.update-item:last-child{border-bottom:none;}
+.update-dot{
+  width:12px;height:12px;border-radius:50%;
+  flex-shrink:0;margin-top:.3rem;
+}
+.ud-green{background:var(--green);}
+.ud-amber{background:var(--amber);}
+.ud-accent{background:var(--accent);}
+.ud-blue{background:var(--blue);}
+.ud-grey{background:var(--muted2);}
+.update-content{}
+.update-time{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.08em;color:var(--muted2);margin-bottom:.2rem;}
+.update-msg{font-size:.84rem;color:var(--dark);font-weight:500;margin-bottom:.15rem;}
+.update-note{font-size:.78rem;color:var(--muted);line-height:1.6;}
+
+/* Contact card */
+.contact-card{
+  background:var(--dark2);border-radius:var(--r);
+  padding:1.8rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;flex-wrap:wrap;
+}
+.cc-left{}
+.cc-title{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:.03em;color:#fff;margin-bottom:.3rem;}
+.cc-sub{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.6;}
+.cc-btn{font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.75rem 1.6rem;border-radius:.4rem;transition:transform .15s,box-shadow .15s;white-space:nowrap;}
+.cc-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.35);}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.animate-in{animation:fadeUp .5s ease both;}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--accent);display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.5);}
+.fl{font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:.07em;color:#fff;}
+.fls{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.27);margin-top:.18rem;}
+.fr{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-align:right;line-height:1.8;}
+
+@media(max-width:900px){
+  nav{padding:0 1.2rem;}.nav-links{display:none;}
+  .hero,.lookup-wrap,.order-result{padding-left:1.2rem;padding-right:1.2rem;}
+  .details-grid{grid-template-columns:1fr;}
+  .order-header-card{flex-direction:column;gap:1rem;}
+  .ohc-right{text-align:left;}
+  footer{flex-direction:column;gap:1rem;padding:2rem 1.2rem;}.fr{text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="logo-m">GREAT DESIGNER</div>
+    <div class="logo-s">The Best Customized Clothing</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+    <li><a href="customize.html">Get Quotation</a></li>
+    <li><a href="my-orders.html" class="active">Tracking</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="nav-cta" onclick="location.href='customize.html'">Get Quotation</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-ey">Order Tracking</p>
+  <h1 class="hero-h">ORDER <em>TRACKING</em></h1>
+  <p class="hero-d">Enter your quotation reference number to view your order status, production timeline, and estimated delivery date.</p>
+</div>
+
+<!-- LOOKUP -->
+<div class="lookup-wrap">
+  <div class="lookup-inner">
+    <div class="lookup-label">Enter Your Reference Number</div>
+    <div class="lookup-row">
+      <input type="text" class="lookup-input" id="ref-input" placeholder="e.g. GD-2025-4821" maxlength="20" onkeydown="if(event.key==='Enter')lookupOrder()">
+      <button class="lookup-btn" onclick="lookupOrder()">Track Order →</button>
+    </div>
+    <div class="lookup-hint">
+      Your reference number was sent to your WhatsApp when your quotation was submitted. 
+      <a href="customize.html">Get a new quotation →</a>
+    </div>
+    <div class="lookup-error" id="lookup-error" style="display:none;">
+      ❌ Reference number not found. Please check and try again, or <a href="customize.html" style="color:var(--accent);font-weight:600;margin-left:.2rem;">contact us on WhatsApp.</a>
+    </div>
+  </div>
+</div>
+
+<!-- EMPTY STATE -->
+<div class="empty-state" id="empty-state">
+  <div class="empty-icon">📦</div>
+  <div class="empty-title">No Order Found Yet</div>
+  <div class="empty-sub">Enter your GD reference number above to track your order status and production timeline.</div>
+</div>
+
+<!-- ORDER RESULT -->
+<div class="order-result" id="order-result">
+
+  <!-- Order Header -->
+  <div class="order-header-card animate-in">
+    <div class="ohc-left">
+      <div class="ohc-ref" id="r-ref">—</div>
+      <div class="ohc-product" id="r-product">—</div>
+      <div class="ohc-meta">
+        <div class="ohc-meta-item">📅 Ordered: <strong id="r-date">—</strong></div>
+        <div class="ohc-meta-item">📦 Qty: <strong id="r-qty">—</strong></div>
+        <div class="ohc-meta-item">🎨 Print: <strong id="r-print">—</strong></div>
+        <div class="ohc-meta-item">👤 Client: <strong id="r-client">—</strong></div>
+      </div>
+    </div>
+    <div class="ohc-right">
+      <div class="status-badge" id="r-status-badge">—</div>
+      <div class="ohc-eta">Estimated Delivery: <strong id="r-eta">—</strong></div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-section animate-in" style="animation-delay:.1s">
+    <div class="ts-heading">Order Timeline</div>
+    <div class="ts-sub" id="tl-sub">Track every stage of your order from quotation to delivery.</div>
+
+    <div class="timeline-track">
+      <!-- Progress line -->
+      <div class="tl-line"><div class="tl-line-fill" id="tl-fill"></div></div>
+
+      <!-- Stages grid (columns set by JS) -->
+      <div class="tl-stages" id="tl-stages">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Active stage detail -->
+      <div class="tl-detail" id="tl-active-detail">
+        <div class="tl-detail-title" id="td-title">Current Stage</div>
+        <div class="tl-detail-text" id="td-text">—</div>
+        <div class="tl-detail-progress" id="td-prog-wrap" style="display:none">
+          <div style="font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;">
+            <span>Stage Progress</span><span id="td-prog-pct">0%</span>
+          </div>
+          <div class="tl-detail-bar-wrap"><div class="tl-detail-bar" id="td-prog-bar"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Grid -->
+  <div class="details-grid animate-in" style="animation-delay:.2s">
+    <div class="detail-card">
+      <div class="dc-title">Order Details</div>
+      <div class="dc-row"><span class="dc-key">Reference</span><span class="dc-val accent" id="d-ref">—</span></div>
+      <div class="dc-row"><span class="dc-key">Product</span><span class="dc-val" id="d-product">—</span></div>
+      <div class="dc-row"><span class="dc-key">Category</span><span class="dc-val" id="d-cat">—</span></div>
+      <div class="dc-row"><span class="dc-key">Quantity</span><span class="dc-val" id="d-qty">—</span></div>
+      <div class="dc-row"><span class="dc-key">Print Method</span><span class="dc-val" id="d-print">—</span></div>
+      <div class="dc-row"><span class="dc-key">Colors</span><span class="dc-val" id="d-colors">—</span></div>
+    </div>
+    <div class="detail-card">
+      <div class="dc-title">Dates & Delivery</div>
+      <div class="dc-row"><span class="dc-key">Order Date</span><span class="dc-val" id="d-ordered">—</span></div>
+      <div class="dc-row"><span class="dc-key">Design Approved</span><span class="dc-val" id="d-approved">—</span></div>
+      <div class="dc-row"><span class="dc-key">Production Start</span><span class="dc-val" id="d-prodstart">—</span></div>
+      <div class="dc-row"><span class="dc-key">Est. Completion</span><span class="dc-val" id="d-complete">—</span></div>
+      <div class="dc-row"><span class="dc-key">Est. Delivery</span><span class="dc-val green" id="d-delivery">—</span></div>
+      <div class="dc-row"><span class="dc-key">Delivery Area</span><span class="dc-val" id="d-area">—</span></div>
+    </div>
+  </div>
+
+  <!-- Updates Feed -->
+  <div class="updates-card animate-in" style="animation-delay:.3s">
+    <div class="dc-title" style="margin-bottom:1.2rem;">Order Updates</div>
+    <div class="update-feed" id="update-feed">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- Contact Card -->
+  <div class="contact-card animate-in" style="animation-delay:.4s">
+    <div class="cc-left">
+      <div class="cc-title">Have Questions About Your Order?</div>
+      <div class="cc-sub">Contact us on WhatsApp with your reference number and we'll get back to you right away.</div>
+    </div>
+    <button class="cc-btn" onclick="alert('Opening WhatsApp...\nPlease contact us with your reference number.')">💬 WhatsApp Us →</button>
+  </div>
+
+</div>
+
+<footer>
+  <div><div class="fl">GREAT DESIGNER</div><div class="fls">The Best Customized Clothing — Sri Lanka</div></div>
+  <div class="fr">© 2025 Great Designer · All rights reserved<br>Questions? WhatsApp us anytime.</div>
+</footer>
+
+<script>
+/* ══════════════════════════════════
+   DEMO ORDER DATABASE
+   In production, replace this with
+   a real API / backend call.
+══════════════════════════════════ */
+const ORDERS = {
+  'GD-2025-4821': {
+    ref:'GD-2025-4821',product:'Sublimation Football Jersey',category:'Sports / Football',
+    client:'Kamal Perera',phone:'077XXXXXXX',qty:'22 pieces',print:'Sublimation Printing',
+    colors:'Navy Blue + Gold',area:'Colombo 05',
+    ordered:'Jan 15, 2025',approved:'Jan 16, 2025',prodStart:'Jan 17, 2025',
+    estComplete:'Jan 21, 2025',estDelivery:'Jan 22, 2025',
+    stage:4, stagePct:70,
+    stages:[
+      {id:0,icon:'📋',label:'Quotation\nSent',date:'Jan 15'},
+      {id:1,icon:'✅',label:'Order\nConfirmed',date:'Jan 15'},
+      {id:2,icon:'🎨',label:'Design\nApproved',date:'Jan 16'},
+      {id:3,icon:'🏭',label:'In\nProduction',date:'Jan 17'},
+      {id:4,icon:'🔍',label:'Quality\nCheck',date:'Jan 20'},
+      {id:5,icon:'📦',label:'Dispatched',date:'—'},
+      {id:6,icon:'🚚',label:'Delivered',date:'—'},
+    ],
+    updates:[
+      {dot:'ud-green',time:'Jan 16, 2025 — 10:24 AM',msg:'✅ Design Approved',note:'Customer approved the digital mock-up. Production order raised.'},
+      {dot:'ud-accent',time:'Jan 17, 2025 — 08:00 AM',msg:'🏭 Production Started',note:'Your jerseys have entered the sublimation printing line. 22 pieces in queue.'},
+      {dot:'ud-amber',time:'Jan 20, 2025 — 02:15 PM',msg:'🔍 Quality Check in Progress',note:'All 22 pieces completed printing. Currently undergoing quality inspection for color accuracy and stitching.'},
+    ],
+    activeDetail:'Your order has completed printing and is currently undergoing our quality inspection process. Each piece is checked for color accuracy, print alignment, and stitching quality before dispatch.',
+  },
+  'GD-2025-3302': {
+    ref:'GD-2025-3302',product:'Corporate Polo Shirt — Round Neck',category:'Corporate / Promotional',
+    client:'Nisha Fernando',phone:'071XXXXXXX',qty:'50 pieces',print:'Embroidery',
+    colors:'White + Navy',area:'Kandy',
+    ordered:'Jan 10, 2025',approved:'Jan 11, 2025',prodStart:'Jan 12, 2025',
+    estComplete:'Jan 17, 2025',estDelivery:'Jan 18, 2025',
+    stage:6, stagePct:100,
+    stages:[
+      {id:0,icon:'📋',label:'Quotation\nSent',date:'Jan 10'},
+      {id:1,icon:'✅',label:'Order\nConfirmed',date:'Jan 10'},
+      {id:2,icon:'🎨',label:'Design\nApproved',date:'Jan 11'},
+      {id:3,icon:'🏭',label:'In\nProduction',date:'Jan 12'},
+      {id:4,icon:'🔍',label:'Quality\nCheck',date:'Jan 16'},
+      {id:5,icon:'📦',label:'Dispatched',date:'Jan 17'},
+      {id:6,icon:'🚚',label:'Delivered',date:'Jan 18'},
+    ],
+    updates:[
+      {dot:'ud-blue',time:'Jan 10, 2025 — 09:00 AM',msg:'📋 Quotation Sent',note:'Quotation sent to WhatsApp. Price: Rs. 38,500 for 50 embroidered polo shirts.'},
+      {dot:'ud-green',time:'Jan 10, 2025 — 11:30 AM',msg:'✅ Order Confirmed & Payment Received',note:'Advance payment confirmed. Production scheduled.'},
+      {dot:'ud-green',time:'Jan 11, 2025 — 03:00 PM',msg:'🎨 Design Approved',note:'Embroidery digitization complete. Customer approved logo file.'},
+      {dot:'ud-accent',time:'Jan 12, 2025 — 08:00 AM',msg:'🏭 Production Started',note:'50 polo shirts entered embroidery production.'},
+      {dot:'ud-green',time:'Jan 16, 2025 — 04:00 PM',msg:'🔍 Quality Check Passed',note:'All 50 pieces inspected. Embroidery quality confirmed excellent.'},
+      {dot:'ud-amber',time:'Jan 17, 2025 — 10:00 AM',msg:'📦 Dispatched via Courier',note:'Parcel handed to PickMe courier. Tracking: PKM-XXXXXX'},
+      {dot:'ud-green',time:'Jan 18, 2025 — 02:30 PM',msg:'🚚 Delivered Successfully!',note:'Package received and signed for. Thank you for choosing Great Designer!'},
+    ],
+    activeDetail:'Your order has been successfully delivered! Thank you for choosing Great Designer. We hope you love your custom polo shirts.',
+  },
+  'GD-2025-5519': {
+    ref:'GD-2025-5519',product:'Event T-Shirt — Screen Print',category:'Event / Party',
+    client:'Ruwan Silva',phone:'076XXXXXXX',qty:'100 pieces',print:'Screen Printing',
+    colors:'Black + White',area:'Galle',
+    ordered:'Jan 18, 2025',approved:'—',prodStart:'—',
+    estComplete:'Jan 25, 2025',estDelivery:'Jan 26, 2025',
+    stage:1, stagePct:30,
+    stages:[
+      {id:0,icon:'📋',label:'Quotation\nSent',date:'Jan 18'},
+      {id:1,icon:'✅',label:'Order\nConfirmed',date:'Jan 18'},
+      {id:2,icon:'🎨',label:'Design\nApproved',date:'—'},
+      {id:3,icon:'🏭',label:'In\nProduction',date:'—'},
+      {id:4,icon:'🔍',label:'Quality\nCheck',date:'—'},
+      {id:5,icon:'📦',label:'Dispatched',date:'—'},
+      {id:6,icon:'🚚',label:'Delivered',date:'—'},
+    ],
+    updates:[
+      {dot:'ud-blue',time:'Jan 18, 2025 — 02:00 PM',msg:'📋 Quotation Sent',note:'Quotation for 100 screen-printed black tees sent to WhatsApp.'},
+      {dot:'ud-green',time:'Jan 18, 2025 — 05:45 PM',msg:'✅ Order Confirmed',note:'Advance payment received. Waiting for design file to proceed.'},
+      {dot:'ud-grey',time:'Pending',msg:'⏳ Awaiting Design Approval',note:'Please send your final design/logo file to our WhatsApp to proceed with production.'},
+    ],
+    activeDetail:'Your order is confirmed and we\'re waiting for your final design file. Please WhatsApp us your logo or artwork so we can create a mock-up for your approval before production begins.',
+  },
+};
+
+/* ══════════════════════════════════
+   STAGE STATUS CONFIG
+══════════════════════════════════ */
+const STATUS_MAP = {
+  0:{label:'Quotation Sent',   cls:'status-quoted'},
+  1:{label:'Order Confirmed',  cls:'status-confirmed'},
+  2:{label:'Design Approved',  cls:'status-quality'},
+  3:{label:'In Production',    cls:'status-production'},
+  4:{label:'Quality Check',    cls:'status-quality'},
+  5:{label:'Dispatched',       cls:'status-dispatch'},
+  6:{label:'Delivered ✓',      cls:'status-delivered'},
+};
+
+/* ══════════════════════════════════
+   LOOKUP
+══════════════════════════════════ */
+function lookupOrder() {
+  const raw = document.getElementById('ref-input').value.trim().toUpperCase();
+  const errEl = document.getElementById('lookup-error');
+  errEl.style.display = 'none';
+
+  if (!raw) { alert('Please enter a reference number.'); return; }
+
+  const order = ORDERS[raw];
+  if (!order) {
+    errEl.style.display = 'flex';
+    document.getElementById('empty-state').style.display = 'flex';
+    document.getElementById('order-result').classList.remove('show');
+    return;
+  }
+
+  errEl.style.display = 'none';
+  renderOrder(order);
+}
+
+/* ══════════════════════════════════
+   RENDER ORDER
+══════════════════════════════════ */
+function renderOrder(o) {
+  // header
+  document.getElementById('r-ref').textContent = o.ref;
+  document.getElementById('r-product').textContent = o.product;
+  document.getElementById('r-date').textContent = o.ordered;
+  document.getElementById('r-qty').textContent = o.qty;
+  document.getElementById('r-print').textContent = o.print;
+  document.getElementById('r-client').textContent = o.client;
+
+  const sb = document.getElementById('r-status-badge');
+  const sm = STATUS_MAP[o.stage];
+  sb.textContent = sm.label;
+  sb.className = 'status-badge ' + sm.cls;
+
+  document.getElementById('r-eta').textContent = o.estDelivery;
+
+  // timeline sub
+  document.getElementById('tl-sub').textContent =
+    o.stage === 6
+      ? '✅ Your order has been delivered successfully!'
+      : `Currently at stage ${o.stage + 1} of ${o.stages.length}: ${sm.label}`;
+
+  // build timeline
+  buildTimeline(o);
+
+  // detail cards
+  document.getElementById('d-ref').textContent = o.ref;
+  document.getElementById('d-product').textContent = o.product;
+  document.getElementById('d-cat').textContent = o.category;
+  document.getElementById('d-qty').textContent = o.qty;
+  document.getElementById('d-print').textContent = o.print;
+  document.getElementById('d-colors').textContent = o.colors;
+  document.getElementById('d-ordered').textContent = o.ordered;
+  document.getElementById('d-approved').textContent = o.approved;
+  document.getElementById('d-prodstart').textContent = o.prodStart;
+  document.getElementById('d-complete').textContent = o.estComplete;
+  document.getElementById('d-delivery').textContent = o.estDelivery;
+  document.getElementById('d-area').textContent = o.area;
+
+  // updates feed
+  const feed = document.getElementById('update-feed');
+  feed.innerHTML = o.updates.slice().reverse().map(u => `
+    <div class="update-item">
+      <div class="update-dot ${u.dot}"></div>
+      <div class="update-content">
+        <div class="update-time">${u.time}</div>
+        <div class="update-msg">${u.msg}</div>
+        <div class="update-note">${u.note}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // show
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('order-result').classList.add('show');
+
+  setTimeout(() => {
+    document.getElementById('order-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+/* ══════════════════════════════════
+   BUILD TIMELINE
+══════════════════════════════════ */
+function buildTimeline(o) {
+  const container = document.getElementById('tl-stages');
+  const totalStages = o.stages.length;
+  container.style.gridTemplateColumns = `repeat(${totalStages}, 1fr)`;
+
+  container.innerHTML = o.stages.map((s, i) => {
+    let stageClass = 'pending';
+    if (i < o.stage) stageClass = 'done';
+    else if (i === o.stage) stageClass = 'active';
+
+    return `
+      <div class="tl-stage ${stageClass}" id="tls-${i}" onclick="selectStage(${i})">
+        <div class="tl-circle">
+          <span class="tl-circle-icon">${s.icon}</span>
+        </div>
+        <div class="tl-label">${s.label.replace(/\n/g, '<br>')}</div>
+        <div class="tl-date">${s.date}</div>
+      </div>
+    `;
+  }).join('');
+
+  // progress line fill %
+  const fillPct = o.stage === 0 ? 0
+    : o.stage >= totalStages - 1 ? 100
+    : Math.round(((o.stage) / (totalStages - 1)) * 100);
+
+  setTimeout(() => {
+    document.getElementById('tl-fill').style.width = fillPct + '%';
+  }, 200);
+
+  // show active detail
+  showStageDetail(o.stage, o);
+}
+
+/* ══════════════════════════════════
+   STAGE DETAIL
+══════════════════════════════════ */
+let currentOrder = null;
+function selectStage(idx) {
+  if (!currentOrder) return;
+  // remove active highlight from all, add to clicked
+  document.querySelectorAll('.tl-stage').forEach(el => el.style.opacity = '');
+  showStageDetail(idx, currentOrder);
+}
+
+function showStageDetail(idx, o) {
+  currentOrder = o;
+  const detail = document.getElementById('tl-active-detail');
+  const sm = STATUS_MAP[idx] || {};
+
+  let stageClass = idx < o.stage ? 'done' : idx === o.stage ? 'active' : 'pending';
+
+  const stageDescriptions = {
+    0: 'Your quotation has been sent to your WhatsApp / email. Please review the pricing and confirm your order to proceed.',
+    1: 'Your order has been confirmed and payment has been received. We\'re now waiting to finalize your design details.',
+    2: 'Our design team has created a digital mock-up of your order. You have reviewed and approved the design, and we\'re ready to begin production.',
+    3: 'Your clothing is currently in production. Our team is printing, cutting, and assembling your custom garments with care.',
+    4: 'Production is complete. Every piece is being inspected for color accuracy, print quality, stitching, and overall finish before dispatch.',
+    5: 'Your order has been packed and handed over to our delivery partner. Tracking information will be sent to your WhatsApp.',
+    6: 'Your order has been delivered successfully! We hope you love your custom clothing. Please reach out if you need anything.',
+  };
+
+  document.getElementById('td-title').textContent =
+    (stageClass === 'done' ? '✅ ' : stageClass === 'active' ? '⚡ ' : '⏳ ') +
+    (sm.label || 'Stage Details');
+
+  let text = stageClass === 'active' ? o.activeDetail : stageDescriptions[idx] || '—';
+  document.getElementById('td-text').textContent = text;
+
+  const progWrap = document.getElementById('td-prog-wrap');
+  if (stageClass === 'active' && o.stagePct) {
+    progWrap.style.display = 'block';
+    document.getElementById('td-prog-pct').textContent = o.stagePct + '%';
+    setTimeout(() => {
+      document.getElementById('td-prog-bar').style.width = o.stagePct + '%';
+    }, 600);
+  } else {
+    progWrap.style.display = 'none';
+  }
+
+  detail.classList.add('show');
+}
+
+/* ══════════════════════════════════
+   DEMO: check URL for ref param
+══════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+  const p = new URLSearchParams(location.search);
+  const ref = p.get('ref');
+  if (ref) {
+    document.getElementById('ref-input').value = ref.toUpperCase();
+    lookupOrder();
+  }
+});
+</script>
+</body>
+</html>

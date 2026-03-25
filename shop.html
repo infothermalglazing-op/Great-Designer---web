@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREAT DESIGNER — Retail Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ee;--bg2:#ece8e1;--surface:#fff;
+  --border:#e0dbd3;--border2:#cbc4bb;
+  --accent:#e63329;--dark:#111;--dark2:#1a1a2e;
+  --muted:#777;--muted2:#aaa;
+  --green:#15803d;--green-bg:rgba(21,128,61,.07);--green-border:rgba(21,128,61,.2);
+  --r:.75rem;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;}
+img{display:block;}
+
+/* ══════════ NAV ══════════ */
+nav{
+  position:sticky;top:0;z-index:300;height:64px;
+  background:rgba(245,242,238,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3.5rem;
+}
+.logo-wrap{display:flex;flex-direction:column;line-height:1.05;cursor:pointer;}
+.logo-m{font-family:'Anton',sans-serif;font-size:1.45rem;letter-spacing:.07em;color:var(--accent);}
+.logo-s{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;}
+.nav-links > li{position:relative;}
+.nav-links > li > a,
+.nav-links > li > .nav-dd-trigger{
+  font-size:.82rem;font-weight:500;color:var(--muted);
+  padding:.48rem 1rem;border-radius:2rem;
+  transition:color .2s,background .2s;
+  display:flex;align-items:center;gap:.3rem;
+  background:none;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+}
+.nav-links > li > a:hover,
+.nav-links > li > .nav-dd-trigger:hover{color:var(--dark);background:var(--bg2);}
+.nav-links > li > a.active,
+.nav-links > li > .nav-dd-trigger.active{color:var(--dark);font-weight:700;}
+.dd-arrow{font-size:.55rem;transition:transform .2s;}
+.nav-links > li:hover .dd-arrow{transform:rotate(180deg);}
+
+/* Dropdown */
+.nav-dropdown{
+  position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:.5rem;
+  min-width:210px;
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+  opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s;
+  transform:translateX(-50%) translateY(-6px);
+  z-index:100;
+}
+.nav-links > li:hover .nav-dropdown{
+  opacity:1;pointer-events:all;
+  transform:translateX(-50%) translateY(0);
+}
+.dd-item{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.6rem .85rem;border-radius:.5rem;
+  font-size:.82rem;font-weight:500;color:var(--muted);
+  transition:background .15s,color .15s;
+  white-space:nowrap;
+}
+.dd-item:hover{background:var(--bg2);color:var(--dark);}
+.dd-item.active{color:var(--accent);font-weight:700;}
+.dd-item-icon{font-size:1rem;}
+.dd-item-text{}
+.dd-item-sub{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);display:block;margin-top:.08rem;}
+.dd-sep{height:1px;background:var(--border);margin:.3rem 0;}
+
+.nav-r{display:flex;gap:.8rem;align-items:center;}
+.nav-cart-btn{
+  position:relative;
+  font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--dark2);color:#fff;border:none;
+  padding:.52rem 1.25rem;border-radius:2rem;
+  transition:transform .15s,box-shadow .15s;
+  display:flex;align-items:center;gap:.45rem;
+}
+.nav-cart-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,26,46,.3);}
+.cart-badge{
+  background:var(--accent);color:#fff;
+  font-size:.55rem;font-weight:700;
+  width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;
+  transition:transform .2s;
+}
+.cart-badge.bump{animation:bump .3s ease both;}
+@keyframes bump{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
+.nav-cta{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
+
+/* ══════════ PAGE HERO ══════════ */
+.shop-hero{
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:1.8rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+}
+.sh-ey{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem;display:flex;align-items:center;gap:.55rem;}
+.sh-ey::before{content:'';width:14px;height:2px;background:var(--accent);}
+.sh-h{font-family:'Anton',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:.02em;color:var(--dark);line-height:1;margin-bottom:.4rem;}
+.sh-h em{font-style:normal;color:var(--green);}
+.sh-d{font-size:.83rem;color:var(--muted);max-width:420px;line-height:1.65;}
+.sh-right{display:flex;align-items:center;gap:2rem;flex-shrink:0;}
+.sh-stat{text-align:center;}
+.sh-num{font-family:'Anton',sans-serif;font-size:2rem;color:var(--green);line-height:1;}
+.sh-lbl{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+/* ══════════ BULK BANNER ══════════ */
+.bulk-banner{
+  background:var(--green-bg);border-bottom:1.5px solid var(--green-border);
+  padding:1rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  flex-wrap:wrap;
+}
+.bb-left{display:flex;align-items:center;gap:1rem;}
+.bb-icon{font-size:1.4rem;}
+.bb-title{font-weight:700;font-size:.9rem;color:var(--green);}
+.bb-sub{font-size:.78rem;color:var(--muted);margin-top:.1rem;}
+.bulk-toggle-wrap{display:flex;align-items:center;gap:.7rem;}
+.bt-label{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.bt-label.on{color:var(--green);font-weight:700;}
+/* Toggle switch */
+.toggle{position:relative;width:46px;height:26px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-sl{position:absolute;cursor:pointer;inset:0;background:var(--border2);border-radius:26px;transition:.25s;}
+.toggle-sl::before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.toggle input:checked + .toggle-sl{background:var(--green);}
+.toggle input:checked + .toggle-sl::before{transform:translateX(20px);}
+
+/* ══════════ FILTER BAR ══════════ */
+.filter-bar{
+  padding:1rem 3.5rem;background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;
+  position:sticky;top:64px;z-index:100;
+}
+.fl-lbl{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-right:.2rem;}
+.fb{font-size:.74rem;font-weight:600;padding:.4rem .95rem;border-radius:2rem;border:1.5px solid var(--border2);background:transparent;color:var(--muted);transition:all .18s;white-space:nowrap;}
+.fb:hover{border-color:var(--dark);color:var(--dark);}
+.fb.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+.fb.on-polo{background:#1d4ed8;border-color:#1d4ed8;color:#fff;}
+.fb.on-round{background:var(--green);border-color:var(--green);color:#fff;}
+.fb.on-vneck{background:#7c3aed;border-color:#7c3aed;color:#fff;}
+.fb.on-dry{background:#0891b2;border-color:#0891b2;color:#fff;}
+
+/* ══════════ GRID ══════════ */
+.shop-grid-wrap{padding:2rem 3.5rem 5rem;}
+.sg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
+.sg-title{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:.03em;}
+.sg-meta{display:flex;align-items:center;gap:1rem;}
+.sg-count{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;}
+.sg-sort{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1.5px solid var(--border);padding:.4rem .8rem;border-radius:.4rem;cursor:pointer;outline:none;}
+
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;}
+
+/* ══════════ SHOP CARD ══════════ */
+.sc{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+  position:relative;
+}
+.sc:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.12);}
+.sc.hide{display:none;}
+
+.sc-img{position:relative;height:220px;overflow:hidden;background:var(--bg2);}
+.sc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.sc:hover .sc-img img{transform:scale(1.07);}
+
+.sc-type-tag{
+  position:absolute;top:.7rem;left:.7rem;
+  font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.24rem .62rem;border-radius:2rem;color:#fff;
+}
+.tag-polo{background:#1d4ed8;}
+.tag-round{background:var(--green);}
+.tag-vneck{background:#7c3aed;}
+.tag-dry{background:#0891b2;}
+
+.sc-stock{
+  position:absolute;bottom:.7rem;left:.7rem;
+  font-family:'DM Mono',monospace;font-size:.48rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.2rem .55rem;border-radius:2rem;
+}
+.in-stock{background:rgba(21,128,61,.9);color:#fff;}
+.low-stock{background:rgba(180,83,9,.9);color:#fff;}
+
+.sc-quick-view{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.38);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s;
+}
+.sc:hover .sc-quick-view{opacity:1;}
+.sc-qv-btn{
+  font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:#fff;color:var(--dark);border:none;
+  padding:.5rem 1.2rem;border-radius:2rem;
+  transition:background .15s;
+}
+.sc-qv-btn:hover{background:var(--accent);color:#fff;}
+
+.sc-body{padding:1.1rem 1.2rem 1.3rem;}
+.sc-name{font-weight:700;font-size:.95rem;line-height:1.3;margin-bottom:.3rem;}
+.sc-sub{font-size:.75rem;color:var(--muted);margin-bottom:.9rem;line-height:1.5;}
+
+/* Price display */
+.sc-price-wrap{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:.5rem;padding:.7rem .85rem;
+  margin-bottom:.9rem;
+  transition:background .3s,border-color .3s;
+}
+.sc-price-wrap.bulk-mode{
+  background:var(--green-bg);border-color:var(--green-border);
+}
+.sc-price-row{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;}
+.sc-price-main{font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--accent);transition:color .3s;}
+.sc-price-wrap.bulk-mode .sc-price-main{color:var(--green);}
+.sc-price-tag{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);}
+.sc-price-save{font-family:'DM Mono',monospace;font-size:.56rem;font-weight:600;color:var(--green);background:var(--green-bg);padding:.2rem .5rem;border-radius:1rem;display:none;}
+.sc-price-wrap.bulk-mode .sc-price-save{display:inline;}
+.sc-moq{font-size:.7rem;color:var(--muted);margin-top:.3rem;display:none;}
+.sc-price-wrap.bulk-mode .sc-moq{display:block;}
+
+/* Colors row */
+.sc-colors{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.85rem;}
+.sc-color{
+  width:22px;height:22px;border-radius:50%;
+  border:2px solid transparent;cursor:pointer;
+  transition:transform .15s,border-color .15s;
+  position:relative;
+}
+.sc-color:hover{transform:scale(1.15);}
+.sc-color.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,51,41,.25);}
+
+/* Size selector */
+.sc-sizes{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.9rem;}
+.sc-sz{
+  font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;
+  padding:.3rem .55rem;border:1.5px solid var(--border);
+  border-radius:.35rem;color:var(--muted);
+  cursor:pointer;transition:all .15s;
+}
+.sc-sz:hover{border-color:var(--dark);color:var(--dark);}
+.sc-sz.active{background:var(--dark);border-color:var(--dark);color:#fff;}
+
+/* Add to cart */
+.sc-footer{display:flex;gap:.6rem;align-items:center;}
+.sc-qty{
+  display:flex;align-items:center;
+  border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;
+}
+.sc-qty-btn{width:30px;height:30px;background:var(--bg);border:none;color:var(--dark);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.sc-qty-btn:hover{background:var(--bg2);}
+.sc-qty-val{width:34px;text-align:center;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:600;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);line-height:30px;}
+.sc-add-btn{
+  flex:1;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border:none;
+  padding:.6rem .8rem;border-radius:.4rem;
+  transition:transform .15s,box-shadow .15s;
+  display:flex;align-items:center;justify-content:center;gap:.35rem;
+}
+.sc-add-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(230,51,41,.35);}
+.sc-add-btn.added{background:var(--green);}
+
+/* ══════════ CART SIDEBAR ══════════ */
+.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);}
+.cart-backdrop.show{opacity:1;pointer-events:all;}
+.cart-panel{
+  position:fixed;right:0;top:0;bottom:0;
+  width:380px;background:var(--surface);
+  z-index:500;transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+  display:flex;flex-direction:column;
+  box-shadow:-12px 0 48px rgba(0,0,0,.14);
+}
+.cart-panel.open{transform:translateX(0);}
+.cart-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 1.6rem;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.cart-title{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:.04em;}
+.cart-close{width:34px;height:34px;border-radius:50%;background:var(--bg2);border:none;font-size:1rem;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;}
+.cart-close:hover{background:var(--accent);color:#fff;}
+.cart-body{flex:1;overflow-y:auto;padding:1.2rem 1.6rem;}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--muted);}
+.cart-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.4;}
+.cart-empty-text{font-size:.85rem;line-height:1.7;}
+.cart-items{display:flex;flex-direction:column;gap:.8rem;}
+.cart-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1rem;background:var(--bg);border-radius:.6rem;
+  border:1px solid var(--border);
+  animation:fadeUp .25s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.ci-img{width:56px;height:56px;border-radius:.5rem;overflow:hidden;flex-shrink:0;}
+.ci-img img{width:100%;height:100%;object-fit:cover;}
+.ci-info{flex:1;min-width:0;}
+.ci-name{font-weight:700;font-size:.85rem;line-height:1.3;margin-bottom:.2rem;}
+.ci-meta{font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:.04em;}
+.ci-price{font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;color:var(--accent);margin-top:.3rem;}
+.ci-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;}
+.ci-remove{width:24px;height:24px;border-radius:50%;background:none;border:1px solid var(--border2);color:var(--muted);font-size:.7rem;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.ci-remove:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+.ci-qty-wrap{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;}
+.ci-qb{width:26px;height:26px;background:var(--bg);border:none;color:var(--dark);font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.ci-qb:hover{background:var(--bg2);}
+.ci-qv{width:30px;text-align:center;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:600;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);line-height:26px;}
+
+.cart-footer{padding:1.3rem 1.6rem;border-top:1px solid var(--border);flex-shrink:0;}
+.cart-summary{margin-bottom:1rem;}
+.cart-sum-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.3rem 0;}
+.cart-sum-row .l{color:var(--muted);}
+.cart-sum-row .v{font-weight:600;}
+.cart-sum-divider{height:1px;background:var(--border);margin:.5rem 0;}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;}
+.cart-total-lbl{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:.03em;}
+.cart-total-val{font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--accent);}
+.cart-checkout-btn{
+  width:100%;margin-top:1rem;
+  font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border:none;
+  padding:.95rem;border-radius:.5rem;
+  transition:transform .15s,box-shadow .15s;
+}
+.cart-checkout-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(230,51,41,.32);}
+.cart-continue-btn{
+  width:100%;margin-top:.6rem;
+  font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;color:var(--muted);border:1.5px solid var(--border2);
+  padding:.78rem;border-radius:.5rem;
+  transition:all .2s;
+}
+.cart-continue-btn:hover{border-color:var(--dark);color:var(--dark);}
+.cart-bulk-note{
+  background:var(--green-bg);border:1px solid var(--green-border);
+  border-radius:.5rem;padding:.7rem .9rem;
+  font-size:.72rem;color:var(--green);line-height:1.6;
+  margin-bottom:.8rem;display:none;
+}
+.cart-bulk-note.show{display:block;}
+
+/* ══════════ CHECKOUT MODAL ══════════ */
+.co-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(5px);}
+.co-bg.show{opacity:1;pointer-events:all;}
+.co-box{background:var(--surface);border-radius:1.2rem;padding:2.5rem;max-width:500px;width:92%;transform:translateY(20px);transition:transform .3s;box-shadow:0 16px 52px rgba(0,0,0,.14);}
+.co-bg.show .co-box{transform:translateY(0);}
+.co-title{font-family:'Anton',sans-serif;font-size:1.6rem;letter-spacing:.03em;margin-bottom:.3rem;}
+.co-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
+.co-fg{margin-bottom:1rem;}
+.co-fg label{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem;}
+.co-fg input,.co-fg textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);color:var(--dark);padding:.72rem .9rem;font-family:'DM Sans',sans-serif;font-size:.88rem;border-radius:.5rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+.co-fg input:focus,.co-fg textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,51,41,.08);}
+.co-fg textarea{resize:vertical;min-height:70px;}
+.co-fgr{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.co-submit{width:100%;margin-top:.5rem;font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.95rem;border-radius:.5rem;transition:transform .15s,box-shadow .15s;}
+.co-submit:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(230,51,41,.32);}
+.co-cancel{width:100%;margin-top:.5rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--muted);border:1.5px solid var(--border2);padding:.75rem;border-radius:.5rem;transition:all .2s;}
+.co-cancel:hover{border-color:var(--dark);color:var(--dark);}
+.co-order-summary{background:var(--bg);border:1px solid var(--border);border-radius:.5rem;padding:.9rem 1rem;margin-bottom:1rem;font-size:.8rem;}
+.co-sum-title{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+.co-sum-item{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px solid var(--border);}
+.co-sum-item:last-child{border-bottom:none;}
+.co-sum-total{display:flex;justify-content:space-between;margin-top:.5rem;font-weight:700;}
+.co-sum-total .tv{color:var(--accent);font-family:'DM Mono',monospace;}
+
+/* ══════════ SUCCESS MODAL ══════════ */
+.suc-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(5px);}
+.suc-bg.show{opacity:1;pointer-events:all;}
+.suc-box{background:var(--surface);border-radius:1.3rem;padding:3rem;max-width:440px;width:90%;text-align:center;transform:translateY(20px);transition:transform .3s;box-shadow:0 16px 52px rgba(0,0,0,.14);}
+.suc-bg.show .suc-box{transform:translateY(0);}
+.suc-icon{font-size:3rem;margin-bottom:.8rem;}
+.suc-title{font-family:'Anton',sans-serif;font-size:1.9rem;color:var(--green);letter-spacing:.03em;margin-bottom:.5rem;}
+.suc-ref{font-family:'DM Mono',monospace;font-size:.72rem;font-weight:600;background:var(--bg2);border:1px solid var(--border);padding:.45rem 1.1rem;border-radius:.4rem;display:inline-block;margin-bottom:1rem;letter-spacing:.1em;}
+.suc-body{color:var(--muted);font-size:.86rem;line-height:1.75;margin-bottom:1.5rem;}
+.suc-btns{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;}
+.suc-btn{font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.72rem 1.7rem;border-radius:.4rem;cursor:pointer;transition:transform .15s;}
+.suc-btn:hover{transform:translateY(-1px);}
+.suc-btn2{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--dark);border:1.5px solid var(--border2);padding:.68rem 1.5rem;border-radius:.4rem;cursor:pointer;transition:border-color .2s;}
+.suc-btn2:hover{border-color:var(--dark);}
+
+/* ══════════ FOOTER ══════════ */
+footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--accent);display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.5);}
+.fl2{font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:.07em;color:#fff;}
+.fl2s{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.18rem;}
+.fr{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-align:right;line-height:1.8;}
+
+@media(max-width:1100px){.shop-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:900px){
+  nav{padding:0 1.2rem;}.nav-links{display:none;}
+  .shop-hero{padding:2.5rem 1.2rem 2rem;flex-direction:column;gap:.8rem;}
+  .bulk-banner{padding:1rem 1.2rem;}
+  .filter-bar{padding:.9rem 1.2rem;}
+  .shop-grid-wrap{padding:1.5rem 1.2rem 3rem;}
+  .shop-grid{grid-template-columns:repeat(2,1fr);}
+  .cart-panel{width:100%;}
+  footer{flex-direction:column;gap:1rem;padding:2rem 1.2rem;}.fr{text-align:center;}
+  .co-fgr{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="logo-wrap" onclick="location.href='index.html'">
+    <div class="logo-m">GREAT DESIGNER</div>
+    <div class="logo-s">The Best Customized Clothing</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="customize.html">Get Quotation</a></li>
+    <li><a href="my-orders.html">Tracking</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="nav-cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-badge" id="cart-badge">0</span>
+    </button>
+    <button class="nav-cta" onclick="location.href='customize.html'">Get Quotation</button>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="shop-hero">
+  <div>
+    <p class="sh-ey">Retail Shop</p>
+    <h1 class="sh-h">PLAIN TEES — <em>FIXED PRICES.</em></h1>
+    <p class="sh-d">Buy premium plain T-shirts off the shelf. No customization needed. Toggle bulk pricing for orders of 10+ pieces.</p>
+  </div>
+  <div class="sh-right">
+    <div class="sh-stat"><div class="sh-num">8</div><div class="sh-lbl">Products</div></div>
+    <div class="sh-stat"><div class="sh-num">Rs.400</div><div class="sh-lbl">Starting From</div></div>
+    <div class="sh-stat"><div class="sh-num">10+</div><div class="sh-lbl">Bulk Discount</div></div>
+  </div>
+</div>
+
+<!-- ══════════ BULK BANNER ══════════ -->
+<div class="bulk-banner">
+  <div class="bb-left">
+    <div class="bb-icon">📦</div>
+    <div>
+      <div class="bb-title">Bulk Discount Available</div>
+      <div class="bb-sub">Order 10+ pieces of any item for automatic bulk pricing. Toggle to see bulk rates.</div>
+    </div>
+  </div>
+  <div class="bulk-toggle-wrap">
+    <span class="bt-label" id="bt-off-lbl">Retail</span>
+    <label class="toggle">
+      <input type="checkbox" id="bulk-toggle" onchange="toggleBulkMode()">
+      <span class="toggle-sl"></span>
+    </label>
+    <span class="bt-label on" id="bt-on-lbl" style="opacity:.35">Bulk 10+</span>
+  </div>
+</div>
+
+<!-- ══════════ FILTER BAR ══════════ -->
+<div class="filter-bar">
+  <span class="fl-lbl">Type:</span>
+  <button class="fb on" id="f-all" onclick="filterShop('all',this,'on')">All (8)</button>
+  <button class="fb" id="f-polo" onclick="filterShop('polo',this,'on-polo')">👔 Polo Shirts</button>
+  <button class="fb" id="f-round" onclick="filterShop('round',this,'on-round')">👕 Round Neck</button>
+  <button class="fb" id="f-vneck" onclick="filterShop('vneck',this,'on-vneck')">👕 V-Neck</button>
+  <button class="fb" id="f-dry" onclick="filterShop('dry',this,'on-dry')">⚡ Dry-Fit</button>
+</div>
+
+<!-- ══════════ GRID ══════════ -->
+<div class="shop-grid-wrap">
+  <div class="sg-header">
+    <div class="sg-title" id="sg-title">All Retail Products</div>
+    <div class="sg-meta">
+      <span class="sg-count" id="sg-count">Showing 8 items</span>
+    </div>
+  </div>
+
+  <div class="shop-grid" id="shop-grid">
+
+    <!-- 1: Polo Round Collar -->
+    <div class="sc" data-type="polo" data-retail="850" data-bulk="650" data-name="Polo Shirt — Round Collar" data-img="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=500&q=80&auto=format&fit=crop" alt="Polo Round Collar" loading="lazy">
+        <span class="sc-type-tag tag-polo">👔 Polo</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">Polo Shirt — Round Collar</div>
+        <div class="sc-sub">100% Cotton Piqué · 200 GSM · Structured Collar</div>
+        <div class="sc-price-wrap" id="pw-0">
+          <div class="sc-price-row">
+            <div>
+              <div class="sc-price-tag" id="pt-0">Retail Price</div>
+              <div class="sc-price-main" id="pm-0">Rs. 850</div>
+            </div>
+            <span class="sc-price-save" id="ps-0">Save Rs. 200</span>
+          </div>
+          <div class="sc-moq" id="moq-0">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" title="Black" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" title="White" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#1a2a4a" title="Navy" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#7f1d1d" title="Maroon" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#e63329" title="Red" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#15803d" title="Green" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#b45309" title="Gold" onclick="pickColor(this,0)"></div>
+          <div class="sc-color" style="background:#6d28d9" title="Purple" onclick="pickColor(this,0)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty">
+            <button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button>
+            <div class="sc-qty-val">1</div>
+            <button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button>
+          </div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2: Polo V-Neck -->
+    <div class="sc" data-type="polo" data-retail="900" data-bulk="700" data-name="Polo Shirt — V-Neck" data-img="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&q=80&auto=format&fit=crop" alt="Polo V-Neck" loading="lazy">
+        <span class="sc-type-tag tag-polo">👔 Polo</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">Polo Shirt — V-Neck</div>
+        <div class="sc-sub">180 GSM Premium Cotton · Slim Fit</div>
+        <div class="sc-price-wrap" id="pw-1">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-1">Retail Price</div><div class="sc-price-main" id="pm-1">Rs. 900</div></div>
+            <span class="sc-price-save" id="ps-1">Save Rs. 200</span>
+          </div>
+          <div class="sc-moq" id="moq-1">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" title="Black" onclick="pickColor(this,1)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" title="White" onclick="pickColor(this,1)"></div>
+          <div class="sc-color" style="background:#1a2a4a" title="Navy" onclick="pickColor(this,1)"></div>
+          <div class="sc-color" style="background:#e63329" title="Red" onclick="pickColor(this,1)"></div>
+          <div class="sc-color" style="background:#15803d" title="Green" onclick="pickColor(this,1)"></div>
+          <div class="sc-color" style="background:#0891b2" title="Teal" onclick="pickColor(this,1)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3: Round Neck Classic -->
+    <div class="sc" data-type="round" data-retail="550" data-bulk="400" data-name="Round Neck T-Shirt — Classic" data-img="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80&auto=format&fit=crop" alt="Round Neck Classic" loading="lazy">
+        <span class="sc-type-tag tag-round">👕 Round Neck</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">Round Neck T-Shirt — Classic</div>
+        <div class="sc-sub">160 GSM Lightweight Cotton · Perfect Print Base</div>
+        <div class="sc-price-wrap" id="pw-2">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-2">Retail Price</div><div class="sc-price-main" id="pm-2">Rs. 550</div></div>
+            <span class="sc-price-save" id="ps-2">Save Rs. 150</span>
+          </div>
+          <div class="sc-moq" id="moq-2">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#b45309" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#6d28d9" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#0891b2" onclick="pickColor(this,2)"></div>
+          <div class="sc-color" style="background:#ea580c" onclick="pickColor(this,2)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4: Round Neck Heavy -->
+    <div class="sc" data-type="round" data-retail="750" data-bulk="580" data-name="Round Neck T-Shirt — Heavy Cotton" data-img="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80&auto=format&fit=crop" alt="Round Neck Heavy" loading="lazy">
+        <span class="sc-type-tag tag-round">👕 Round Neck</span>
+        <span class="sc-stock low-stock">Low Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">Round Neck — Heavy Cotton</div>
+        <div class="sc-sub">220 GSM Premium · Structured · Long-lasting</div>
+        <div class="sc-price-wrap" id="pw-3">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-3">Retail Price</div><div class="sc-price-main" id="pm-3">Rs. 750</div></div>
+            <span class="sc-price-save" id="ps-3">Save Rs. 170</span>
+          </div>
+          <div class="sc-moq" id="moq-3">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,3)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,3)"></div>
+          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,3)"></div>
+          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,3)"></div>
+          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,3)"></div>
+          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,3)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5: V-Neck Slim -->
+    <div class="sc" data-type="vneck" data-retail="650" data-bulk="480" data-name="V-Neck T-Shirt — Slim Fit" data-img="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80&auto=format&fit=crop" alt="V-Neck Slim" loading="lazy">
+        <span class="sc-type-tag tag-vneck">👕 V-Neck</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">V-Neck T-Shirt — Slim Fit</div>
+        <div class="sc-sub">Deep V · Soft Cotton Blend · Modern Cut</div>
+        <div class="sc-price-wrap" id="pw-4">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-4">Retail Price</div><div class="sc-price-main" id="pm-4">Rs. 650</div></div>
+            <span class="sc-price-save" id="ps-4">Save Rs. 170</span>
+          </div>
+          <div class="sc-moq" id="moq-4">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,4)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,4)"></div>
+          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,4)"></div>
+          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,4)"></div>
+          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,4)"></div>
+          <div class="sc-color" style="background:#6d28d9" onclick="pickColor(this,4)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6: V-Neck Oversized -->
+    <div class="sc" data-type="vneck" data-retail="780" data-bulk="580" data-name="V-Neck T-Shirt — Oversized" data-img="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&q=80&auto=format&fit=crop" alt="V-Neck Oversized" loading="lazy">
+        <span class="sc-type-tag tag-vneck">👕 V-Neck</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">V-Neck T-Shirt — Oversized</div>
+        <div class="sc-sub">Drop Shoulder · 200 GSM Soft Cotton · Boxy Fit</div>
+        <div class="sc-price-wrap" id="pw-5">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-5">Retail Price</div><div class="sc-price-main" id="pm-5">Rs. 780</div></div>
+            <span class="sc-price-save" id="ps-5">Save Rs. 200</span>
+          </div>
+          <div class="sc-moq" id="moq-5">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,5)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,5)"></div>
+          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,5)"></div>
+          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,5)"></div>
+          <div class="sc-color" style="background:#b45309" onclick="pickColor(this,5)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7: Dry-Fit Polo -->
+    <div class="sc" data-type="dry" data-retail="950" data-bulk="720" data-name="Polo Shirt — Dry-Fit Performance" data-img="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&q=80&auto=format&fit=crop" alt="Dry-Fit Polo" loading="lazy">
+        <span class="sc-type-tag tag-dry">⚡ Dry-Fit</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">Polo Shirt — Dry-Fit Performance</div>
+        <div class="sc-sub">Moisture Wicking · Anti-Odour · Sports Ready</div>
+        <div class="sc-price-wrap" id="pw-6">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-6">Retail Price</div><div class="sc-price-main" id="pm-6">Rs. 950</div></div>
+            <span class="sc-price-save" id="ps-6">Save Rs. 230</span>
+          </div>
+          <div class="sc-moq" id="moq-6">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,6)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,6)"></div>
+          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,6)"></div>
+          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,6)"></div>
+          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,6)"></div>
+          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,6)"></div>
+          <div class="sc-color" style="background:#0891b2" onclick="pickColor(this,6)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8: Long Sleeve Round Neck -->
+    <div class="sc" data-type="round" data-retail="850" data-bulk="650" data-name="Round Neck T-Shirt — Long Sleeve" data-img="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80&auto=format&fit=crop">
+      <div class="sc-img">
+        <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=500&q=80&auto=format&fit=crop" alt="Long Sleeve Round Neck" loading="lazy">
+        <span class="sc-type-tag tag-round">👕 Round Neck</span>
+        <span class="sc-stock in-stock">In Stock</span>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-name">Round Neck — Long Sleeve</div>
+        <div class="sc-sub">180 GSM Cotton · Classic Long Sleeve · Layering</div>
+        <div class="sc-price-wrap" id="pw-7">
+          <div class="sc-price-row">
+            <div><div class="sc-price-tag" id="pt-7">Retail Price</div><div class="sc-price-main" id="pm-7">Rs. 850</div></div>
+            <span class="sc-price-save" id="ps-7">Save Rs. 200</span>
+          </div>
+          <div class="sc-moq" id="moq-7">Minimum 10 pieces for bulk rate</div>
+        </div>
+        <div class="sc-colors">
+          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,7)"></div>
+          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,7)"></div>
+          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,7)"></div>
+          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,7)"></div>
+          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,7)"></div>
+          <div class="sc-color" style="background:#0891b2" onclick="pickColor(this,7)"></div>
+        </div>
+        <div class="sc-sizes">
+          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
+          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end shop-grid -->
+</div>
+
+<footer>
+  <div><div class="fl2">GREAT DESIGNER</div><div class="fl2s">The Best Customized Clothing — Sri Lanka</div></div>
+  <div class="fr">© 2025 Great Designer · All rights reserved<br>Retail Shop · Fixed Prices · Instant Order</div>
+</footer>
+
+<!-- ══════════ CART SIDEBAR ══════════ -->
+<div class="cart-backdrop" id="cart-backdrop" onclick="closeCart()"></div>
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-header">
+    <div class="cart-title">🛒 Your Cart <span id="cart-item-count" style="font-family:'DM Mono',monospace;font-size:.75rem;font-weight:400;color:var(--muted);">(0 items)</span></div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-text">Your cart is empty.<br>Add some items to get started!</div>
+    </div>
+    <div class="cart-items" id="cart-items-list" style="display:none;"></div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-bulk-note" id="cart-bulk-note">
+      💡 You have 10+ items — <strong>bulk pricing has been applied!</strong> All prices updated to bulk rates.
+    </div>
+    <div class="cart-summary">
+      <div class="cart-sum-row"><span class="l">Subtotal</span><span class="v" id="cart-subtotal">Rs. 0</span></div>
+      <div class="cart-sum-row"><span class="l">Delivery (Est.)</span><span class="v">Rs. 350</span></div>
+      <div class="cart-sum-divider"></div>
+      <div class="cart-total-row">
+        <span class="cart-total-lbl">TOTAL</span>
+        <span class="cart-total-val" id="cart-total">Rs. 350</span>
+      </div>
+    </div>
+    <button class="cart-checkout-btn" onclick="openCheckout()">Proceed to Order →</button>
+    <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ══════════ CHECKOUT MODAL ══════════ -->
+<div class="co-bg" id="co-modal">
+  <div class="co-box">
+    <div class="co-title">Complete Your Order</div>
+    <div class="co-sub">Fill in your details and we'll confirm your retail order via WhatsApp.</div>
+    <div class="co-order-summary" id="co-summary">
+      <div class="co-sum-title">Order Summary</div>
+      <div id="co-items"></div>
+      <div class="co-sum-total"><span>Total</span><span class="tv" id="co-total">Rs. 0</span></div>
+    </div>
+    <div class="co-fgr">
+      <div class="co-fg"><label>First Name *</label><input type="text" id="co-fname" placeholder="Kamal"></div>
+      <div class="co-fg"><label>Last Name *</label><input type="text" id="co-lname" placeholder="Perera"></div>
+    </div>
+    <div class="co-fg"><label>WhatsApp / Phone *</label><input type="tel" id="co-phone" placeholder="07X XXX XXXX"></div>
+    <div class="co-fg"><label>Delivery Address *</label><textarea id="co-addr" placeholder="No. 12, Main Street, Colombo 03..."></textarea></div>
+    <div class="co-fg"><label>Notes (Optional)</label><input type="text" id="co-notes" placeholder="e.g. Leave at reception, urgent delivery..."></div>
+    <button class="co-submit" onclick="placeOrder()">PLACE ORDER →</button>
+    <button class="co-cancel" onclick="closeCheckout()">← Back to Cart</button>
+  </div>
+</div>
+
+<!-- ══════════ SUCCESS MODAL ══════════ -->
+<div class="suc-bg" id="suc-modal">
+  <div class="suc-box">
+    <div class="suc-icon">🎉</div>
+    <div class="suc-title">Order Placed!</div>
+    <div class="suc-ref" id="suc-ref">REF #GD-SHOP-0000</div>
+    <div class="suc-body">Your retail order has been received! We'll confirm via WhatsApp and arrange delivery. Thank you for choosing Great Designer!</div>
+    <div class="suc-btns">
+      <button class="suc-btn" onclick="location.href='my-orders.html'">Track My Order →</button>
+      <button class="suc-btn2" onclick="document.getElementById('suc-modal').classList.remove('show');location.reload()">Shop More</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════
+   BULK MODE
+════════════════════ */
+let isBulk = false;
+const products = [
+  {retail:850, bulk:650}, {retail:900, bulk:700}, {retail:550, bulk:400},
+  {retail:750, bulk:580}, {retail:650, bulk:480}, {retail:780, bulk:580},
+  {retail:950, bulk:720}, {retail:850, bulk:650}
+];
+
+function toggleBulkMode() {
+  isBulk = document.getElementById('bulk-toggle').checked;
+  document.getElementById('bt-off-lbl').style.opacity = isBulk ? '.35' : '1';
+  document.getElementById('bt-on-lbl').style.opacity = isBulk ? '1' : '.35';
+
+  products.forEach((p, i) => {
+    const pw = document.getElementById('pw-' + i);
+    const pm = document.getElementById('pm-' + i);
+    const pt = document.getElementById('pt-' + i);
+    const ps = document.getElementById('ps-' + i);
+    const moq = document.getElementById('moq-' + i);
+    if (isBulk) {
+      pw.classList.add('bulk-mode');
+      pm.textContent = 'Rs. ' + p.bulk.toLocaleString();
+      pt.textContent = 'Bulk Price (10+)';
+      const save = p.retail - p.bulk;
+      ps.textContent = 'Save Rs. ' + save;
+      moq.style.display = 'block';
+    } else {
+      pw.classList.remove('bulk-mode');
+      pm.textContent = 'Rs. ' + p.retail.toLocaleString();
+      pt.textContent = 'Retail Price';
+      moq.style.display = 'none';
+    }
+  });
+  // update cart prices if cart has items
+  recalcCart();
+}
+
+/* ════════════════════
+   FILTER
+════════════════════ */
+const typeNames = {all:'All Retail Products', polo:'👔 Polo Shirts', round:'👕 Round Neck', vneck:'👕 V-Neck Tees', dry:'⚡ Dry-Fit'};
+const clsMap = {all:'on', polo:'on-polo', round:'on-round', vneck:'on-vneck', dry:'on-dry'};
+function filterShop(type, btn, cls) {
+  document.querySelectorAll('.fb').forEach(b => b.className = 'fb');
+  btn.classList.add(cls);
+  let n = 0;
+  document.querySelectorAll('.sc').forEach(c => {
+    const show = type === 'all' || c.dataset.type === type;
+    c.classList.toggle('hide', !show);
+    if (show) n++;
+  });
+  document.getElementById('sg-title').textContent = typeNames[type] || 'All Products';
+  document.getElementById('sg-count').textContent = 'Showing ' + n + ' items';
+}
+
+/* ════════════════════
+   CARD INTERACTIONS
+════════════════════ */
+function pickColor(el, idx) {
+  const card = el.closest('.sc');
+  card.querySelectorAll('.sc-color').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+function pickSize(el) {
+  const card = el.closest('.sc-sizes');
+  card.querySelectorAll('.sc-sz').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+function changeCardQty(btn, delta) {
+  const qv = btn.closest('.sc-qty').querySelector('.sc-qty-val');
+  let v = parseInt(qv.textContent);
+  v = Math.max(1, Math.min(99, v + delta));
+  qv.textContent = v;
+}
+
+/* ════════════════════
+   CART STATE
+════════════════════ */
+let cart = [];
+
+function addToCart(btn) {
+  const card = btn.closest('.sc');
+  const name = card.dataset.name;
+  const retailPrice = parseInt(card.dataset.retail);
+  const bulkPrice = parseInt(card.dataset.bulk);
+  const img = card.dataset.img;
+  const price = isBulk ? bulkPrice : retailPrice;
+  const qty = parseInt(card.querySelector('.sc-qty-val').textContent);
+  const color = card.querySelector('.sc-color.active')?.title || '—';
+  const size = card.querySelector('.sc-sz.active')?.textContent || 'M';
+
+  // find existing item
+  const existing = cart.find(i => i.name === name && i.color === color && i.size === size);
+  if (existing) {
+    existing.qty += qty;
+    existing.price = price; // update price in case bulk toggled
+  } else {
+    cart.push({ id: Date.now(), name, price, retailPrice, bulkPrice, qty, color, size, img });
+  }
+
+  renderCart();
+  updateCartBadge();
+
+  // button feedback
+  btn.classList.add('added');
+  btn.textContent = '✓ Added!';
+  setTimeout(() => {
+    btn.classList.remove('added');
+    btn.textContent = '🛒 Add to Cart';
+  }, 1800);
+
+  openCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  renderCart();
+  updateCartBadge();
+}
+
+function changeCartQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  renderCart();
+  updateCartBadge();
+}
+
+function recalcCart() {
+  // update prices based on bulk mode
+  cart.forEach(item => {
+    item.price = isBulk ? item.bulkPrice : item.retailPrice;
+  });
+  renderCart();
+}
+
+function renderCart() {
+  const list = document.getElementById('cart-items-list');
+  const empty = document.getElementById('cart-empty');
+  const sub = document.getElementById('cart-subtotal');
+  const tot = document.getElementById('cart-total');
+  const bulkNote = document.getElementById('cart-bulk-note');
+  const countEl = document.getElementById('cart-item-count');
+
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  countEl.textContent = `(${totalQty} item${totalQty !== 1 ? 's' : ''})`;
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    list.style.display = 'none';
+    sub.textContent = 'Rs. 0';
+    tot.textContent = 'Rs. 350';
+    bulkNote.classList.remove('show');
+    return;
+  }
+
+  empty.style.display = 'none';
+  list.style.display = 'flex';
+  bulkNote.classList.toggle('show', totalQty >= 10);
+
+  list.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="ci-img"><img src="${item.img}" alt="${item.name}"></div>
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-meta">${item.size} · ${item.color}${isBulk ? ' · Bulk Rate' : ''}</div>
+        <div class="ci-price">Rs. ${(item.price * item.qty).toLocaleString()}</div>
+      </div>
+      <div class="ci-right">
+        <button class="ci-remove" onclick="removeFromCart(${item.id})">✕</button>
+        <div class="ci-qty-wrap">
+          <button class="ci-qb" onclick="changeCartQty(${item.id},-1)">−</button>
+          <div class="ci-qv">${item.qty}</div>
+          <button class="ci-qb" onclick="changeCartQty(${item.id},1)">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  sub.textContent = 'Rs. ' + subtotal.toLocaleString();
+  tot.textContent = 'Rs. ' + (subtotal + 350).toLocaleString();
+}
+
+function updateCartBadge() {
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cart-badge');
+  badge.textContent = totalQty;
+  badge.classList.remove('bump');
+  void badge.offsetWidth;
+  badge.classList.add('bump');
+}
+
+/* ════════════════════
+   CART PANEL
+════════════════════ */
+function openCart() {
+  document.getElementById('cart-panel').classList.add('open');
+  document.getElementById('cart-backdrop').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cart-panel').classList.remove('open');
+  document.getElementById('cart-backdrop').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+/* ════════════════════
+   CHECKOUT
+════════════════════ */
+function openCheckout() {
+  if (cart.length === 0) { alert('Your cart is empty!'); return; }
+  // build summary
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('co-items').innerHTML = cart.map(i =>
+    `<div class="co-sum-item"><span>${i.name} (${i.size}) × ${i.qty}</span><span>Rs. ${(i.price * i.qty).toLocaleString()}</span></div>`
+  ).join('');
+  document.getElementById('co-total').textContent = 'Rs. ' + (subtotal + 350).toLocaleString();
+  closeCart();
+  document.getElementById('co-modal').classList.add('show');
+}
+function closeCheckout() {
+  document.getElementById('co-modal').classList.remove('show');
+  openCart();
+}
+function placeOrder() {
+  const fn = document.getElementById('co-fname').value.trim();
+  const ph = document.getElementById('co-phone').value.trim();
+  const addr = document.getElementById('co-addr').value.trim();
+  if (!fn) { alert('Please enter your first name.'); return; }
+  if (!ph) { alert('Please enter your WhatsApp number.'); return; }
+  if (!addr) { alert('Please enter your delivery address.'); return; }
+  const ref = 'GD-SHOP-' + String(Math.floor(Math.random() * 9000) + 1000);
+  document.getElementById('suc-ref').textContent = 'REF #' + ref;
+  document.getElementById('co-modal').classList.remove('show');
+  document.getElementById('suc-modal').classList.add('show');
+  cart = [];
+  renderCart();
+  updateCartBadge();
+}
+</script>
+</body>
+</html>

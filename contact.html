@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREAT DESIGNER — Contact Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ee;--bg2:#ece8e1;--surface:#fff;
+  --border:#e0dbd3;--border2:#cbc4bb;
+  --accent:#e63329;--dark:#111;--dark2:#1a1a2e;
+  --muted:#777;--muted2:#aaa;--green:#15803d;
+  --r:.75rem;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;}
+img{display:block;}
+
+/* ══ NAV ══ */
+nav{position:sticky;top:0;z-index:200;height:64px;background:rgba(245,242,238,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;}
+.logo-wrap{cursor:pointer;}
+.logo-m{font-family:'Anton',sans-serif;font-size:1.45rem;letter-spacing:.07em;color:var(--accent);}
+.logo-s{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);padding:.48rem 1rem;border-radius:2rem;transition:color .2s,background .2s;}
+.nav-links a:hover{color:var(--dark);background:var(--bg2);}
+.nav-links a.active{color:var(--dark);font-weight:700;}
+.nav-r{display:flex;gap:.8rem;align-items:center;}
+.nav-cta{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
+
+/* ══ PAGE HERO (compact) ══ */
+.page-hero{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:2rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+}
+.ph-ey{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem;}
+.ph-ey::before{content:'';width:14px;height:2px;background:var(--accent);}
+.ph-h{font-family:'Anton',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:.02em;color:var(--dark);line-height:.97;margin-bottom:.4rem;}
+.ph-h em{font-style:normal;color:var(--accent);}
+.ph-d{font-size:.84rem;color:var(--muted);line-height:1.65;max-width:440px;}
+.ph-badge{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(21,128,61,.08);border:1px solid rgba(21,128,61,.2);color:var(--green);padding:.38rem .9rem;border-radius:2rem;white-space:nowrap;}
+
+/* ══ MAIN LAYOUT ══ */
+.main{display:grid;grid-template-columns:1fr 420px;gap:0;min-height:calc(100vh - 64px - 80px);}
+
+/* ══ LEFT: Contact Info ══ */
+.left-col{padding:3rem 3.5rem;border-right:1px solid var(--border);}
+
+.sec-label{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;margin-top:2.2rem;display:flex;align-items:center;gap:.5rem;}
+.sec-label:first-child{margin-top:0;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* Contact cards */
+.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:2rem;}
+.contact-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.4rem;
+  display:flex;flex-direction:column;gap:.6rem;
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+  cursor:pointer;
+  text-decoration:none;color:inherit;
+}
+.contact-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.1);transform:translateY(-3px);border-color:var(--border2);}
+.contact-card.wa:hover{border-color:rgba(37,211,102,.4);}
+.contact-card.em:hover{border-color:rgba(230,51,41,.25);}
+.cc-icon{font-size:1.8rem;}
+.cc-label{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.cc-value{font-weight:700;font-size:.95rem;color:var(--dark);line-height:1.3;}
+.cc-sub{font-size:.74rem;color:var(--muted);line-height:1.55;}
+.cc-action{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:.2rem;display:flex;align-items:center;gap:.3rem;}
+
+/* Hours card */
+.hours-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;margin-bottom:1.5rem;}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.hours-row:last-child{border-bottom:none;}
+.hours-day{color:var(--muted);}
+.hours-time{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;}
+.hours-badge{font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .5rem;border-radius:2rem;}
+.hb-open{background:rgba(21,128,61,.1);color:var(--green);}
+.hb-closed{background:rgba(180,83,9,.08);color:#b45309;}
+
+/* Map placeholder */
+.map-placeholder{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;height:220px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.5rem;color:var(--muted);
+  position:relative;
+}
+.map-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:.5;
+}
+.map-pin{font-size:2.5rem;position:relative;z-index:1;}
+.map-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1;}
+.map-address{font-size:.78rem;color:var(--dark);font-weight:600;position:relative;z-index:1;}
+.map-link{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);position:relative;z-index:1;display:flex;align-items:center;gap:.3rem;margin-top:.3rem;cursor:pointer;}
+
+/* Social links */
+.social-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.5rem;}
+.social-btn{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.8rem;font-weight:600;
+  padding:.6rem 1.1rem;border-radius:.5rem;
+  border:1.5px solid var(--border);background:var(--surface);
+  color:var(--dark);transition:all .2s;cursor:pointer;
+}
+.social-btn:hover{transform:translateY(-2px);}
+.social-btn.wa{border-color:rgba(37,211,102,.35);}
+.social-btn.wa:hover{background:#25d366;border-color:#25d366;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.3);}
+.social-btn.fb{border-color:rgba(59,89,152,.25);}
+.social-btn.fb:hover{background:#1877f2;border-color:#1877f2;color:#fff;box-shadow:0 4px 14px rgba(24,119,242,.3);}
+.social-btn.ig{border-color:rgba(228,64,95,.25);}
+.social-btn.ig:hover{background:linear-gradient(135deg,#833ab4,#fd1d1d,#f77737);border-color:#fd1d1d;color:#fff;}
+.social-btn.tt{border-color:rgba(0,0,0,.15);}
+.social-btn.tt:hover{background:#000;border-color:#000;color:#fff;}
+
+/* ══ RIGHT: Contact Form ══ */
+.right-col{padding:2.5rem 2.5rem 3rem;background:var(--surface);border-left:1px solid var(--border);}
+
+.form-title{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.03em;margin-bottom:.3rem;}
+.form-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.6;}
+
+.fg{margin-bottom:1.1rem;}
+.fg label{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.42rem;}
+.fg label span{color:var(--accent);}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);color:var(--dark);padding:.72rem .9rem;font-family:'DM Sans',sans-serif;font-size:.88rem;border-radius:.5rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,51,41,.08);}
+.fg textarea{resize:vertical;min-height:100px;}
+.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23888' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.3rem;}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+
+/* Quick contact buttons */
+.quick-btns{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem;}
+.quick-btn{
+  display:flex;align-items:center;gap:.9rem;
+  padding:.9rem 1.1rem;border-radius:.5rem;
+  border:1.5px solid var(--border);background:var(--bg);
+  font-size:.85rem;font-weight:600;color:var(--dark);
+  cursor:pointer;transition:all .2s;text-align:left;
+}
+.quick-btn:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08);}
+.qb-wa{border-color:rgba(37,211,102,.3);}
+.qb-wa:hover{background:#25d366;border-color:#25d366;color:#fff;}
+.qb-em:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+.qb-icon{font-size:1.2rem;}
+.qb-text{}
+.qb-label{font-size:.84rem;font-weight:700;display:block;}
+.qb-sub{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.06em;color:inherit;opacity:.7;display:block;margin-top:.05rem;}
+
+.divider-row{display:flex;align-items:center;gap:.8rem;margin:1.3rem 0;color:var(--muted2);font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;}
+.divider-row::before,.divider-row::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.submit-btn{width:100%;font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.95rem;border-radius:.5rem;transition:transform .15s,box-shadow .15s;margin-top:.5rem;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(230,51,41,.32);}
+
+/* Trust row */
+.trust-row{display:flex;gap:.7rem;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border);}
+.ti{flex:1;text-align:center;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.5;}
+.ti-i{font-size:1rem;display:block;margin-bottom:.22rem;}
+
+/* ══ FAQ SECTION ══ */
+.faq-section{padding:4rem 3.5rem;background:var(--surface);border-top:1px solid var(--border);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem;}
+.faq-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;cursor:pointer;transition:border-color .2s;}
+.faq-item:hover{border-color:var(--border2);}
+.faq-q{font-weight:700;font-size:.88rem;margin-bottom:.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
+.faq-arrow{font-size:.7rem;color:var(--muted);flex-shrink:0;transition:transform .2s;margin-top:.1rem;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{font-size:.82rem;color:var(--muted);line-height:1.72;display:none;}
+.faq-item.open .faq-a{display:block;}
+
+/* ══ SUCCESS TOAST ══ */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--dark2);border-left:4px solid var(--green);color:#fff;padding:1rem 1.4rem;border-radius:.6rem;font-size:.84rem;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateY(20px);opacity:0;transition:all .3s;z-index:999;max-width:320px;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-title{font-weight:700;margin-bottom:.2rem;}
+.toast-msg{font-size:.76rem;color:rgba(255,255,255,.65);line-height:1.5;}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--accent);display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.5);}
+.fl{font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:.07em;color:#fff;}
+.fls{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.27);margin-top:.18rem;}
+.fr{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-align:right;line-height:1.8;}
+
+@media(max-width:900px){
+  nav{padding:0 1.2rem;}.nav-links{display:none;}
+  .page-hero{padding:1.5rem 1.2rem;flex-direction:column;gap:.8rem;align-items:flex-start;}
+  .main{grid-template-columns:1fr;}
+  .left-col{padding:2rem 1.2rem;border-right:none;border-bottom:1px solid var(--border);}
+  .right-col{padding:2rem 1.2rem 3rem;}
+  .contact-cards{grid-template-columns:1fr;}
+  .faq-section{padding:3rem 1.2rem;}
+  .faq-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:1rem;padding:2rem 1.2rem;}.fr{text-align:center;}
+  .fgr{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap" onclick="location.href='index.html'">
+    <div class="logo-m">GREAT DESIGNER</div>
+    <div class="logo-s">The Best Customized Clothing</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="customize.html">Get Quotation</a></li>
+    <li><a href="my-orders.html">Tracking</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="nav-cta" onclick="location.href='customize.html'">Get Free Quote →</button>
+  </div>
+</nav>
+
+<!-- HERO (compact) -->
+<div class="page-hero">
+  <div>
+    <p class="ph-ey">Get In Touch</p>
+    <h1 class="ph-h">CONTACT <em>US</em></h1>
+    <p class="ph-d">Questions about your order? Want to discuss a bulk project? We're here to help — reach out any time.</p>
+  </div>
+  <span class="ph-badge">⚡ Usually reply in under 2 hours</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ══ LEFT: Info ══ -->
+  <div class="left-col">
+
+    <div class="sec-label">Contact Details</div>
+    <div class="contact-cards">
+
+      <a class="contact-card wa" href="https://wa.me/94771234567" target="_blank">
+        <div class="cc-icon">💬</div>
+        <div class="cc-label">WhatsApp</div>
+        <div class="cc-value">+94 77 123 4567</div>
+        <div class="cc-sub">Best way to reach us. Share designs, ask questions, place orders — all on WhatsApp.</div>
+        <div class="cc-action">Open WhatsApp →</div>
+      </a>
+
+      <a class="contact-card em" href="mailto:hello@greatdesigner.lk">
+        <div class="cc-icon">📧</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-value">hello@greatdesigner.lk</div>
+        <div class="cc-sub">For detailed briefs, design files, and formal quotation requests. We reply within 24h.</div>
+        <div class="cc-action">Send Email →</div>
+      </a>
+
+      <div class="contact-card">
+        <div class="cc-icon">📍</div>
+        <div class="cc-label">Location</div>
+        <div class="cc-value">Colombo, Sri Lanka</div>
+        <div class="cc-sub">We deliver island-wide. Production studio based in Colombo. Walk-ins by appointment.</div>
+        <div class="cc-action">View on Map →</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="cc-icon">📞</div>
+        <div class="cc-label">Phone</div>
+        <div class="cc-value">+94 11 234 5678</div>
+        <div class="cc-sub">Office line available during business hours. WhatsApp preferred for faster response.</div>
+        <div class="cc-action">Call Now →</div>
+      </div>
+
+    </div>
+
+    <div class="sec-label">Business Hours</div>
+    <div class="hours-card">
+      <div class="hours-row"><span class="hours-day">Monday – Friday</span><div style="display:flex;align-items:center;gap:.6rem"><span class="hours-time">8:00 AM – 7:00 PM</span><span class="hours-badge hb-open">Open</span></div></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><div style="display:flex;align-items:center;gap:.6rem"><span class="hours-time">9:00 AM – 5:00 PM</span><span class="hours-badge hb-open">Open</span></div></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><div style="display:flex;align-items:center;gap:.6rem"><span class="hours-time">10:00 AM – 2:00 PM</span><span class="hours-badge hb-open">Open</span></div></div>
+      <div class="hours-row"><span class="hours-day">Public Holidays</span><div style="display:flex;align-items:center;gap:.6rem"><span class="hours-time">Closed</span><span class="hours-badge hb-closed">Closed</span></div></div>
+    </div>
+
+    <div class="sec-label">Our Location</div>
+    <div class="map-placeholder">
+      <div class="map-grid"></div>
+      <div class="map-pin">📍</div>
+      <div class="map-label">Great Designer Studio</div>
+      <div class="map-address">No. 42, Galle Road, Colombo 03</div>
+      <div class="map-link" onclick="window.open('https://maps.google.com','_blank')">Open in Google Maps ↗</div>
+    </div>
+
+    <div class="sec-label" style="margin-top:1.5rem;">Follow Us</div>
+    <div class="social-row">
+      <button class="social-btn wa" onclick="window.open('https://wa.me/94771234567','_blank')">
+        <span>💬</span> WhatsApp
+      </button>
+      <button class="social-btn fb" onclick="window.open('https://facebook.com','_blank')">
+        <span>📘</span> Facebook
+      </button>
+      <button class="social-btn ig" onclick="window.open('https://instagram.com','_blank')">
+        <span>📸</span> Instagram
+      </button>
+      <button class="social-btn tt" onclick="window.open('https://tiktok.com','_blank')">
+        <span>🎵</span> TikTok
+      </button>
+    </div>
+
+  </div><!-- end left-col -->
+
+  <!-- ══ RIGHT: Form ══ -->
+  <div class="right-col">
+    <div class="form-title">Send Us a Message</div>
+    <div class="form-sub">Fill in the form below or use the quick contact buttons. We'll get back to you within a few hours.</div>
+
+    <!-- Quick buttons -->
+    <div class="quick-btns">
+      <button class="quick-btn qb-wa" onclick="window.open('https://wa.me/94771234567?text=Hi%20Great%20Designer!%20I%20have%20a%20question%20about%20','_blank')">
+        <span class="qb-icon">💬</span>
+        <div class="qb-text">
+          <span class="qb-label">Message on WhatsApp</span>
+          <span class="qb-sub">+94 77 123 4567 · Fastest response</span>
+        </div>
+      </button>
+      <button class="quick-btn qb-em" onclick="window.open('mailto:hello@greatdesigner.lk','_blank')">
+        <span class="qb-icon">📧</span>
+        <div class="qb-text">
+          <span class="qb-label">Send us an Email</span>
+          <span class="qb-sub">hello@greatdesigner.lk · Reply within 24h</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="divider-row">Or fill in the form</div>
+
+    <div class="fgr">
+      <div class="fg"><label>First Name <span>*</span></label><input type="text" id="cf-fname" placeholder="Kamal"></div>
+      <div class="fg"><label>Last Name <span>*</span></label><input type="text" id="cf-lname" placeholder="Perera"></div>
+    </div>
+    <div class="fgr">
+      <div class="fg"><label>WhatsApp / Phone <span>*</span></label><input type="tel" id="cf-phone" placeholder="07X XXX XXXX"></div>
+      <div class="fg"><label>Email</label><input type="email" id="cf-email" placeholder="you@email.com"></div>
+    </div>
+    <div class="fg">
+      <label>Subject <span>*</span></label>
+      <select id="cf-subject">
+        <option value="">-- What is this about? --</option>
+        <option>Quotation Request — Custom Clothing</option>
+        <option>Quotation Request — Bulk / Team Order</option>
+        <option>Retail Shop — Order Inquiry</option>
+        <option>Order Status / Tracking</option>
+        <option>Design Question</option>
+        <option>Payment Inquiry</option>
+        <option>Delivery Question</option>
+        <option>General Inquiry</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Message <span>*</span></label>
+      <textarea id="cf-msg" placeholder="Tell us how we can help you. Include details about:
+• What you're looking for
+• Quantity & timeline
+• Any specific requirements..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="sendMsg()">Send Message →</button>
+
+    <div class="trust-row">
+      <div class="ti"><span class="ti-i">⚡</span>Fast Reply</div>
+      <div class="ti"><span class="ti-i">🔒</span>Private</div>
+      <div class="ti"><span class="ti-i">🇱🇰</span>Sri Lanka</div>
+      <div class="ti"><span class="ti-i">💬</span>WhatsApp</div>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<!-- FAQ SECTION -->
+<div class="faq-section">
+  <div style="font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;"><span style="width:14px;height:2px;background:var(--accent);display:inline-block"></span>FAQ</div>
+  <div style="font-family:'Anton',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:.02em;line-height:1;">FREQUENTLY ASKED<br>QUESTIONS</div>
+  <div class="faq-grid">
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">How long does a custom order take?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Standard orders take 5–7 working days from design approval. Urgent orders (1–3 days) are available at an additional charge. We always confirm the timeline before starting production.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">What is the minimum order quantity?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">We accept single-piece orders. However, bulk discounts start from 10 pieces and team rates apply for 20+ pieces. The more you order, the better the per-piece price.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Do you provide a design proof before printing?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes, always. We create a full digital mock-up of your design and send it to you for approval via WhatsApp before any production begins. You can request revisions at no extra cost.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">What print techniques do you offer?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">We offer Sublimation Printing (all-over full color), Embroidery (raised thread logo), Screen Printing (bold thick ink), and DTF / Heat Transfer (high-detail digital print). We'll recommend the best technique for your design and budget.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Do you deliver island-wide in Sri Lanka?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes! We deliver to all areas of Sri Lanka via courier. Colombo and suburbs typically receive orders within 1–2 days of dispatch. Outstation deliveries take 2–4 days depending on location.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I supply my own logo/artwork?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Absolutely. You can upload your logo or artwork file (PNG, JPG, PDF, AI, EPS) when submitting your quotation request. Higher resolution files produce better results. We also offer basic design assistance if needed.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">What payment methods do you accept?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">We accept bank transfers, cash deposits, and online bank payments. A 50% advance payment is required to start production. The balance is payable upon delivery or collection. Payment details are shared via WhatsApp after quotation approval.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I track my order?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes! Every order gets a unique reference number (e.g. GD-2025-1234). Visit our Tracking page and enter your reference number to see real-time production status from quotation to delivery.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><div class="fl">GREAT DESIGNER</div><div class="fls">The Best Customized Clothing — Sri Lanka</div></div>
+  <div class="fr">© 2025 Great Designer · All rights reserved<br>📧 hello@greatdesigner.lk · 📞 +94 77 123 4567</div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title">✅ Message Sent!</div>
+  <div class="toast-msg">Thank you! We'll reply to your WhatsApp / email within a few hours.</div>
+</div>
+
+<script>
+function sendMsg() {
+  const fn = document.getElementById('cf-fname').value.trim();
+  const ph = document.getElementById('cf-phone').value.trim();
+  const sub = document.getElementById('cf-subject').value;
+  const msg = document.getElementById('cf-msg').value.trim();
+  if (!fn) { alert('Please enter your name.'); return; }
+  if (!ph) { alert('Please enter your phone number.'); return; }
+  if (!sub) { alert('Please select a subject.'); return; }
+  if (!msg) { alert('Please enter your message.'); return; }
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+  // Clear form
+  ['cf-fname','cf-lname','cf-phone','cf-email','cf-msg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cf-subject').value = '';
+}
+
+function toggleFaq(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
