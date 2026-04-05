@@ -34,83 +34,36 @@ nav{
 .logo-m{font-family:'Anton',sans-serif;font-size:1.45rem;letter-spacing:.07em;color:var(--accent);}
 .logo-s{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
 .nav-links{display:flex;gap:0;list-style:none;align-items:center;}
-.nav-links > li{position:relative;}
-.nav-links > li > a,
-.nav-links > li > .nav-dd-trigger{
-  font-size:.82rem;font-weight:500;color:var(--muted);
-  padding:.48rem 1rem;border-radius:2rem;
-  transition:color .2s,background .2s;
-  display:flex;align-items:center;gap:.3rem;
-  background:none;border:none;cursor:pointer;
-  font-family:'DM Sans',sans-serif;
-}
-.nav-links > li > a:hover,
-.nav-links > li > .nav-dd-trigger:hover{color:var(--dark);background:var(--bg2);}
-.nav-links > li > a.active,
-.nav-links > li > .nav-dd-trigger.active{color:var(--dark);font-weight:700;}
-.dd-arrow{font-size:.55rem;transition:transform .2s;}
-.nav-links > li:hover .dd-arrow{transform:rotate(180deg);}
-
-/* Dropdown */
-.nav-dropdown{
-  position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%);
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r);padding:.5rem;
-  min-width:210px;
-  box-shadow:0 12px 40px rgba(0,0,0,.12);
-  opacity:0;pointer-events:none;
-  transition:opacity .2s,transform .2s;
-  transform:translateX(-50%) translateY(-6px);
-  z-index:100;
-}
-.nav-links > li:hover .nav-dropdown{
-  opacity:1;pointer-events:all;
-  transform:translateX(-50%) translateY(0);
-}
-.dd-item{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.6rem .85rem;border-radius:.5rem;
-  font-size:.82rem;font-weight:500;color:var(--muted);
-  transition:background .15s,color .15s;
-  white-space:nowrap;
-}
-.dd-item:hover{background:var(--bg2);color:var(--dark);}
-.dd-item.active{color:var(--accent);font-weight:700;}
-.dd-item-icon{font-size:1rem;}
-.dd-item-text{}
-.dd-item-sub{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);display:block;margin-top:.08rem;}
-.dd-sep{height:1px;background:var(--border);margin:.3rem 0;}
-
+.nav-links>li>a{font-size:.82rem;font-weight:500;color:var(--muted);padding:.48rem 1rem;border-radius:2rem;transition:color .2s,background .2s;display:flex;align-items:center;gap:.3rem;}
+.nav-links>li>a:hover{color:var(--dark);background:var(--bg2);}
+.nav-links>li>a.active{color:var(--dark);font-weight:700;}
 .nav-r{display:flex;gap:.8rem;align-items:center;}
-.nav-cart-btn{
-  position:relative;
-  font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  background:var(--dark2);color:#fff;border:none;
-  padding:.52rem 1.25rem;border-radius:2rem;
-  transition:transform .15s,box-shadow .15s;
-  display:flex;align-items:center;gap:.45rem;
-}
+.nav-cart-btn{position:relative;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--dark2);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;gap:.45rem;}
 .nav-cart-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,26,46,.3);}
-.cart-badge{
-  background:var(--accent);color:#fff;
-  font-size:.55rem;font-weight:700;
-  width:18px;height:18px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'DM Mono',monospace;
-  transition:transform .2s;
-}
+.cart-badge{background:var(--accent);color:#fff;font-size:.55rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;transition:transform .2s;}
 .cart-badge.bump{animation:bump .3s ease both;}
 @keyframes bump{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
 .nav-cta{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
 
-/* ══════════ PAGE HERO ══════════ */
-.shop-hero{
-  background:var(--bg2);
-  border-bottom:1px solid var(--border);
-  padding:1.8rem 3.5rem;
-  display:flex;align-items:center;justify-content:space-between;gap:2rem;
-}
+/* Hamburger */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:6px;border-radius:.5rem;transition:background .2s;z-index:400;}
+.nav-hamburger:hover{background:var(--bg2);}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s;transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-drawer{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;z-index:299;flex-direction:column;background:var(--surface);border-top:1px solid var(--border);padding:1.5rem;overflow-y:auto;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.mobile-drawer.open{transform:translateX(0);}
+.mobile-drawer-links{list-style:none;display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.5rem;}
+.mobile-drawer-links a{display:block;font-size:1.1rem;font-weight:600;color:var(--muted);padding:.85rem 1rem;border-radius:.6rem;transition:background .15s,color .15s;}
+.mobile-drawer-links a:hover,.mobile-drawer-links a.active{background:var(--bg2);color:var(--dark);}
+.mobile-drawer-links a.active{font-weight:700;border-left:3px solid var(--accent);}
+.drawer-backdrop{display:none;position:fixed;inset:0;top:64px;background:rgba(0,0,0,.25);z-index:298;opacity:0;transition:opacity .3s;}
+.drawer-backdrop.open{opacity:1;}
+
+/* ══════════ SHOP HERO ══════════ */
+.shop-hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:1.8rem 3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
 .sh-ey{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem;display:flex;align-items:center;gap:.55rem;}
 .sh-ey::before{content:'';width:14px;height:2px;background:var(--accent);}
 .sh-h{font-family:'Anton',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:.02em;color:var(--dark);line-height:1;margin-bottom:.4rem;}
@@ -122,12 +75,7 @@ nav{
 .sh-lbl{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
 /* ══════════ BULK BANNER ══════════ */
-.bulk-banner{
-  background:var(--green-bg);border-bottom:1.5px solid var(--green-border);
-  padding:1rem 3.5rem;
-  display:flex;align-items:center;justify-content:space-between;gap:2rem;
-  flex-wrap:wrap;
-}
+.bulk-banner{background:var(--green-bg);border-bottom:1.5px solid var(--green-border);padding:1rem 3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
 .bb-left{display:flex;align-items:center;gap:1rem;}
 .bb-icon{font-size:1.4rem;}
 .bb-title{font-weight:700;font-size:.9rem;color:var(--green);}
@@ -135,21 +83,15 @@ nav{
 .bulk-toggle-wrap{display:flex;align-items:center;gap:.7rem;}
 .bt-label{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 .bt-label.on{color:var(--green);font-weight:700;}
-/* Toggle switch */
 .toggle{position:relative;width:46px;height:26px;flex-shrink:0;}
 .toggle input{opacity:0;width:0;height:0;}
 .toggle-sl{position:absolute;cursor:pointer;inset:0;background:var(--border2);border-radius:26px;transition:.25s;}
 .toggle-sl::before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.2);}
-.toggle input:checked + .toggle-sl{background:var(--green);}
-.toggle input:checked + .toggle-sl::before{transform:translateX(20px);}
+.toggle input:checked+.toggle-sl{background:var(--green);}
+.toggle input:checked+.toggle-sl::before{transform:translateX(20px);}
 
 /* ══════════ FILTER BAR ══════════ */
-.filter-bar{
-  padding:1rem 3.5rem;background:var(--surface);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;
-  position:sticky;top:64px;z-index:100;
-}
+.filter-bar{padding:1rem 3.5rem;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;position:sticky;top:64px;z-index:100;}
 .fl-lbl{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-right:.2rem;}
 .fb{font-size:.74rem;font-weight:600;padding:.4rem .95rem;border-radius:2rem;border:1.5px solid var(--border2);background:transparent;color:var(--muted);transition:all .18s;white-space:nowrap;}
 .fb:hover{border-color:var(--dark);color:var(--dark);}
@@ -159,80 +101,38 @@ nav{
 .fb.on-vneck{background:#7c3aed;border-color:#7c3aed;color:#fff;}
 .fb.on-dry{background:#0891b2;border-color:#0891b2;color:#fff;}
 
-/* ══════════ GRID ══════════ */
+/* ══════════ SHOP GRID ══════════ */
 .shop-grid-wrap{padding:2rem 3.5rem 5rem;}
 .sg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
 .sg-title{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:.03em;}
 .sg-meta{display:flex;align-items:center;gap:1rem;}
 .sg-count{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;}
-.sg-sort{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1.5px solid var(--border);padding:.4rem .8rem;border-radius:.4rem;cursor:pointer;outline:none;}
-
 .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;}
 
 /* ══════════ SHOP CARD ══════════ */
-.sc{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;
-  transition:transform .25s,box-shadow .25s;
-  position:relative;
-}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative;}
 .sc:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.12);}
 .sc.hide{display:none;}
-
 .sc-img{position:relative;height:220px;overflow:hidden;background:var(--bg2);}
 .sc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
 .sc:hover .sc-img img{transform:scale(1.07);}
-
-.sc-type-tag{
-  position:absolute;top:.7rem;left:.7rem;
-  font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:.24rem .62rem;border-radius:2rem;color:#fff;
-}
+.sc-type-tag{position:absolute;top:.7rem;left:.7rem;font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.24rem .62rem;border-radius:2rem;color:#fff;}
 .tag-polo{background:#1d4ed8;}
 .tag-round{background:var(--green);}
 .tag-vneck{background:#7c3aed;}
 .tag-dry{background:#0891b2;}
-
-.sc-stock{
-  position:absolute;bottom:.7rem;left:.7rem;
-  font-family:'DM Mono',monospace;font-size:.48rem;font-weight:600;
-  letter-spacing:.08em;text-transform:uppercase;
-  padding:.2rem .55rem;border-radius:2rem;
-}
+.sc-stock{position:absolute;bottom:.7rem;left:.7rem;font-family:'DM Mono',monospace;font-size:.48rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:2rem;}
 .in-stock{background:rgba(21,128,61,.9);color:#fff;}
 .low-stock{background:rgba(180,83,9,.9);color:#fff;}
-
-.sc-quick-view{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,.38);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity .2s;
-}
+.sc-quick-view{position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
 .sc:hover .sc-quick-view{opacity:1;}
-.sc-qv-btn{
-  font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-  background:#fff;color:var(--dark);border:none;
-  padding:.5rem 1.2rem;border-radius:2rem;
-  transition:background .15s;
-}
+.sc-qv-btn{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff;color:var(--dark);border:none;padding:.5rem 1.2rem;border-radius:2rem;transition:background .15s,color .15s;}
 .sc-qv-btn:hover{background:var(--accent);color:#fff;}
-
 .sc-body{padding:1.1rem 1.2rem 1.3rem;}
 .sc-name{font-weight:700;font-size:.95rem;line-height:1.3;margin-bottom:.3rem;}
 .sc-sub{font-size:.75rem;color:var(--muted);margin-bottom:.9rem;line-height:1.5;}
-
-/* Price display */
-.sc-price-wrap{
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:.5rem;padding:.7rem .85rem;
-  margin-bottom:.9rem;
-  transition:background .3s,border-color .3s;
-}
-.sc-price-wrap.bulk-mode{
-  background:var(--green-bg);border-color:var(--green-border);
-}
+.sc-price-wrap{background:var(--bg);border:1px solid var(--border);border-radius:.5rem;padding:.7rem .85rem;margin-bottom:.9rem;transition:background .3s,border-color .3s;}
+.sc-price-wrap.bulk-mode{background:var(--green-bg);border-color:var(--green-border);}
 .sc-price-row{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;}
 .sc-price-main{font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--accent);transition:color .3s;}
 .sc-price-wrap.bulk-mode .sc-price-main{color:var(--green);}
@@ -241,64 +141,159 @@ nav{
 .sc-price-wrap.bulk-mode .sc-price-save{display:inline;}
 .sc-moq{font-size:.7rem;color:var(--muted);margin-top:.3rem;display:none;}
 .sc-price-wrap.bulk-mode .sc-moq{display:block;}
-
-/* Colors row */
 .sc-colors{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.85rem;}
-.sc-color{
-  width:22px;height:22px;border-radius:50%;
-  border:2px solid transparent;cursor:pointer;
-  transition:transform .15s,border-color .15s;
-  position:relative;
-}
+.sc-color{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;}
 .sc-color:hover{transform:scale(1.15);}
 .sc-color.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,51,41,.25);}
-
-/* Size selector */
 .sc-sizes{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.9rem;}
-.sc-sz{
-  font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;
-  padding:.3rem .55rem;border:1.5px solid var(--border);
-  border-radius:.35rem;color:var(--muted);
-  cursor:pointer;transition:all .15s;
-}
+.sc-sz{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;padding:.3rem .55rem;border:1.5px solid var(--border);border-radius:.35rem;color:var(--muted);cursor:pointer;transition:all .15s;}
 .sc-sz:hover{border-color:var(--dark);color:var(--dark);}
 .sc-sz.active{background:var(--dark);border-color:var(--dark);color:#fff;}
-
-/* Add to cart */
 .sc-footer{display:flex;gap:.6rem;align-items:center;}
-.sc-qty{
-  display:flex;align-items:center;
-  border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;
-}
+.sc-qty{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;}
 .sc-qty-btn{width:30px;height:30px;background:var(--bg);border:none;color:var(--dark);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
 .sc-qty-btn:hover{background:var(--bg2);}
 .sc-qty-val{width:34px;text-align:center;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:600;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);line-height:30px;}
-.sc-add-btn{
-  flex:1;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  background:var(--accent);color:#fff;border:none;
-  padding:.6rem .8rem;border-radius:.4rem;
-  transition:transform .15s,box-shadow .15s;
-  display:flex;align-items:center;justify-content:center;gap:.35rem;
-}
+.sc-add-btn{flex:1;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.6rem .8rem;border-radius:.4rem;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:.35rem;}
 .sc-add-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(230,51,41,.35);}
 .sc-add-btn.added{background:var(--green);}
+
+/* ══════════ QUICK VIEW MODAL ══════════ */
+.qv-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.58);
+  z-index:600;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+  backdrop-filter:blur(6px);
+  padding:1rem;
+}
+.qv-bg.show{opacity:1;pointer-events:all;}
+.qv-box{
+  background:var(--surface);
+  border-radius:1.2rem;
+  max-width:860px;width:100%;
+  max-height:90vh;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+  transform:translateY(24px) scale(.97);
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+  position:relative;
+}
+.qv-bg.show .qv-box{transform:translateY(0) scale(1);}
+
+/* Close button */
+.qv-close{
+  position:absolute;top:1rem;right:1rem;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.9);
+  border:none;font-size:1rem;color:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;cursor:pointer;
+  transition:background .15s,color .15s;
+  box-shadow:0 2px 12px rgba(0,0,0,.12);
+}
+.qv-close:hover{background:var(--accent);color:#fff;}
+
+/* Image side */
+.qv-img-side{
+  position:relative;
+  background:var(--bg2);
+  overflow:hidden;
+}
+.qv-img-side img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .5s;
+}
+.qv-img-side:hover img{transform:scale(1.04);}
+.qv-img-type{
+  position:absolute;top:1rem;left:1rem;
+  font-family:'DM Mono',monospace;font-size:.52rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.28rem .7rem;border-radius:2rem;color:#fff;
+}
+.qv-img-stock{
+  position:absolute;bottom:1rem;left:1rem;
+  font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.22rem .6rem;border-radius:2rem;
+}
+
+/* Info side */
+.qv-info{
+  padding:2rem 2rem 1.5rem;
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+  gap:1rem;
+}
+.qv-eyebrow{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
+.qv-name{font-family:'Anton',sans-serif;font-size:1.7rem;letter-spacing:.02em;line-height:1;color:var(--dark);}
+.qv-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+
+/* Price block */
+.qv-price-block{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:.6rem;padding:.9rem 1.1rem;
+  transition:background .3s,border-color .3s;
+}
+.qv-price-block.bulk-mode{background:var(--green-bg);border-color:var(--green-border);}
+.qv-price-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.qv-price-main{font-family:'DM Mono',monospace;font-size:1.5rem;font-weight:500;color:var(--accent);transition:color .3s;}
+.qv-price-block.bulk-mode .qv-price-main{color:var(--green);}
+.qv-price-tag{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);}
+.qv-price-save{font-family:'DM Mono',monospace;font-size:.58rem;font-weight:700;color:#fff;background:var(--green);padding:.22rem .65rem;border-radius:1rem;display:none;}
+.qv-price-block.bulk-mode .qv-price-save{display:inline;}
+.qv-price-moq{font-size:.72rem;color:var(--muted);margin-top:.4rem;display:none;}
+.qv-price-block.bulk-mode .qv-price-moq{display:block;}
+
+/* Section labels */
+.qv-sect{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+
+/* Colors */
+.qv-colors{display:flex;gap:.5rem;flex-wrap:wrap;}
+.qv-color{
+  width:30px;height:30px;border-radius:50%;
+  border:2.5px solid transparent;cursor:pointer;
+  transition:transform .15s,border-color .15s;
+  outline:2.5px solid transparent;outline-offset:2px;
+  position:relative;
+}
+.qv-color:hover{transform:scale(1.15);}
+.qv-color.active{outline-color:var(--accent);}
+.qv-color-name{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);margin-top:.4rem;letter-spacing:.04em;}
+
+/* Sizes */
+.qv-sizes{display:flex;gap:.4rem;flex-wrap:wrap;}
+.qv-sz{
+  font-family:'DM Mono',monospace;font-size:.66rem;font-weight:500;
+  padding:.38rem .7rem;border:1.5px solid var(--border);
+  border-radius:.4rem;color:var(--muted);
+  cursor:pointer;transition:all .15s;
+  min-width:42px;text-align:center;
+}
+.qv-sz:hover{border-color:var(--dark);color:var(--dark);}
+.qv-sz.active{background:var(--dark);border-color:var(--dark);color:#fff;}
+
+/* Add to cart row */
+.qv-footer{display:flex;gap:.6rem;align-items:center;margin-top:auto;padding-top:.5rem;border-top:1px solid var(--border);}
+.qv-qty{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;flex-shrink:0;}
+.qv-qb{width:36px;height:36px;background:var(--bg);border:none;color:var(--dark);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.qv-qb:hover{background:var(--bg2);}
+.qv-qv{width:38px;text-align:center;font-family:'DM Mono',monospace;font-size:.78rem;font-weight:600;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);line-height:36px;}
+.qv-add-btn{flex:1;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.75rem;border-radius:.4rem;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:.4rem;}
+.qv-add-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(230,51,41,.35);}
+.qv-add-btn.added{background:var(--green);}
 
 /* ══════════ CART SIDEBAR ══════════ */
 .cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);}
 .cart-backdrop.show{opacity:1;pointer-events:all;}
-.cart-panel{
-  position:fixed;right:0;top:0;bottom:0;
-  width:380px;background:var(--surface);
-  z-index:500;transform:translateX(100%);
-  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
-  display:flex;flex-direction:column;
-  box-shadow:-12px 0 48px rgba(0,0,0,.14);
-}
+.cart-panel{position:fixed;right:0;top:0;bottom:0;width:380px;background:var(--surface);z-index:500;transform:translateX(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;box-shadow:-12px 0 48px rgba(0,0,0,.14);}
 .cart-panel.open{transform:translateX(0);}
-.cart-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.3rem 1.6rem;border-bottom:1px solid var(--border);flex-shrink:0;
-}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.6rem;border-bottom:1px solid var(--border);flex-shrink:0;}
 .cart-title{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:.04em;}
 .cart-close{width:34px;height:34px;border-radius:50%;background:var(--bg2);border:none;font-size:1rem;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;}
 .cart-close:hover{background:var(--accent);color:#fff;}
@@ -307,12 +302,7 @@ nav{
 .cart-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.4;}
 .cart-empty-text{font-size:.85rem;line-height:1.7;}
 .cart-items{display:flex;flex-direction:column;gap:.8rem;}
-.cart-item{
-  display:flex;gap:1rem;align-items:flex-start;
-  padding:1rem;background:var(--bg);border-radius:.6rem;
-  border:1px solid var(--border);
-  animation:fadeUp .25s ease both;
-}
+.cart-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem;background:var(--bg);border-radius:.6rem;border:1px solid var(--border);animation:fadeUp .25s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .ci-img{width:56px;height:56px;border-radius:.5rem;overflow:hidden;flex-shrink:0;}
 .ci-img img{width:100%;height:100%;object-fit:cover;}
@@ -323,11 +313,10 @@ nav{
 .ci-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;}
 .ci-remove{width:24px;height:24px;border-radius:50%;background:none;border:1px solid var(--border2);color:var(--muted);font-size:.7rem;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 .ci-remove:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
-.ci-qty-wrap{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;}
+.ci-qty-wrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:.4rem;overflow:hidden;}
 .ci-qb{width:26px;height:26px;background:var(--bg);border:none;color:var(--dark);font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
 .ci-qb:hover{background:var(--bg2);}
 .ci-qv{width:30px;text-align:center;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:600;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);line-height:26px;}
-
 .cart-footer{padding:1.3rem 1.6rem;border-top:1px solid var(--border);flex-shrink:0;}
 .cart-summary{margin-bottom:1rem;}
 .cart-sum-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.3rem 0;}
@@ -337,34 +326,17 @@ nav{
 .cart-total-row{display:flex;justify-content:space-between;align-items:center;}
 .cart-total-lbl{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:.03em;}
 .cart-total-val{font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--accent);}
-.cart-checkout-btn{
-  width:100%;margin-top:1rem;
-  font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-  background:var(--accent);color:#fff;border:none;
-  padding:.95rem;border-radius:.5rem;
-  transition:transform .15s,box-shadow .15s;
-}
+.cart-checkout-btn{width:100%;margin-top:1rem;font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.95rem;border-radius:.5rem;transition:transform .15s,box-shadow .15s;}
 .cart-checkout-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(230,51,41,.32);}
-.cart-continue-btn{
-  width:100%;margin-top:.6rem;
-  font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  background:transparent;color:var(--muted);border:1.5px solid var(--border2);
-  padding:.78rem;border-radius:.5rem;
-  transition:all .2s;
-}
+.cart-continue-btn{width:100%;margin-top:.6rem;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--muted);border:1.5px solid var(--border2);padding:.78rem;border-radius:.5rem;transition:all .2s;}
 .cart-continue-btn:hover{border-color:var(--dark);color:var(--dark);}
-.cart-bulk-note{
-  background:var(--green-bg);border:1px solid var(--green-border);
-  border-radius:.5rem;padding:.7rem .9rem;
-  font-size:.72rem;color:var(--green);line-height:1.6;
-  margin-bottom:.8rem;display:none;
-}
+.cart-bulk-note{background:var(--green-bg);border:1px solid var(--green-border);border-radius:.5rem;padding:.7rem .9rem;font-size:.72rem;color:var(--green);line-height:1.6;margin-bottom:.8rem;display:none;}
 .cart-bulk-note.show{display:block;}
 
 /* ══════════ CHECKOUT MODAL ══════════ */
 .co-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(5px);}
 .co-bg.show{opacity:1;pointer-events:all;}
-.co-box{background:var(--surface);border-radius:1.2rem;padding:2.5rem;max-width:500px;width:92%;transform:translateY(20px);transition:transform .3s;box-shadow:0 16px 52px rgba(0,0,0,.14);}
+.co-box{background:var(--surface);border-radius:1.2rem;padding:2.5rem;max-width:500px;width:92%;transform:translateY(20px);transition:transform .3s;box-shadow:0 16px 52px rgba(0,0,0,.14);max-height:90vh;overflow-y:auto;}
 .co-bg.show .co-box{transform:translateY(0);}
 .co-title{font-family:'Anton',sans-serif;font-size:1.6rem;letter-spacing:.03em;margin-bottom:.3rem;}
 .co-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
@@ -406,9 +378,14 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
 .fl2s{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.18rem;}
 .fr{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-align:right;line-height:1.8;}
 
+/* ══════════ RESPONSIVE ══════════ */
 @media(max-width:1100px){.shop-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){
-  nav{padding:0 1.2rem;}.nav-links{display:none;}
+  nav{padding:0 1.2rem;}
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .nav-hamburger{display:flex;}
+  .mobile-drawer{display:flex;}
   .shop-hero{padding:2.5rem 1.2rem 2rem;flex-direction:column;gap:.8rem;}
   .bulk-banner{padding:1rem 1.2rem;}
   .filter-bar{padding:.9rem 1.2rem;}
@@ -417,12 +394,22 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
   .cart-panel{width:100%;}
   footer{flex-direction:column;gap:1rem;padding:2rem 1.2rem;}.fr{text-align:center;}
   .co-fgr{grid-template-columns:1fr;}
+  /* Quick view stacks on mobile */
+  .qv-box{grid-template-columns:1fr;max-height:95vh;}
+  .qv-img-side{height:260px;}
+}
+@media(max-width:500px){
+  .shop-grid{grid-template-columns:repeat(2,1fr);gap:.7rem;}
+  .sc-img{height:160px;}
+  .sc-body{padding:.8rem .85rem 1rem;}
+  .sc-name{font-size:.82rem;}
+  .sc-sub{display:none;}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════ NAV ══════════ -->
+<!-- NAV -->
 <nav>
   <div class="logo-wrap" onclick="location.href='index.html'">
     <div class="logo-m">GREAT DESIGNER</div>
@@ -441,10 +428,25 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
       <span class="cart-badge" id="cart-badge">0</span>
     </button>
     <button class="nav-cta" onclick="location.href='customize.html'">Get Quotation</button>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- MOBILE DRAWER -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <ul class="mobile-drawer-links">
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="shop.html" class="active">🛍️ Shop</a></li>
+    <li><a href="customize.html">✏️ Get Quotation</a></li>
+    <li><a href="my-orders.html">📦 Order Tracking</a></li>
+    <li><a href="contact.html">📞 Contact</a></li>
+  </ul>
+</div>
+
+<!-- SHOP HERO -->
 <div class="shop-hero">
   <div>
     <p class="sh-ey">Retail Shop</p>
@@ -453,12 +455,12 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
   </div>
   <div class="sh-right">
     <div class="sh-stat"><div class="sh-num">8</div><div class="sh-lbl">Products</div></div>
-    <div class="sh-stat"><div class="sh-num">Rs.700</div><div class="sh-lbl">Starting From</div></div>
+    <div class="sh-stat"><div class="sh-num">Rs.400</div><div class="sh-lbl">Starting From</div></div>
     <div class="sh-stat"><div class="sh-num">10+</div><div class="sh-lbl">Bulk Discount</div></div>
   </div>
 </div>
 
-<!-- ══════════ BULK BANNER ══════════ -->
+<!-- BULK BANNER -->
 <div class="bulk-banner">
   <div class="bb-left">
     <div class="bb-icon">📦</div>
@@ -477,7 +479,7 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
   </div>
 </div>
 
-<!-- ══════════ FILTER BAR ══════════ -->
+<!-- FILTER BAR -->
 <div class="filter-bar">
   <span class="fl-lbl">Type:</span>
   <button class="fb on" id="f-all" onclick="filterShop('all',this,'on')">All (8)</button>
@@ -487,7 +489,7 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
   <button class="fb" id="f-dry" onclick="filterShop('dry',this,'on-dry')">⚡ Dry-Fit</button>
 </div>
 
-<!-- ══════════ GRID ══════════ -->
+<!-- SHOP GRID -->
 <div class="shop-grid-wrap">
   <div class="sg-header">
     <div class="sg-title" id="sg-title">All Retail Products</div>
@@ -498,308 +500,143 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
 
   <div class="shop-grid" id="shop-grid">
 
-    <!-- 1: Polo Round Collar -->
-    <div class="sc" data-type="polo" data-retail="850" data-bulk="650" data-name="Polo Shirt — Round Collar" data-img="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="polo" data-retail="850" data-bulk="650" data-name="Polo Shirt — Round Collar" data-img="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&q=80&auto=format&fit=crop" data-sub="100% Cotton Piqué · 200 GSM · Structured Collar" data-tag="polo" data-tagcls="tag-polo" data-stock="in-stock" data-stock-lbl="In Stock" data-save="200" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#7f1d1d","title":"Maroon"},{"bg":"#e63329","title":"Red"},{"bg":"#15803d","title":"Green"},{"bg":"#b45309","title":"Gold"},{"bg":"#6d28d9","title":"Purple"}]' data-sizes='["XS","S","M","L","XL","2XL","3XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=500&q=80&auto=format&fit=crop" alt="Polo Round Collar" loading="lazy">
         <span class="sc-type-tag tag-polo">👔 Polo</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">Polo Shirt — Round Collar</div>
         <div class="sc-sub">100% Cotton Piqué · 200 GSM · Structured Collar</div>
-        <div class="sc-price-wrap" id="pw-0">
-          <div class="sc-price-row">
-            <div>
-              <div class="sc-price-tag" id="pt-0">Retail Price</div>
-              <div class="sc-price-main" id="pm-0">Rs. 850</div>
-            </div>
-            <span class="sc-price-save" id="ps-0">Save Rs. 200</span>
-          </div>
-          <div class="sc-moq" id="moq-0">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" title="Black" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" title="White" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#1a2a4a" title="Navy" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#7f1d1d" title="Maroon" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#e63329" title="Red" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#15803d" title="Green" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#b45309" title="Gold" onclick="pickColor(this,0)"></div>
-          <div class="sc-color" style="background:#6d28d9" title="Purple" onclick="pickColor(this,0)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty">
-            <button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button>
-            <div class="sc-qty-val">1</div>
-            <button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button>
-          </div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-0"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-0">Retail Price</div><div class="sc-price-main" id="pm-0">Rs. 850</div></div><span class="sc-price-save" id="ps-0">Save Rs. 200</span></div><div class="sc-moq" id="moq-0">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" title="Black" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" title="White" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#1a2a4a" title="Navy" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#7f1d1d" title="Maroon" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#e63329" title="Red" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#15803d" title="Green" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#b45309" title="Gold" onclick="pickColor(this,0)"></div><div class="sc-color" style="background:#6d28d9" title="Purple" onclick="pickColor(this,0)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 2: Polo V-Neck -->
-    <div class="sc" data-type="polo" data-retail="900" data-bulk="700" data-name="Polo Shirt — V-Neck" data-img="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="polo" data-retail="900" data-bulk="700" data-name="Polo Shirt — V-Neck" data-img="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80&auto=format&fit=crop" data-sub="180 GSM Premium Cotton · Slim Fit" data-tag="polo" data-tagcls="tag-polo" data-stock="in-stock" data-stock-lbl="In Stock" data-save="200" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#e63329","title":"Red"},{"bg":"#15803d","title":"Green"},{"bg":"#0891b2","title":"Teal"}]' data-sizes='["XS","S","M","L","XL","2XL","3XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&q=80&auto=format&fit=crop" alt="Polo V-Neck" loading="lazy">
         <span class="sc-type-tag tag-polo">👔 Polo</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">Polo Shirt — V-Neck</div>
         <div class="sc-sub">180 GSM Premium Cotton · Slim Fit</div>
-        <div class="sc-price-wrap" id="pw-1">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-1">Retail Price</div><div class="sc-price-main" id="pm-1">Rs. 900</div></div>
-            <span class="sc-price-save" id="ps-1">Save Rs. 200</span>
-          </div>
-          <div class="sc-moq" id="moq-1">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" title="Black" onclick="pickColor(this,1)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" title="White" onclick="pickColor(this,1)"></div>
-          <div class="sc-color" style="background:#1a2a4a" title="Navy" onclick="pickColor(this,1)"></div>
-          <div class="sc-color" style="background:#e63329" title="Red" onclick="pickColor(this,1)"></div>
-          <div class="sc-color" style="background:#15803d" title="Green" onclick="pickColor(this,1)"></div>
-          <div class="sc-color" style="background:#0891b2" title="Teal" onclick="pickColor(this,1)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-1"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-1">Retail Price</div><div class="sc-price-main" id="pm-1">Rs. 900</div></div><span class="sc-price-save" id="ps-1">Save Rs. 200</span></div><div class="sc-moq" id="moq-1">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" title="Black" onclick="pickColor(this,1)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" title="White" onclick="pickColor(this,1)"></div><div class="sc-color" style="background:#1a2a4a" title="Navy" onclick="pickColor(this,1)"></div><div class="sc-color" style="background:#e63329" title="Red" onclick="pickColor(this,1)"></div><div class="sc-color" style="background:#15803d" title="Green" onclick="pickColor(this,1)"></div><div class="sc-color" style="background:#0891b2" title="Teal" onclick="pickColor(this,1)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 3: Round Neck Classic -->
-    <div class="sc" data-type="round" data-retail="550" data-bulk="400" data-name="Round Neck T-Shirt — Classic" data-img="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="round" data-retail="550" data-bulk="400" data-name="Round Neck T-Shirt — Classic" data-img="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80&auto=format&fit=crop" data-sub="160 GSM Lightweight Cotton · Perfect Print Base" data-tag="round" data-tagcls="tag-round" data-stock="in-stock" data-stock-lbl="In Stock" data-save="150" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#7f1d1d","title":"Maroon"},{"bg":"#e63329","title":"Red"},{"bg":"#15803d","title":"Green"},{"bg":"#b45309","title":"Gold"},{"bg":"#6d28d9","title":"Purple"},{"bg":"#0891b2","title":"Teal"},{"bg":"#ea580c","title":"Orange"}]' data-sizes='["XS","S","M","L","XL","2XL","3XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80&auto=format&fit=crop" alt="Round Neck Classic" loading="lazy">
         <span class="sc-type-tag tag-round">👕 Round Neck</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">Round Neck T-Shirt — Classic</div>
         <div class="sc-sub">160 GSM Lightweight Cotton · Perfect Print Base</div>
-        <div class="sc-price-wrap" id="pw-2">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-2">Retail Price</div><div class="sc-price-main" id="pm-2">Rs. 550</div></div>
-            <span class="sc-price-save" id="ps-2">Save Rs. 150</span>
-          </div>
-          <div class="sc-moq" id="moq-2">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#b45309" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#6d28d9" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#0891b2" onclick="pickColor(this,2)"></div>
-          <div class="sc-color" style="background:#ea580c" onclick="pickColor(this,2)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-2"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-2">Retail Price</div><div class="sc-price-main" id="pm-2">Rs. 550</div></div><span class="sc-price-save" id="ps-2">Save Rs. 150</span></div><div class="sc-moq" id="moq-2">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#e63329" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#15803d" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#b45309" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#6d28d9" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#0891b2" onclick="pickColor(this,2)"></div><div class="sc-color" style="background:#ea580c" onclick="pickColor(this,2)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 4: Round Neck Heavy -->
-    <div class="sc" data-type="round" data-retail="750" data-bulk="580" data-name="Round Neck T-Shirt — Heavy Cotton" data-img="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="round" data-retail="750" data-bulk="580" data-name="Round Neck — Heavy Cotton" data-img="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80&auto=format&fit=crop" data-sub="220 GSM Premium · Structured · Long-lasting" data-tag="round" data-tagcls="tag-round" data-stock="low-stock" data-stock-lbl="Low Stock" data-save="170" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#15803d","title":"Green"},{"bg":"#7f1d1d","title":"Maroon"},{"bg":"#e63329","title":"Red"}]' data-sizes='["S","M","L","XL","2XL","3XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80&auto=format&fit=crop" alt="Round Neck Heavy" loading="lazy">
         <span class="sc-type-tag tag-round">👕 Round Neck</span>
         <span class="sc-stock low-stock">Low Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">Round Neck — Heavy Cotton</div>
         <div class="sc-sub">220 GSM Premium · Structured · Long-lasting</div>
-        <div class="sc-price-wrap" id="pw-3">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-3">Retail Price</div><div class="sc-price-main" id="pm-3">Rs. 750</div></div>
-            <span class="sc-price-save" id="ps-3">Save Rs. 170</span>
-          </div>
-          <div class="sc-moq" id="moq-3">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,3)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,3)"></div>
-          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,3)"></div>
-          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,3)"></div>
-          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,3)"></div>
-          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,3)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-3"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-3">Retail Price</div><div class="sc-price-main" id="pm-3">Rs. 750</div></div><span class="sc-price-save" id="ps-3">Save Rs. 170</span></div><div class="sc-moq" id="moq-3">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,3)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,3)"></div><div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,3)"></div><div class="sc-color" style="background:#15803d" onclick="pickColor(this,3)"></div><div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,3)"></div><div class="sc-color" style="background:#e63329" onclick="pickColor(this,3)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 5: V-Neck Slim -->
-    <div class="sc" data-type="vneck" data-retail="650" data-bulk="480" data-name="V-Neck T-Shirt — Slim Fit" data-img="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="vneck" data-retail="650" data-bulk="480" data-name="V-Neck T-Shirt — Slim Fit" data-img="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80&auto=format&fit=crop" data-sub="Deep V · Soft Cotton Blend · Modern Cut" data-tag="vneck" data-tagcls="tag-vneck" data-stock="in-stock" data-stock-lbl="In Stock" data-save="170" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#7f1d1d","title":"Maroon"},{"bg":"#15803d","title":"Green"},{"bg":"#6d28d9","title":"Purple"}]' data-sizes='["XS","S","M","L","XL","2XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80&auto=format&fit=crop" alt="V-Neck Slim" loading="lazy">
         <span class="sc-type-tag tag-vneck">👕 V-Neck</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">V-Neck T-Shirt — Slim Fit</div>
         <div class="sc-sub">Deep V · Soft Cotton Blend · Modern Cut</div>
-        <div class="sc-price-wrap" id="pw-4">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-4">Retail Price</div><div class="sc-price-main" id="pm-4">Rs. 650</div></div>
-            <span class="sc-price-save" id="ps-4">Save Rs. 170</span>
-          </div>
-          <div class="sc-moq" id="moq-4">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,4)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,4)"></div>
-          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,4)"></div>
-          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,4)"></div>
-          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,4)"></div>
-          <div class="sc-color" style="background:#6d28d9" onclick="pickColor(this,4)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-4"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-4">Retail Price</div><div class="sc-price-main" id="pm-4">Rs. 650</div></div><span class="sc-price-save" id="ps-4">Save Rs. 170</span></div><div class="sc-moq" id="moq-4">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,4)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,4)"></div><div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,4)"></div><div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,4)"></div><div class="sc-color" style="background:#15803d" onclick="pickColor(this,4)"></div><div class="sc-color" style="background:#6d28d9" onclick="pickColor(this,4)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 6: V-Neck Oversized -->
-    <div class="sc" data-type="vneck" data-retail="780" data-bulk="580" data-name="V-Neck T-Shirt — Oversized" data-img="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="vneck" data-retail="780" data-bulk="580" data-name="V-Neck T-Shirt — Oversized" data-img="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80&auto=format&fit=crop" data-sub="Drop Shoulder · 200 GSM Soft Cotton · Boxy Fit" data-tag="vneck" data-tagcls="tag-vneck" data-stock="in-stock" data-stock-lbl="In Stock" data-save="200" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#e63329","title":"Red"},{"bg":"#b45309","title":"Gold"}]' data-sizes='["S","M","L","XL","2XL","3XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&q=80&auto=format&fit=crop" alt="V-Neck Oversized" loading="lazy">
         <span class="sc-type-tag tag-vneck">👕 V-Neck</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">V-Neck T-Shirt — Oversized</div>
         <div class="sc-sub">Drop Shoulder · 200 GSM Soft Cotton · Boxy Fit</div>
-        <div class="sc-price-wrap" id="pw-5">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-5">Retail Price</div><div class="sc-price-main" id="pm-5">Rs. 780</div></div>
-            <span class="sc-price-save" id="ps-5">Save Rs. 200</span>
-          </div>
-          <div class="sc-moq" id="moq-5">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,5)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,5)"></div>
-          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,5)"></div>
-          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,5)"></div>
-          <div class="sc-color" style="background:#b45309" onclick="pickColor(this,5)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-5"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-5">Retail Price</div><div class="sc-price-main" id="pm-5">Rs. 780</div></div><span class="sc-price-save" id="ps-5">Save Rs. 200</span></div><div class="sc-moq" id="moq-5">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,5)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,5)"></div><div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,5)"></div><div class="sc-color" style="background:#e63329" onclick="pickColor(this,5)"></div><div class="sc-color" style="background:#b45309" onclick="pickColor(this,5)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 7: Dry-Fit Polo -->
-    <div class="sc" data-type="dry" data-retail="950" data-bulk="720" data-name="Polo Shirt — Dry-Fit Performance" data-img="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="dry" data-retail="950" data-bulk="720" data-name="Polo Shirt — Dry-Fit Performance" data-img="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80&auto=format&fit=crop" data-sub="Moisture Wicking · Anti-Odour · Sports Ready" data-tag="dry" data-tagcls="tag-dry" data-stock="in-stock" data-stock-lbl="In Stock" data-save="230" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#7f1d1d","title":"Maroon"},{"bg":"#e63329","title":"Red"},{"bg":"#15803d","title":"Green"},{"bg":"#0891b2","title":"Teal"}]' data-sizes='["XS","S","M","L","XL","2XL","3XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&q=80&auto=format&fit=crop" alt="Dry-Fit Polo" loading="lazy">
         <span class="sc-type-tag tag-dry">⚡ Dry-Fit</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">Polo Shirt — Dry-Fit Performance</div>
         <div class="sc-sub">Moisture Wicking · Anti-Odour · Sports Ready</div>
-        <div class="sc-price-wrap" id="pw-6">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-6">Retail Price</div><div class="sc-price-main" id="pm-6">Rs. 950</div></div>
-            <span class="sc-price-save" id="ps-6">Save Rs. 230</span>
-          </div>
-          <div class="sc-moq" id="moq-6">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,6)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,6)"></div>
-          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,6)"></div>
-          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,6)"></div>
-          <div class="sc-color" style="background:#e63329" onclick="pickColor(this,6)"></div>
-          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,6)"></div>
-          <div class="sc-color" style="background:#0891b2" onclick="pickColor(this,6)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-6"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-6">Retail Price</div><div class="sc-price-main" id="pm-6">Rs. 950</div></div><span class="sc-price-save" id="ps-6">Save Rs. 230</span></div><div class="sc-moq" id="moq-6">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,6)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,6)"></div><div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,6)"></div><div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,6)"></div><div class="sc-color" style="background:#e63329" onclick="pickColor(this,6)"></div><div class="sc-color" style="background:#15803d" onclick="pickColor(this,6)"></div><div class="sc-color" style="background:#0891b2" onclick="pickColor(this,6)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span><span class="sc-sz" onclick="pickSize(this)">3XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-    <!-- 8: Long Sleeve Round Neck -->
-    <div class="sc" data-type="round" data-retail="850" data-bulk="650" data-name="Round Neck T-Shirt — Long Sleeve" data-img="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80&auto=format&fit=crop">
+    <div class="sc" data-type="round" data-retail="850" data-bulk="650" data-name="Round Neck — Long Sleeve" data-img="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80&auto=format&fit=crop" data-sub="180 GSM Cotton · Classic Long Sleeve · Layering" data-tag="round" data-tagcls="tag-round" data-stock="in-stock" data-stock-lbl="In Stock" data-save="200" data-colors='[{"bg":"#1a1a1a","title":"Black"},{"bg":"#ffffff","title":"White","border":true},{"bg":"#1a2a4a","title":"Navy"},{"bg":"#15803d","title":"Green"},{"bg":"#7f1d1d","title":"Maroon"},{"bg":"#0891b2","title":"Teal"}]' data-sizes='["XS","S","M","L","XL","2XL"]'>
       <div class="sc-img">
         <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=500&q=80&auto=format&fit=crop" alt="Long Sleeve Round Neck" loading="lazy">
         <span class="sc-type-tag tag-round">👕 Round Neck</span>
         <span class="sc-stock in-stock">In Stock</span>
-        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation()">Quick View</button></div>
+        <div class="sc-quick-view"><button class="sc-qv-btn" onclick="event.stopPropagation();openQV(this.closest('.sc'))">Quick View</button></div>
       </div>
       <div class="sc-body">
         <div class="sc-name">Round Neck — Long Sleeve</div>
         <div class="sc-sub">180 GSM Cotton · Classic Long Sleeve · Layering</div>
-        <div class="sc-price-wrap" id="pw-7">
-          <div class="sc-price-row">
-            <div><div class="sc-price-tag" id="pt-7">Retail Price</div><div class="sc-price-main" id="pm-7">Rs. 850</div></div>
-            <span class="sc-price-save" id="ps-7">Save Rs. 200</span>
-          </div>
-          <div class="sc-moq" id="moq-7">Minimum 10 pieces for bulk rate</div>
-        </div>
-        <div class="sc-colors">
-          <div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,7)"></div>
-          <div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,7)"></div>
-          <div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,7)"></div>
-          <div class="sc-color" style="background:#15803d" onclick="pickColor(this,7)"></div>
-          <div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,7)"></div>
-          <div class="sc-color" style="background:#0891b2" onclick="pickColor(this,7)"></div>
-        </div>
-        <div class="sc-sizes">
-          <span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span>
-        </div>
-        <div class="sc-footer">
-          <div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div>
-          <button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button>
-        </div>
+        <div class="sc-price-wrap" id="pw-7"><div class="sc-price-row"><div><div class="sc-price-tag" id="pt-7">Retail Price</div><div class="sc-price-main" id="pm-7">Rs. 850</div></div><span class="sc-price-save" id="ps-7">Save Rs. 200</span></div><div class="sc-moq" id="moq-7">Minimum 10 pieces for bulk rate</div></div>
+        <div class="sc-colors"><div class="sc-color active" style="background:#1a1a1a" onclick="pickColor(this,7)"></div><div class="sc-color" style="background:#fff;border:2px solid #ccc" onclick="pickColor(this,7)"></div><div class="sc-color" style="background:#1a2a4a" onclick="pickColor(this,7)"></div><div class="sc-color" style="background:#15803d" onclick="pickColor(this,7)"></div><div class="sc-color" style="background:#7f1d1d" onclick="pickColor(this,7)"></div><div class="sc-color" style="background:#0891b2" onclick="pickColor(this,7)"></div></div>
+        <div class="sc-sizes"><span class="sc-sz" onclick="pickSize(this)">XS</span><span class="sc-sz" onclick="pickSize(this)">S</span><span class="sc-sz active" onclick="pickSize(this)">M</span><span class="sc-sz" onclick="pickSize(this)">L</span><span class="sc-sz" onclick="pickSize(this)">XL</span><span class="sc-sz" onclick="pickSize(this)">2XL</span></div>
+        <div class="sc-footer"><div class="sc-qty"><button class="sc-qty-btn" onclick="changeCardQty(this,-1)">−</button><div class="sc-qty-val">1</div><button class="sc-qty-btn" onclick="changeCardQty(this,1)">+</button></div><button class="sc-add-btn" onclick="addToCart(this)">🛒 Add to Cart</button></div>
       </div>
     </div>
 
-  </div><!-- end shop-grid -->
+  </div>
 </div>
 
 <footer>
@@ -807,7 +644,52 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
   <div class="fr">© 2025 Great Designer · All rights reserved<br>Retail Shop · Fixed Prices · Instant Order</div>
 </footer>
 
-<!-- ══════════ CART SIDEBAR ══════════ -->
+<!-- QUICK VIEW MODAL -->
+<div class="qv-bg" id="qv-bg" onclick="closeQV(event)">
+  <div class="qv-box" id="qv-box">
+    <button class="qv-close" onclick="closeQVDirect()">✕</button>
+    <div class="qv-img-side" id="qv-img-side">
+      <img id="qv-img" src="" alt="">
+      <span class="qv-img-type" id="qv-img-type"></span>
+      <span class="qv-img-stock" id="qv-img-stock"></span>
+    </div>
+    <div class="qv-info">
+      <div>
+        <div class="qv-eyebrow" id="qv-eyebrow">—</div>
+        <div class="qv-name" id="qv-name">—</div>
+        <div class="qv-desc" id="qv-desc">—</div>
+      </div>
+      <div class="qv-price-block" id="qv-price-block">
+        <div class="qv-price-row">
+          <div>
+            <div class="qv-price-tag" id="qv-price-tag">Retail Price</div>
+            <div class="qv-price-main" id="qv-price-main">—</div>
+          </div>
+          <span class="qv-price-save" id="qv-price-save"></span>
+        </div>
+        <div class="qv-price-moq" id="qv-price-moq">Minimum 10 pieces for bulk rate</div>
+      </div>
+      <div>
+        <div class="qv-sect">Select Color — <span id="qv-color-name" style="font-weight:600;color:var(--dark)">Black</span></div>
+        <div class="qv-colors" id="qv-colors"></div>
+      </div>
+      <div>
+        <div class="qv-sect">Select Size</div>
+        <div class="qv-sizes" id="qv-sizes"></div>
+      </div>
+      <div class="qv-footer">
+        <div class="qv-qty">
+          <button class="qv-qb" onclick="changeQVQty(-1)">−</button>
+          <div class="qv-qv" id="qv-qty-val">1</div>
+          <button class="qv-qb" onclick="changeQVQty(1)">+</button>
+        </div>
+        <button class="qv-add-btn" id="qv-add-btn" onclick="addToCartFromQV()">🛒 Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
 <div class="cart-backdrop" id="cart-backdrop" onclick="closeCart()"></div>
 <div class="cart-panel" id="cart-panel">
   <div class="cart-header">
@@ -822,24 +704,19 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
     <div class="cart-items" id="cart-items-list" style="display:none;"></div>
   </div>
   <div class="cart-footer">
-    <div class="cart-bulk-note" id="cart-bulk-note">
-      💡 You have 10+ items — <strong>bulk pricing has been applied!</strong> All prices updated to bulk rates.
-    </div>
+    <div class="cart-bulk-note" id="cart-bulk-note">💡 You have 10+ items — <strong>bulk pricing has been applied!</strong></div>
     <div class="cart-summary">
       <div class="cart-sum-row"><span class="l">Subtotal</span><span class="v" id="cart-subtotal">Rs. 0</span></div>
       <div class="cart-sum-row"><span class="l">Delivery (Est.)</span><span class="v">Rs. 350</span></div>
       <div class="cart-sum-divider"></div>
-      <div class="cart-total-row">
-        <span class="cart-total-lbl">TOTAL</span>
-        <span class="cart-total-val" id="cart-total">Rs. 350</span>
-      </div>
+      <div class="cart-total-row"><span class="cart-total-lbl">TOTAL</span><span class="cart-total-val" id="cart-total">Rs. 350</span></div>
     </div>
     <button class="cart-checkout-btn" onclick="openCheckout()">Proceed to Order →</button>
     <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
   </div>
 </div>
 
-<!-- ══════════ CHECKOUT MODAL ══════════ -->
+<!-- CHECKOUT MODAL -->
 <div class="co-bg" id="co-modal">
   <div class="co-box">
     <div class="co-title">Complete Your Order</div>
@@ -861,7 +738,7 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
   </div>
 </div>
 
-<!-- ══════════ SUCCESS MODAL ══════════ -->
+<!-- SUCCESS MODAL -->
 <div class="suc-bg" id="suc-modal">
   <div class="suc-box">
     <div class="suc-icon">🎉</div>
@@ -876,175 +753,280 @@ footer{background:var(--dark2);padding:2.2rem 3.5rem;border-top:3px solid var(--
 </div>
 
 <script>
-/* ════════════════════
-   BULK MODE
-════════════════════ */
-let isBulk = false;
-const products = [
-  {retail:850, bulk:650}, {retail:900, bulk:700}, {retail:550, bulk:400},
-  {retail:750, bulk:580}, {retail:650, bulk:480}, {retail:780, bulk:580},
-  {retail:950, bulk:720}, {retail:850, bulk:650}
+/* ── MOBILE DRAWER ── */
+(function(){
+  const hamburger=document.getElementById('hamburger');
+  if(!hamburger)return;
+  const drawer=document.getElementById('mobile-drawer');
+  const backdrop=document.getElementById('drawer-backdrop');
+  function openD(){hamburger.classList.add('open');drawer.classList.add('open');backdrop.classList.add('open');document.body.style.overflow='hidden';}
+  function closeD(){hamburger.classList.remove('open');drawer.classList.remove('open');backdrop.classList.remove('open');document.body.style.overflow='';}
+  hamburger.addEventListener('click',()=>hamburger.classList.contains('open')?closeD():openD());
+  backdrop.addEventListener('click',closeD);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeD();});
+})();
+
+/* ── BULK MODE ── */
+let isBulk=false;
+const products=[
+  {retail:850,bulk:650,save:200},{retail:900,bulk:700,save:200},{retail:550,bulk:400,save:150},
+  {retail:750,bulk:580,save:170},{retail:650,bulk:480,save:170},{retail:780,bulk:580,save:200},
+  {retail:950,bulk:720,save:230},{retail:850,bulk:650,save:200}
 ];
 
-function toggleBulkMode() {
-  isBulk = document.getElementById('bulk-toggle').checked;
-  document.getElementById('bt-off-lbl').style.opacity = isBulk ? '.35' : '1';
-  document.getElementById('bt-on-lbl').style.opacity = isBulk ? '1' : '.35';
-
-  products.forEach((p, i) => {
-    const pw = document.getElementById('pw-' + i);
-    const pm = document.getElementById('pm-' + i);
-    const pt = document.getElementById('pt-' + i);
-    const ps = document.getElementById('ps-' + i);
-    const moq = document.getElementById('moq-' + i);
-    if (isBulk) {
-      pw.classList.add('bulk-mode');
-      pm.textContent = 'Rs. ' + p.bulk.toLocaleString();
-      pt.textContent = 'Bulk Price (10+)';
-      const save = p.retail - p.bulk;
-      ps.textContent = 'Save Rs. ' + save;
-      moq.style.display = 'block';
-    } else {
-      pw.classList.remove('bulk-mode');
-      pm.textContent = 'Rs. ' + p.retail.toLocaleString();
-      pt.textContent = 'Retail Price';
-      moq.style.display = 'none';
-    }
+function toggleBulkMode(){
+  isBulk=document.getElementById('bulk-toggle').checked;
+  document.getElementById('bt-off-lbl').style.opacity=isBulk?'.35':'1';
+  document.getElementById('bt-on-lbl').style.opacity=isBulk?'1':'.35';
+  products.forEach((p,i)=>{
+    const pw=document.getElementById('pw-'+i);
+    const pm=document.getElementById('pm-'+i);
+    const pt=document.getElementById('pt-'+i);
+    if(isBulk){pw.classList.add('bulk-mode');pm.textContent='Rs. '+p.bulk.toLocaleString();pt.textContent='Bulk Price (10+)';}
+    else{pw.classList.remove('bulk-mode');pm.textContent='Rs. '+p.retail.toLocaleString();pt.textContent='Retail Price';}
   });
-  // update cart prices if cart has items
+  // update QV modal if open
+  if(qvCard) refreshQVPrice();
   recalcCart();
 }
 
-/* ════════════════════
-   FILTER
-════════════════════ */
-const typeNames = {all:'All Retail Products', polo:'👔 Polo Shirts', round:'👕 Round Neck', vneck:'👕 V-Neck Tees', dry:'⚡ Dry-Fit'};
-const clsMap = {all:'on', polo:'on-polo', round:'on-round', vneck:'on-vneck', dry:'on-dry'};
-function filterShop(type, btn, cls) {
-  document.querySelectorAll('.fb').forEach(b => b.className = 'fb');
+/* ── FILTER ── */
+const typeNames={all:'All Retail Products',polo:'👔 Polo Shirts',round:'👕 Round Neck',vneck:'👕 V-Neck Tees',dry:'⚡ Dry-Fit'};
+function filterShop(type,btn,cls){
+  document.querySelectorAll('.fb').forEach(b=>b.className='fb');
   btn.classList.add(cls);
-  let n = 0;
-  document.querySelectorAll('.sc').forEach(c => {
-    const show = type === 'all' || c.dataset.type === type;
-    c.classList.toggle('hide', !show);
-    if (show) n++;
+  let n=0;
+  document.querySelectorAll('.sc').forEach(c=>{const show=type==='all'||c.dataset.type===type;c.classList.toggle('hide',!show);if(show)n++;});
+  document.getElementById('sg-title').textContent=typeNames[type]||'All Products';
+  document.getElementById('sg-count').textContent='Showing '+n+' items';
+}
+
+/* ── CARD INTERACTIONS ── */
+function pickColor(el,idx){
+  const card=el.closest('.sc');
+  card.querySelectorAll('.sc-color').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+function pickSize(el){
+  const card=el.closest('.sc-sizes');
+  card.querySelectorAll('.sc-sz').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+function changeCardQty(btn,delta){
+  const qv=btn.closest('.sc-qty').querySelector('.sc-qty-val');
+  let v=parseInt(qv.textContent);
+  v=Math.max(1,Math.min(99,v+delta));
+  qv.textContent=v;
+}
+
+/* ══════════════════════════════
+   QUICK VIEW MODAL
+══════════════════════════════ */
+let qvCard=null;
+
+function openQV(card){
+  qvCard=card;
+  const d=card.dataset;
+  const retailPrice=parseInt(d.retail);
+  const bulkPrice=parseInt(d.bulk);
+  const saveAmt=parseInt(d.save);
+  const colors=JSON.parse(d.colors);
+  const sizes=JSON.parse(d.sizes);
+  const tagText=card.querySelector('.sc-type-tag').textContent;
+  const tagCls=d.tagcls;
+  const stockCls=d.stock;
+  const stockLbl=d['stock-lbl']||d.stockLbl||card.querySelector('.sc-stock').textContent;
+
+  // Image
+  document.getElementById('qv-img').src=d.img;
+  document.getElementById('qv-img').alt=d.name;
+
+  // Type tag
+  const typeEl=document.getElementById('qv-img-type');
+  typeEl.textContent=tagText;
+  typeEl.className='qv-img-type '+tagCls;
+
+  // Stock
+  const stockEl=document.getElementById('qv-img-stock');
+  stockEl.textContent=stockLbl;
+  stockEl.className='qv-img-stock '+stockCls;
+
+  // Text info
+  document.getElementById('qv-eyebrow').textContent=tagText.replace(/[^\w\s·-]/g,'').trim();
+  document.getElementById('qv-name').textContent=d.name;
+  document.getElementById('qv-desc').textContent=d.sub;
+
+  // Price
+  refreshQVPrice();
+
+  // Reset qty
+  document.getElementById('qv-qty-val').textContent='1';
+
+  // Colors
+  const colorsEl=document.getElementById('qv-colors');
+  colorsEl.innerHTML=colors.map((c,i)=>`
+    <div class="qv-color${i===0?' active':''}"
+      style="background:${c.bg};${c.border?'border:2.5px solid #ccc;':''}"
+      title="${c.title}"
+      onclick="pickQVColor(this,'${c.title}')">
+    </div>
+  `).join('');
+  document.getElementById('qv-color-name').textContent=colors[0].title;
+
+  // Sizes
+  const sizesEl=document.getElementById('qv-sizes');
+  sizesEl.innerHTML=sizes.map((s,i)=>`
+    <span class="qv-sz${i===1||i===0?' active':''}" onclick="pickQVSize(this)">${s}</span>
+  `).join('');
+  // default active = "M" if exists
+  const mSize=sizesEl.querySelector('.qv-sz');
+  sizesEl.querySelectorAll('.qv-sz').forEach(el=>{
+    if(el.textContent==='M'){
+      sizesEl.querySelectorAll('.qv-sz').forEach(x=>x.classList.remove('active'));
+      el.classList.add('active');
+    }
   });
-  document.getElementById('sg-title').textContent = typeNames[type] || 'All Products';
-  document.getElementById('sg-count').textContent = 'Showing ' + n + ' items';
+
+  // Reset add btn
+  const addBtn=document.getElementById('qv-add-btn');
+  addBtn.classList.remove('added');
+  addBtn.textContent='🛒 Add to Cart';
+
+  // Show
+  document.getElementById('qv-bg').classList.add('show');
+  document.body.style.overflow='hidden';
 }
 
-/* ════════════════════
-   CARD INTERACTIONS
-════════════════════ */
-function pickColor(el, idx) {
-  const card = el.closest('.sc');
-  card.querySelectorAll('.sc-color').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-}
-function pickSize(el) {
-  const card = el.closest('.sc-sizes');
-  card.querySelectorAll('.sc-sz').forEach(s => s.classList.remove('active'));
-  el.classList.add('active');
-}
-function changeCardQty(btn, delta) {
-  const qv = btn.closest('.sc-qty').querySelector('.sc-qty-val');
-  let v = parseInt(qv.textContent);
-  v = Math.max(1, Math.min(99, v + delta));
-  qv.textContent = v;
-}
-
-/* ════════════════════
-   CART STATE
-════════════════════ */
-let cart = [];
-
-function addToCart(btn) {
-  const card = btn.closest('.sc');
-  const name = card.dataset.name;
-  const retailPrice = parseInt(card.dataset.retail);
-  const bulkPrice = parseInt(card.dataset.bulk);
-  const img = card.dataset.img;
-  const price = isBulk ? bulkPrice : retailPrice;
-  const qty = parseInt(card.querySelector('.sc-qty-val').textContent);
-  const color = card.querySelector('.sc-color.active')?.title || '—';
-  const size = card.querySelector('.sc-sz.active')?.textContent || 'M';
-
-  // find existing item
-  const existing = cart.find(i => i.name === name && i.color === color && i.size === size);
-  if (existing) {
-    existing.qty += qty;
-    existing.price = price; // update price in case bulk toggled
+function refreshQVPrice(){
+  if(!qvCard)return;
+  const d=qvCard.dataset;
+  const retailPrice=parseInt(d.retail);
+  const bulkPrice=parseInt(d.bulk);
+  const saveAmt=parseInt(d.save);
+  const pb=document.getElementById('qv-price-block');
+  const pm=document.getElementById('qv-price-main');
+  const pt=document.getElementById('qv-price-tag');
+  const ps=document.getElementById('qv-price-save');
+  if(isBulk){
+    pb.classList.add('bulk-mode');
+    pm.textContent='Rs. '+bulkPrice.toLocaleString();
+    pt.textContent='Bulk Price (10+)';
+    ps.textContent='Save Rs. '+saveAmt;
   } else {
-    cart.push({ id: Date.now(), name, price, retailPrice, bulkPrice, qty, color, size, img });
+    pb.classList.remove('bulk-mode');
+    pm.textContent='Rs. '+retailPrice.toLocaleString();
+    pt.textContent='Retail Price';
+    ps.textContent='Save Rs. '+saveAmt;
   }
+}
+
+function closeQV(e){
+  if(e.target===document.getElementById('qv-bg')) closeQVDirect();
+}
+function closeQVDirect(){
+  document.getElementById('qv-bg').classList.remove('show');
+  document.body.style.overflow='';
+  qvCard=null;
+}
+
+function pickQVColor(el,name){
+  document.querySelectorAll('.qv-color').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('qv-color-name').textContent=name;
+}
+function pickQVSize(el){
+  document.querySelectorAll('.qv-sz').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+function changeQVQty(delta){
+  const qv=document.getElementById('qv-qty-val');
+  let v=parseInt(qv.textContent);
+  v=Math.max(1,Math.min(99,v+delta));
+  qv.textContent=v;
+}
+
+function addToCartFromQV(){
+  if(!qvCard)return;
+  const d=qvCard.dataset;
+  const retailPrice=parseInt(d.retail);
+  const bulkPrice=parseInt(d.bulk);
+  const price=isBulk?bulkPrice:retailPrice;
+  const qty=parseInt(document.getElementById('qv-qty-val').textContent);
+  const color=document.querySelector('.qv-color.active')?.title||'Black';
+  const size=document.querySelector('.qv-sz.active')?.textContent||'M';
+  const name=d.name;
+  const img=d.img;
+
+  const existing=cart.find(i=>i.name===name&&i.color===color&&i.size===size);
+  if(existing){existing.qty+=qty;existing.price=price;}
+  else{cart.push({id:Date.now(),name,price,retailPrice,bulkPrice,qty,color,size,img});}
 
   renderCart();
   updateCartBadge();
 
-  // button feedback
-  btn.classList.add('added');
-  btn.textContent = '✓ Added!';
-  setTimeout(() => {
-    btn.classList.remove('added');
-    btn.textContent = '🛒 Add to Cart';
-  }, 1800);
+  const addBtn=document.getElementById('qv-add-btn');
+  addBtn.classList.add('added');
+  addBtn.textContent='✓ Added!';
 
+  setTimeout(()=>{
+    closeQVDirect();
+    openCart();
+  },900);
+}
+
+// ESC key closes QV
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&document.getElementById('qv-bg').classList.contains('show')) closeQVDirect();
+});
+
+/* ══════════════════════════════
+   CART
+══════════════════════════════ */
+let cart=[];
+
+function addToCart(btn){
+  const card=btn.closest('.sc');
+  const name=card.dataset.name;
+  const retailPrice=parseInt(card.dataset.retail);
+  const bulkPrice=parseInt(card.dataset.bulk);
+  const img=card.dataset.img;
+  const price=isBulk?bulkPrice:retailPrice;
+  const qty=parseInt(card.querySelector('.sc-qty-val').textContent);
+  const color=card.querySelector('.sc-color.active')?.title||'—';
+  const size=card.querySelector('.sc-sz.active')?.textContent||'M';
+  const existing=cart.find(i=>i.name===name&&i.color===color&&i.size===size);
+  if(existing){existing.qty+=qty;existing.price=price;}
+  else{cart.push({id:Date.now(),name,price,retailPrice,bulkPrice,qty,color,size,img});}
+  renderCart();
+  updateCartBadge();
+  btn.classList.add('added');btn.textContent='✓ Added!';
+  setTimeout(()=>{btn.classList.remove('added');btn.textContent='🛒 Add to Cart';},1800);
   openCart();
 }
 
-function removeFromCart(id) {
-  cart = cart.filter(i => i.id !== id);
-  renderCart();
-  updateCartBadge();
-}
+function removeFromCart(id){cart=cart.filter(i=>i.id!==id);renderCart();updateCartBadge();}
+function changeCartQty(id,delta){const item=cart.find(i=>i.id===id);if(!item)return;item.qty=Math.max(1,item.qty+delta);renderCart();updateCartBadge();}
+function recalcCart(){cart.forEach(item=>{item.price=isBulk?item.bulkPrice:item.retailPrice;});renderCart();}
 
-function changeCartQty(id, delta) {
-  const item = cart.find(i => i.id === id);
-  if (!item) return;
-  item.qty = Math.max(1, item.qty + delta);
-  renderCart();
-  updateCartBadge();
-}
-
-function recalcCart() {
-  // update prices based on bulk mode
-  cart.forEach(item => {
-    item.price = isBulk ? item.bulkPrice : item.retailPrice;
-  });
-  renderCart();
-}
-
-function renderCart() {
-  const list = document.getElementById('cart-items-list');
-  const empty = document.getElementById('cart-empty');
-  const sub = document.getElementById('cart-subtotal');
-  const tot = document.getElementById('cart-total');
-  const bulkNote = document.getElementById('cart-bulk-note');
-  const countEl = document.getElementById('cart-item-count');
-
-  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-  countEl.textContent = `(${totalQty} item${totalQty !== 1 ? 's' : ''})`;
-
-  if (cart.length === 0) {
-    empty.style.display = 'block';
-    list.style.display = 'none';
-    sub.textContent = 'Rs. 0';
-    tot.textContent = 'Rs. 350';
-    bulkNote.classList.remove('show');
-    return;
-  }
-
-  empty.style.display = 'none';
-  list.style.display = 'flex';
-  bulkNote.classList.toggle('show', totalQty >= 10);
-
-  list.innerHTML = cart.map(item => `
+function renderCart(){
+  const list=document.getElementById('cart-items-list');
+  const empty=document.getElementById('cart-empty');
+  const sub=document.getElementById('cart-subtotal');
+  const tot=document.getElementById('cart-total');
+  const bulkNote=document.getElementById('cart-bulk-note');
+  const countEl=document.getElementById('cart-item-count');
+  const totalQty=cart.reduce((s,i)=>s+i.qty,0);
+  countEl.textContent=`(${totalQty} item${totalQty!==1?'s':''})`;
+  if(cart.length===0){empty.style.display='block';list.style.display='none';sub.textContent='Rs. 0';tot.textContent='Rs. 350';bulkNote.classList.remove('show');return;}
+  empty.style.display='none';list.style.display='flex';
+  bulkNote.classList.toggle('show',totalQty>=10);
+  list.innerHTML=cart.map(item=>`
     <div class="cart-item">
       <div class="ci-img"><img src="${item.img}" alt="${item.name}"></div>
       <div class="ci-info">
         <div class="ci-name">${item.name}</div>
-        <div class="ci-meta">${item.size} · ${item.color}${isBulk ? ' · Bulk Rate' : ''}</div>
-        <div class="ci-price">Rs. ${(item.price * item.qty).toLocaleString()}</div>
+        <div class="ci-meta">${item.size} · ${item.color}${isBulk?' · Bulk Rate':''}</div>
+        <div class="ci-price">Rs. ${(item.price*item.qty).toLocaleString()}</div>
       </div>
       <div class="ci-right">
         <button class="ci-remove" onclick="removeFromCart(${item.id})">✕</button>
@@ -1056,67 +1038,44 @@ function renderCart() {
       </div>
     </div>
   `).join('');
-
-  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  sub.textContent = 'Rs. ' + subtotal.toLocaleString();
-  tot.textContent = 'Rs. ' + (subtotal + 350).toLocaleString();
+  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  sub.textContent='Rs. '+subtotal.toLocaleString();
+  tot.textContent='Rs. '+(subtotal+350).toLocaleString();
 }
 
-function updateCartBadge() {
-  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-  const badge = document.getElementById('cart-badge');
-  badge.textContent = totalQty;
+function updateCartBadge(){
+  const totalQty=cart.reduce((s,i)=>s+i.qty,0);
+  const badge=document.getElementById('cart-badge');
+  badge.textContent=totalQty;
   badge.classList.remove('bump');
   void badge.offsetWidth;
   badge.classList.add('bump');
 }
 
-/* ════════════════════
-   CART PANEL
-════════════════════ */
-function openCart() {
-  document.getElementById('cart-panel').classList.add('open');
-  document.getElementById('cart-backdrop').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeCart() {
-  document.getElementById('cart-panel').classList.remove('open');
-  document.getElementById('cart-backdrop').classList.remove('show');
-  document.body.style.overflow = '';
-}
+function openCart(){document.getElementById('cart-panel').classList.add('open');document.getElementById('cart-backdrop').classList.add('show');document.body.style.overflow='hidden';}
+function closeCart(){document.getElementById('cart-panel').classList.remove('open');document.getElementById('cart-backdrop').classList.remove('show');document.body.style.overflow='';}
 
-/* ════════════════════
-   CHECKOUT
-════════════════════ */
-function openCheckout() {
-  if (cart.length === 0) { alert('Your cart is empty!'); return; }
-  // build summary
-  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  document.getElementById('co-items').innerHTML = cart.map(i =>
-    `<div class="co-sum-item"><span>${i.name} (${i.size}) × ${i.qty}</span><span>Rs. ${(i.price * i.qty).toLocaleString()}</span></div>`
-  ).join('');
-  document.getElementById('co-total').textContent = 'Rs. ' + (subtotal + 350).toLocaleString();
+function openCheckout(){
+  if(cart.length===0){alert('Your cart is empty!');return;}
+  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('co-items').innerHTML=cart.map(i=>`<div class="co-sum-item"><span>${i.name} (${i.size}) × ${i.qty}</span><span>Rs. ${(i.price*i.qty).toLocaleString()}</span></div>`).join('');
+  document.getElementById('co-total').textContent='Rs. '+(subtotal+350).toLocaleString();
   closeCart();
   document.getElementById('co-modal').classList.add('show');
 }
-function closeCheckout() {
-  document.getElementById('co-modal').classList.remove('show');
-  openCart();
-}
-function placeOrder() {
-  const fn = document.getElementById('co-fname').value.trim();
-  const ph = document.getElementById('co-phone').value.trim();
-  const addr = document.getElementById('co-addr').value.trim();
-  if (!fn) { alert('Please enter your first name.'); return; }
-  if (!ph) { alert('Please enter your WhatsApp number.'); return; }
-  if (!addr) { alert('Please enter your delivery address.'); return; }
-  const ref = 'GD-SHOP-' + String(Math.floor(Math.random() * 9000) + 1000);
-  document.getElementById('suc-ref').textContent = 'REF #' + ref;
+function closeCheckout(){document.getElementById('co-modal').classList.remove('show');openCart();}
+function placeOrder(){
+  const fn=document.getElementById('co-fname').value.trim();
+  const ph=document.getElementById('co-phone').value.trim();
+  const addr=document.getElementById('co-addr').value.trim();
+  if(!fn){alert('Please enter your first name.');return;}
+  if(!ph){alert('Please enter your WhatsApp number.');return;}
+  if(!addr){alert('Please enter your delivery address.');return;}
+  const ref='GD-SHOP-'+String(Math.floor(Math.random()*9000)+1000);
+  document.getElementById('suc-ref').textContent='REF #'+ref;
   document.getElementById('co-modal').classList.remove('show');
   document.getElementById('suc-modal').classList.add('show');
-  cart = [];
-  renderCart();
-  updateCartBadge();
+  cart=[];renderCart();updateCartBadge();
 }
 </script>
 </body>
