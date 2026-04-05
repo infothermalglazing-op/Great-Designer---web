@@ -46,6 +46,48 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .nav-cta{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:.52rem 1.25rem;border-radius:2rem;transition:transform .15s,box-shadow .15s;}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,51,41,.32);}
 
+/* ══ HAMBURGER ══ */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;
+  background:none;border:none;cursor:pointer;
+  padding:6px;border-radius:.5rem;
+  transition:background .2s;z-index:400;
+}
+.nav-hamburger:hover{background:var(--bg2);}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--dark);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+  transform-origin:center;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ══ MOBILE DRAWER ══ */
+.mobile-drawer{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;bottom:0;
+  z-index:299;flex-direction:column;
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:1.5rem;overflow-y:auto;
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.mobile-drawer.open{transform:translateX(0);}
+.mobile-drawer-links{list-style:none;display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.5rem;}
+.mobile-drawer-links a{display:block;font-size:1.1rem;font-weight:600;color:var(--muted);padding:.85rem 1rem;border-radius:.6rem;transition:background .15s,color .15s;}
+.mobile-drawer-links a:hover,.mobile-drawer-links a.active{background:var(--bg2);color:var(--dark);}
+.mobile-drawer-links a.active{font-weight:700;border-left:3px solid var(--accent);}
+.mobile-drawer-divider{height:1px;background:var(--border);margin:.5rem 0 1.2rem;}
+.mobile-drawer-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.mobile-drawer-cta{display:block;width:100%;font-size:.9rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:1rem;border-radius:.5rem;text-align:center;transition:transform .15s,box-shadow .15s;}
+.mobile-drawer-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,51,41,.35);}
+.drawer-backdrop{display:none;position:fixed;inset:0;top:64px;background:rgba(0,0,0,.25);z-index:298;opacity:0;transition:opacity .3s;}
+.drawer-backdrop.open{opacity:1;}
+
 /* ══ HERO ══ */
 .hero{
   background:var(--dark2);
@@ -65,11 +107,7 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .h-tag{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2rem;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
 .h-tag.hot{border-color:rgba(230,51,41,.5);color:var(--accent);background:rgba(230,51,41,.1);}
 
-/* Hero image strip */
-.hero-right{
-  display:flex;align-items:flex-end;gap:.6rem;padding-bottom:0;
-  overflow:hidden;
-}
+.hero-right{display:flex;align-items:flex-end;gap:.6rem;padding-bottom:0;overflow:hidden;}
 .hero-img-col{display:flex;flex-direction:column;gap:.6rem;flex:1;}
 .hero-img-col img{width:100%;object-fit:cover;border-radius:.5rem .5rem 0 0;flex:1;transition:transform .5s;}
 .hero-img-col:hover img{transform:scale(1.03);}
@@ -119,7 +157,6 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .dc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
 .dc:hover .dc-img img{transform:scale(1.08);}
 
-/* category color tag */
 .dc-cat{
   position:absolute;top:.7rem;left:.7rem;
   font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
@@ -134,7 +171,6 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .cat-fashion{background:#be185d;}
 .cat-party{background:#b45309;}
 
-/* design number badge */
 .dc-num{
   position:absolute;top:.7rem;right:.7rem;
   font-family:'DM Mono',monospace;font-size:.5rem;font-weight:600;
@@ -144,7 +180,6 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
   backdrop-filter:blur(4px);
 }
 
-/* hover overlay */
 .dc-overlay{
   position:absolute;inset:0;
   background:rgba(20,20,20,.5);
@@ -176,7 +211,7 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .dc-technique{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);background:var(--bg2);padding:.22rem .55rem;border-radius:.3rem;}
 .dc-quotation-lbl{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;}
 
-/* ══ QUOTATION PANEL (slide in from right) ══ */
+/* ══ QUOTATION PANEL ══ */
 .q-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);}
 .q-backdrop.show{opacity:1;pointer-events:all;}
 .q-panel{
@@ -199,7 +234,6 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .qp-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
 .qp-close:hover{background:var(--accent);}
 
-/* Selected design preview in panel */
 .qp-design-preview{
   display:flex;gap:1rem;align-items:center;
   padding:1.1rem 1.6rem;background:var(--bg2);
@@ -213,7 +247,6 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 
 .qp-body{flex:1;overflow-y:auto;padding:1.4rem 1.6rem;}
 
-/* Form */
 .qp-section{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;margin-top:1.6rem;display:flex;align-items:center;gap:.5rem;}
 .qp-section:first-child{margin-top:0;}
 .qp-section::after{content:'';flex:1;height:1px;background:var(--border);}
@@ -226,19 +259,16 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23888' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.3rem;}
 .fgr{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
 
-/* Color chips */
 .color-chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.3rem;}
 .cc{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:transform .15s;outline:2.5px solid transparent;outline-offset:2px;}
 .cc:hover{transform:scale(1.12);}
 .cc.sel{outline-color:var(--accent);}
 
-/* Print technique chips */
 .pt-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem;}
 .pt-chip{font-size:.74rem;font-weight:500;padding:.38rem .85rem;border:1.5px solid var(--border);border-radius:2rem;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;user-select:none;}
 .pt-chip:hover{border-color:var(--dark);color:var(--dark);}
 .pt-chip.on{background:var(--dark2);border-color:var(--dark2);color:#fff;}
 
-/* Upload */
 .upload-zone{border:2px dashed var(--border2);border-radius:.6rem;padding:1.1rem;text-align:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s;}
 .upload-zone:hover{border-color:var(--accent);background:rgba(230,51,41,.02);}
 .upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
@@ -263,7 +293,6 @@ nav{position:sticky;top:0;z-index:300;height:64px;background:rgba(245,242,238,.9
 .how-icon{font-size:1.8rem;margin-bottom:.6rem;}
 .how-title{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:.04em;color:#fff;margin-bottom:.4rem;}
 .how-desc{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;}
-.how-arrow{display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:rgba(255,255,255,.15);padding-top:1.5rem;}
 
 /* ══ TECHNIQUES STRIP ══ */
 .tech-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 3.5rem;}
@@ -294,22 +323,43 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
 .fls{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.27);margin-top:.18rem;}
 .fr{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;text-align:right;line-height:1.8;}
 
-@media(max-width:1100px){.catalog-grid{grid-template-columns:repeat(3,1fr);}}
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .catalog-grid{grid-template-columns:repeat(3,1fr);}
+}
 @media(max-width:900px){
-  nav{padding:0 1.2rem;}.nav-links{display:none;}
+  nav{padding:0 1.2rem;}
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .nav-hamburger{display:flex;}
+  .mobile-drawer{display:flex;}
   .hero{grid-template-columns:1fr;}.hero-right{display:none;}
   .hero{padding:2.5rem 1.2rem 2rem;}
   .filter-inner{padding:.9rem 1.2rem;}
   .catalog-wrap{padding:1.5rem 1.2rem 3rem;}
-  .catalog-grid{grid-template-columns:repeat(2,1fr);}
+  /* ── 2 columns on tablet/mobile ── */
+  .catalog-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;}
   .q-panel{width:100%;}
   .how-section{padding:3rem 1.2rem;}
   .how-grid{grid-template-columns:1fr 1fr;}
   .tech-strip{padding:1.2rem 1.2rem;}
   footer{flex-direction:column;gap:1rem;padding:2rem 1.2rem;}.fr{text-align:center;}
   .fgr{grid-template-columns:1fr;}
+  /* Card image shorter on mobile */
+  .dc-img{height:160px;}
 }
-@media(max-width:500px){.catalog-grid{grid-template-columns:1fr;}}
+@media(max-width:500px){
+  /* ── Still 2 columns on small phones ── */
+  .catalog-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;}
+  .dc-img{height:130px;}
+  /* Tighten card body text */
+  .dc-body{padding:.7rem .75rem .85rem;}
+  .dc-name{font-size:.8rem;}
+  .dc-desc{display:none;}        /* hide description on tiny screens to save space */
+  .dc-cat{font-size:.44rem;padding:.2rem .5rem;}
+  .dc-num{width:22px;height:22px;font-size:.44rem;}
+  .catalog-wrap{padding:1rem .9rem 2.5rem;}
+}
 </style>
 </head>
 <body>
@@ -328,8 +378,26 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
   </ul>
   <div class="nav-r">
     <button class="nav-cta" onclick="openQuotePanel()">Get Free Quote →</button>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-label="Navigation menu">
+  <div class="mobile-drawer-tag">🇱🇰 Sri Lanka</div>
+  <ul class="mobile-drawer-links">
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="shop.html">🛍️ Shop</a></li>
+    <li><a href="customize.html" class="active">✏️ Get Quotation</a></li>
+    <li><a href="my-orders.html">📦 Order Tracking</a></li>
+    <li><a href="contact.html">📞 Contact</a></li>
+  </ul>
+  <div class="mobile-drawer-divider"></div>
+  <a class="mobile-drawer-cta" href="#" onclick="openQuotePanel();return false;">Get a Free Quotation →</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -604,7 +672,7 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
   <div class="dc-body"><div class="dc-name">Family Reunion Tee</div><div class="dc-desc">Custom family reunion tee. Family crest, reunion year, family name. All sizes from kids to 3XL.</div><div class="dc-footer"><span class="dc-technique">Screen Print</span><span class="dc-quotation-lbl">Get Quote →</span></div></div>
 </div>
 
-  </div><!-- end grid -->
+  </div>
 </div>
 
 <!-- HOW IT WORKS -->
@@ -648,15 +716,13 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
   <div class="fr">© 2025 Great Designer · All rights reserved<br>Sports · Corporate · Events · School · Esports · Fashion · Party</div>
 </footer>
 
-<!-- ══ QUOTATION PANEL ══ -->
+<!-- QUOTATION PANEL -->
 <div class="q-backdrop" id="q-backdrop" onclick="closeQ()"></div>
 <div class="q-panel" id="q-panel">
   <div class="qp-header">
     <div class="qp-title">Get Free Quotation</div>
     <button class="qp-close" onclick="closeQ()">✕</button>
   </div>
-
-  <!-- Selected design -->
   <div class="qp-design-preview">
     <img class="qp-design-img" id="qp-img" src="" alt="">
     <div class="qp-design-info">
@@ -665,9 +731,7 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
       <div class="qp-design-tech" id="qp-tech">—</div>
     </div>
   </div>
-
   <div class="qp-body">
-
     <div class="qp-section">Your Details</div>
     <div class="fgr">
       <div class="fg"><label>First Name <span>*</span></label><input type="text" id="q-fname" placeholder="Kamal"></div>
@@ -678,7 +742,6 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
       <div class="fg"><label>Email</label><input type="email" id="q-email" placeholder="you@email.com"></div>
     </div>
     <div class="fg"><label>Company / Team / Organisation</label><input type="text" id="q-org" placeholder="e.g. ABC Pvt Ltd, Colombo FC, Grade 12 Batch..."></div>
-
     <div class="qp-section">Order Details</div>
     <div class="fgr">
       <div class="fg">
@@ -703,7 +766,6 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
         </select>
       </div>
     </div>
-
     <div class="qp-section">Print Technique</div>
     <div class="pt-chips" id="pt-chips">
       <span class="pt-chip" onclick="toggleChip(this)">🌈 Sublimation</span>
@@ -712,7 +774,6 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
       <span class="pt-chip" onclick="toggleChip(this)">💎 DTF Transfer</span>
       <span class="pt-chip" onclick="toggleChip(this)">Not Sure — Advise Me</span>
     </div>
-
     <div class="qp-section">Colors</div>
     <div class="fg">
       <label>Preferred Base Color(s)</label>
@@ -731,15 +792,10 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
         <div class="cc" style="background:#f59e0b" title="Yellow" onclick="toggleCC(this)"></div>
       </div>
     </div>
-
     <div class="qp-section">Design Brief</div>
     <div class="fg">
       <label>Describe Your Requirements <span>*</span></label>
-      <textarea id="q-desc" placeholder="Tell us about your design:
-• Any specific text (team name, slogan, names)
-• Logo placement (chest, back, sleeve)
-• Style preferences or references
-• Any other special requirements..."></textarea>
+      <textarea id="q-desc" placeholder="Tell us about your design:&#10;• Any specific text (team name, slogan, names)&#10;• Logo placement (chest, back, sleeve)&#10;• Style preferences or references&#10;• Any other special requirements..."></textarea>
     </div>
     <div class="fg">
       <label>Upload Logo / Reference (Optional)</label>
@@ -750,12 +806,9 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
         <div class="uz-file" id="q-file-name"></div>
       </div>
     </div>
-
     <div class="qp-section">Delivery</div>
     <div class="fg"><label>Delivery Address</label><textarea id="q-addr" style="min-height:65px" placeholder="No. 12, Main Street, Colombo 03, Sri Lanka"></textarea></div>
-
   </div>
-
   <div class="qp-footer">
     <button class="q-cancel" onclick="closeQ()">Cancel</button>
     <button class="q-submit" onclick="submitQ()">SEND QUOTATION REQUEST →</button>
@@ -777,9 +830,21 @@ footer{background:var(--dark2);padding:2rem 3.5rem;border-top:3px solid var(--ac
 </div>
 
 <script>
+/* ── MOBILE DRAWER ── */
+(function(){
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('mobile-drawer');
+  const backdrop  = document.getElementById('drawer-backdrop');
+  function openDrawer(){hamburger.classList.add('open');hamburger.setAttribute('aria-expanded','true');drawer.classList.add('open');backdrop.classList.add('open');document.body.style.overflow='hidden';}
+  function closeDrawer(){hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');drawer.classList.remove('open');backdrop.classList.remove('open');document.body.style.overflow='';}
+  hamburger.addEventListener('click',()=>hamburger.classList.contains('open')?closeDrawer():openDrawer());
+  backdrop.addEventListener('click',closeDrawer);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDrawer));
+})();
+
 /* ── FILTER ── */
 const catNames={all:'All Designs',sport:'⚽ Sports Jerseys',corp:'🏢 Corporate Clothing',event:'🎉 Event Wear',school:'🎓 School & Club',esport:'🎮 Esports Jerseys',fashion:'👗 Fashion & Custom',party:'🎊 Party Wear'};
-const clsMap={all:'on-all',sport:'on-sport',corp:'on-corp',event:'on-event',school:'on-school',esport:'on-esport',fashion:'on-fashion',party:'on-party'};
 
 function filt(cat,btn,cls){
   document.querySelectorAll('.fb').forEach(b=>b.className='fb');
@@ -795,33 +860,25 @@ function filt(cat,btn,cls){
 }
 
 /* ── QUOTATION PANEL ── */
-let currentDesign=null;
-
 function openQ(card){
-  currentDesign=card;
   const img=card.querySelector('.dc-img img');
   const name=card.querySelector('.dc-name').textContent;
   const cat=card.querySelector('.dc-cat').textContent;
   const tech=card.querySelector('.dc-technique').textContent;
-
   document.getElementById('qp-img').src=img?img.src:'';
   document.getElementById('qp-name').textContent=name;
   document.getElementById('qp-cat').textContent=cat;
   document.getElementById('qp-tech').textContent='Technique: '+tech;
-
-  // Pre-select matching technique chip
   document.querySelectorAll('.pt-chip').forEach(c=>c.classList.remove('on'));
   document.querySelectorAll('.pt-chip').forEach(c=>{
-    if(c.textContent.toLowerCase().includes(tech.toLowerCase().split(' ')[0])) c.classList.add('on');
+    if(c.textContent.toLowerCase().includes(tech.toLowerCase().split(' ')[0]))c.classList.add('on');
   });
-
   document.getElementById('q-panel').classList.add('open');
   document.getElementById('q-backdrop').classList.add('show');
   document.body.style.overflow='hidden';
 }
 
 function openQuotePanel(){
-  // Open panel without pre-selected design
   document.getElementById('qp-img').src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&q=80';
   document.getElementById('qp-name').textContent='General Quotation Request';
   document.getElementById('qp-cat').textContent='Any Category';
@@ -837,11 +894,9 @@ function closeQ(){
   document.body.style.overflow='';
 }
 
-/* ── CHIPS / COLORS ── */
 function toggleChip(el){el.classList.toggle('on');}
 function toggleCC(el){el.classList.toggle('sel');}
 
-/* ── FILE UPLOAD ── */
 function handleFile(e){
   const f=e.target.files[0];
   if(!f)return;
@@ -850,7 +905,6 @@ function handleFile(e){
   fn.style.display='block';
 }
 
-/* ── SUBMIT ── */
 function submitQ(){
   const fn=document.getElementById('q-fname').value.trim();
   const ph=document.getElementById('q-phone').value.trim();
