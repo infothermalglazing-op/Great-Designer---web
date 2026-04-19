@@ -461,5 +461,49 @@ function toggleFaq(el) {
   el.classList.toggle('open');
 }
 </script>
+
+<!-- ENHANCED CONTACT JS -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  // Form validation
+  const form = document.querySelector('form') || document.createElement('form');
+  const inputs = document.querySelectorAll('input, textarea');
+  inputs.forEach(inp=>{
+    inp.addEventListener('blur',()=>{
+      if(inp.required && !inp.value.trim()){
+        inp.style.borderColor='var(--accent)';
+      } else {inp.style.borderColor='var(--border)';}
+    });
+  });
+  
+  // WhatsApp quick contact
+  document.querySelectorAll('.contact-card.wa, a[href*="WhatsApp"]').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.preventDefault();
+      const msg = encodeURIComponent('Hi Great Designer, I need help with custom clothing');
+      window.open('https://wa.me/947XXXXXXXX?text='+msg,'_blank');
+      localStorage.setItem('gd_contact_wa',Date.now());
+    });
+  });
+  
+  // Auto-fill from previous order
+  const last = JSON.parse(localStorage.getItem('gd_last_order')||'null');
+  if(last){
+    const note = document.createElement('div');
+    note.innerHTML = `👋 Welcome back! Your last order <strong>${last.id}</strong> was placed on ${new Date(last.date).toLocaleDateString()}. <a href="my-orders.html" style="color:var(--accent);text-decoration:underline">Track it</a>`;
+    Object.assign(note.style,{background:'var(--green-bg)',border:'1px solid var(--green-border)',padding:'1rem',borderRadius:'.6rem',marginBottom:'1.5rem',fontSize:'.85rem'});
+    document.querySelector('.left-col')?.prepend(note);
+  }
+  
+  // Business hours indicator
+  const now = new Date(); const hour = now.getHours();
+  const isOpen = hour>=9 && hour<18;
+  const statusEl = document.createElement('div');
+  statusEl.textContent = isOpen ? '🟢 OPEN NOW - Reply within 5 mins' : '🔴 Closed - We reply 9AM-6PM';
+  statusEl.style.cssText = `font-family:'DM Mono';font-size:.6rem;padding:.4rem .8rem;border-radius:2rem;background:${isOpen?'rgba(21,128,61,.1)':'rgba(0,0,0,.05)'};color:${isOpen?'var(--green)':'var(--muted)'};display:inline-block;margin-top:.5rem`;
+  document.querySelector('.ph-badge')?.appendChild(statusEl);
+});
+</script>
+
 </body>
 </html>
