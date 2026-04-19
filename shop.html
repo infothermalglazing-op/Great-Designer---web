@@ -1078,5 +1078,97 @@ function placeOrder(){
   cart=[];renderCart();updateCartBadge();
 }
 </script>
+
+<!-- ENHANCED SHOP JS -->
+<script>
+// Enhanced Cart with localStorage persistence
+let cart = JSON.parse(localStorage.getItem('gd_cart')||'[]');
+
+function saveCart(){localStorage.setItem('gd_cart',JSON.stringify(cart));updateCartBadge();}
+
+function addToCart(id,name,price,img){
+  const existing = cart.find(i=>i.id===id);
+  if(existing){existing.qty+=1;} else {cart.push({id,name,price,img,qty:1});}
+  saveCart();
+  showToast(name+' added to cart');
+  renderCart();
+}
+function updateCartBadge(){
+  const total = cart.reduce((s,i)=>s+i.qty,0);
+  const badge=document.getElementById('cart-count');
+  if(badge){badge.textContent=total;badge.style.display=total?'flex':'none';badge.classList.add('bump');setTimeout(()=>badge.classList.remove('bump'),300);}
+}
+function renderCart(){
+  const list=document.getElementById('cart-items-list');
+  const empty=document.getElementById('cart-empty');
+  if(!list)return;
+  if(cart.length===0){list.style.display='none';empty.style.display='block';}
+  else{empty.style.display='none';list.style.display='block';list.innerHTML=cart.map(i=>`
+    <div style="display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid var(--border);align-items:center">
+      <img src="${i.img}" style="width:56px;height:56px;object-fit:cover;border-radius:.4rem">
+      <div style="flex:1">
+        <div style="font-weight:600;font-size:.85rem">${i.name}</div>
+        <div style="font-size:.75rem;color:var(--muted)">Rs. ${i.price.toLocaleString()} × ${i.qty}</div>
+      </div>
+      <button onclick="changeQty('${i.id}',-1)" style="border:none;background:var(--bg2);width:26px;height:26px;border-radius:4px">-</button>
+      <span style="width:20px;text-align:center;font-family:'DM Mono'">${i.qty}</span>
+      <button onclick="changeQty('${i.id}',1)" style="border:none;background:var(--bg2);width:26px;height:26px;border-radius:4px">+</button>
+    </div>`).join('');}
+  recalcCart();
+}
+function changeQty(id,delta){
+  const item=cart.find(i=>i.id===id);
+  if(!item)return;
+  item.qty+=delta;
+  if(item.qty<=0)cart=cart.filter(i=>i.id!==id);
+  saveCart();renderCart();
+}
+function recalcCart(){
+  const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const isBulkMode = document.getElementById('bulk-toggle')?.checked || cart.reduce((s,i)=>s+i.qty,0)>=10;
+  const finalSub = isBulkMode? Math.round(subtotal*0.85) : subtotal;
+  document.getElementById('cart-subtotal').textContent='Rs. '+finalSub.toLocaleString();
+  document.getElementById('cart-total').textContent='Rs. '+(finalSub+350).toLocaleString();
+  document.getElementById('cart-bulk-note').style.display=isBulkMode?'block':'none';
+  if(document.getElementById('co-total')) document.getElementById('co-total').textContent='Rs. '+(finalSub+350).toLocaleString();
+}
+function showToast(msg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  Object.assign(t.style,{position:'fixed',bottom:'90px',right:'22px',background:'var(--dark)',color:'#fff',padding:'.7rem 1.1rem',borderRadius:'.5rem',fontSize:'.8rem',zIndex:1000,boxShadow:'0 6px 20px rgba(0,0,0,.2)',opacity:'0',transition:'opacity .3s'});
+  document.body.appendChild(t); setTimeout(()=>t.style.opacity='1',10); setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300)},2200);
+}
+// Override existing add to cart buttons
+document.addEventListener('DOMContentLoaded',()=>{
+  updateCartBadge();renderCart();
+  document.querySelectorAll('.sc').forEach((card,idx)=>{
+    const name=card.querySelector('.sc-name')?.textContent||'Product';
+    const priceText=card.querySelector('.sc-price-main')?.textContent.replace(/[^0-9]/g,'')||'850';
+    const img=card.querySelector('img')?.src;
+    const btn=card.querySelector('.sc-add, .sc-qv-btn');
+    if(btn){btn.onclick=(e)=>{e.preventDefault();addToCart('p'+idx,name,+priceText,img);};}
+  });
+});
+// Enhanced checkout - WhatsApp integration
+function placeOrder(){
+  const fname=document.getElementById('co-fname').value;
+  const lname=document.getElementById('co-lname').value;
+  const phone=document.getElementById('co-phone').value;
+  const addr=document.getElementById('co-addr').value;
+  if(!fname||!phone||!addr){alert('Please fill required fields');return;}
+  const orderId='GD-'+Date.now().toString().slice(-6);
+  const items=cart.map(i=>`${i.name} x${i.qty}`).join('%0A');
+  const total=document.getElementById('cart-total').textContent;
+  const msg=`New Order ${orderId}%0AName: ${fname} ${lname}%0APhone: ${phone}%0AAddress: ${addr}%0A%0AItems:%0A${items}%0A%0ATotal: ${total}`;
+  localStorage.setItem('gd_last_order',JSON.stringify({id:orderId,items:cart,total,date:new Date().toISOString()}));
+  cart=[];saveCart();
+  window.open(`https://wa.me/947XXXXXXXX?text=${msg}`,'_blank');
+  document.getElementById('suc-ref').textContent='REF #'+orderId;
+  document.getElementById('suc-modal').classList.add('show');
+  closeCheckout();closeCart();
+}
+window.placeOrder=placeOrder;
+</script>
+
 </body>
 </html>
