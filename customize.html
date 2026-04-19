@@ -920,5 +920,80 @@ function submitQ(){
   document.getElementById('suc-modal').classList.add('show');
 }
 </script>
+
+<!-- ENHANCED CUSTOMIZE JS - Quotation Wizard -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  // Multi-step wizard
+  let step = 1;
+  const steps = ['Product','Details','Contact'];
+  
+  // Inject wizard UI
+  const hero = document.querySelector('.hero');
+  const wizard = document.createElement('div');
+  wizard.innerHTML = `
+    <div style="background:var(--surface);margin:2rem 3.5rem;padding:2rem;border-radius:var(--r);border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,.06)">
+      <div style="display:flex;gap:1rem;margin-bottom:1.5rem" id="wiz-steps">
+        ${steps.map((s,i)=>`<div data-step="${i+1}" style="flex:1;text-align:center;padding:.6rem;border-radius:.5rem;background:${i===0?'var(--accent)':'var(--bg2)'};color:${i===0?'#fff':'var(--muted)'};font-weight:600;font-size:.8rem">${i+1}. ${s}</div>`).join('')}
+      </div>
+      <div id="wiz-content"></div>
+    </div>`;
+  hero?.after(wizard);
+  
+  function renderStep(){
+    const content = document.getElementById('wiz-content');
+    document.querySelectorAll('#wiz-steps div').forEach((el,i)=>{el.style.background=i+1===step?'var(--accent)':'var(--bg2)';el.style.color=i+1===step?'#fff':'var(--muted)';});
+    
+    if(step===1){
+      content.innerHTML = `
+        <h3 style="margin-bottom:1rem">Choose Product Type</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem">
+          ${['Football Kit','Cricket Jersey','Polo Shirt','T-Shirt','Corporate Uniform','Event Wear'].map(p=>`
+            <button class="prod-btn" data-prod="${p}" style="padding:1rem;border:1.5px solid var(--border);border-radius:.6rem;background:#fff;cursor:pointer;font-weight:600">${p}</button>
+          `).join('')}
+        </div>
+        <button id="next1" disabled style="margin-top:1.2rem;padding:.7rem 1.5rem;background:var(--muted);color:#fff;border:none;border-radius:2rem;font-weight:700;opacity:.5">Next →</button>
+      `;
+      document.querySelectorAll('.prod-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.prod-btn').forEach(x=>x.style.borderColor='var(--border)');b.style.borderColor='var(--accent)';b.style.background='rgba(230,51,41,.05)';localStorage.setItem('gd_prod',b.dataset.prod);document.getElementById('next1').disabled=false;document.getElementById('next1').style.opacity=1;document.getElementById('next1').style.background='var(--accent)';});
+      document.getElementById('next1').onclick=()=>{step=2;renderStep();};
+    }
+    else if(step===2){
+      content.innerHTML = `
+        <h3 style="margin-bottom:1rem">Quantity & Details</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div><label style="font-size:.75rem;color:var(--muted)">Quantity</label><input id="qty" type="number" min="1" value="10" style="width:100%;padding:.7rem;border:1.5px solid var(--border);border-radius:.5rem;margin-top:.3rem"></div>
+          <div><label style="font-size:.75rem;color:var(--muted)">Print Type</label><select id="print" style="width:100%;padding:.7rem;border:1.5px solid var(--border);border-radius:.5rem;margin-top:.3rem"><option>Sublimation</option><option>Screen Print</option><option>Embroidery</option><option>DTF</option></select></div>
+        </div>
+        <div style="margin-top:1rem"><label style="font-size:.75rem;color:var(--muted)">Design Notes</label><textarea id="notes" placeholder="Colors, logos, names..." style="width:100%;padding:.7rem;border:1.5px solid var(--border);border-radius:.5rem;margin-top:.3rem;height:80px"></textarea></div>
+        <div id="price-est" style="margin-top:1rem;padding:1rem;background:var(--bg2);border-radius:.5rem;font-weight:600">Estimated: Rs. 0</div>
+        <div style="margin-top:1.2rem;display:flex;gap:.6rem"><button onclick="step=1;renderStep()" style="padding:.7rem 1.2rem;background:var(--bg2);border:none;border-radius:2rem">← Back</button><button id="next2" style="padding:.7rem 1.5rem;background:var(--accent);color:#fff;border:none;border-radius:2rem;font-weight:700">Next →</button></div>
+      `;
+      const calc=()=>{const q=+document.getElementById('qty').value||0; const base=750; const total = q>=50? q*650 : q>=10? q*700 : q*850; document.getElementById('price-est').textContent=`Estimated: Rs. ${total.toLocaleString()} (${q} pcs)`; localStorage.setItem('gd_qty',q);};
+      document.getElementById('qty').oninput=calc; calc();
+      document.getElementById('next2').onclick=()=>{localStorage.setItem('gd_print',document.getElementById('print').value);localStorage.setItem('gd_notes',document.getElementById('notes').value);step=3;renderStep();};
+    }
+    else {
+      content.innerHTML = `
+        <h3 style="margin-bottom:1rem">Your Contact</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <input id="cname" placeholder="Full Name *" style="padding:.8rem;border:1.5px solid var(--border);border-radius:.5rem">
+          <input id="cphone" placeholder="WhatsApp *" style="padding:.8rem;border:1.5px solid var(--border);border-radius:.5rem">
+        </div>
+        <button id="submitQ" style="margin-top:1.2rem;width:100%;padding:1rem;background:var(--accent);color:#fff;border:none;border-radius:.5rem;font-weight:700;font-size:.95rem">GET QUOTATION VIA WHATSAPP →</button>
+      `;
+      document.getElementById('submitQ').onclick=()=>{
+        const name=document.getElementById('cname').value;
+        const phone=document.getElementById('cphone').value;
+        if(!name||!phone){alert('Please fill name and phone');return;}
+        const prod=localStorage.getItem('gd_prod'); const qty=localStorage.getItem('gd_qty'); const print=localStorage.getItem('gd_print');
+        const msg=`New Quotation Request%0AProduct: ${prod}%0AQty: ${qty}%0APrint: ${print}%0AName: ${name}%0APhone: ${phone}`;
+        window.open('https://wa.me/947XXXXXXXX?text='+msg,'_blank');
+      };
+    }
+  }
+  renderStep();
+});
+</script>
+
 </body>
 </html>
