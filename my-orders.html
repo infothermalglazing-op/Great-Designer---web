@@ -777,5 +777,61 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- ENHANCED ORDERS JS -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  // Load order from localStorage
+  const lastOrder = JSON.parse(localStorage.getItem('gd_last_order')||'null');
+  const lookup = document.getElementById('lookup-input') || document.querySelector('input[type="text"]');
+  
+  function showOrder(order){
+    const container = document.querySelector('.lookup-wrap')?.nextElementSibling || document.body;
+    const box = document.createElement('div');
+    box.innerHTML = `
+      <div style="max-width:800px;margin:2rem auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2rem">
+        <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:1.5rem">
+          <div>
+            <div style="font-family:'DM Mono';font-size:.6rem;color:var(--muted);letter-spacing:.1em">ORDER ID</div>
+            <div style="font-family:'Anton';font-size:1.8rem;color:var(--accent)">${order.id}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="padding:.4rem .9rem;background:var(--amber-bg);color:var(--amber);border-radius:2rem;font-size:.7rem;font-weight:700">IN PRODUCTION</div>
+            <div style="font-size:.75rem;color:var(--muted);margin-top:.4rem">${new Date(order.date).toLocaleString()}</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0">
+          ${[['Order Placed','✓',true],['Design Approved','✓',true],['Printing','⏳',true],['Shipped','',false]].map(([label,icon,active])=>`
+            <div style="text-align:center">
+              <div style="width:40px;height:40px;margin:0 auto .5rem;border-radius:50%;background:${active?'var(--green)':'var(--bg2)'};color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem">${icon||'○'}</div>
+              <div style="font-size:.75rem;font-weight:600">${label}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:1rem">
+          <h4 style="margin-bottom:.8rem">Items</h4>
+          ${order.items.map(i=>`<div style="display:flex;justify-content:space-between;padding:.5rem 0;font-size:.85rem"><span>${i.name} × ${i.qty}</span><span>Rs. ${(i.price*i.qty).toLocaleString()}</span></div>`).join('')}
+          <div style="display:flex;justify-content:space-between;font-weight:700;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border)"><span>Total</span><span>${order.total}</span></div>
+        </div>
+        <button onclick="window.open('https://wa.me/947XXXXXXXX?text=Hi, tracking order ${order.id}','_blank')" style="margin-top:1.5rem;width:100%;padding:.9rem;background:var(--green);color:#fff;border:none;border-radius:.5rem;font-weight:700">Chat About This Order →</button>
+      </div>
+    `;
+    container.prepend(box);
+  }
+  
+  if(lastOrder){showOrder(lastOrder); if(lookup) lookup.value=lastOrder.id;}
+  
+  // Simulate lookup
+  const btn = document.querySelector('button[onclick*="lookup"], .lookup-btn');
+  if(btn){btn.addEventListener('click',()=>{if(lastOrder){showOrder(lastOrder);} else {alert('Order not found. Place an order first in Shop.');}});}
+  
+  // Auto-refresh status simulation
+  setInterval(()=>{
+    const statuses = document.querySelectorAll('[style*="IN PRODUCTION"]');
+    statuses.forEach(s=>{const rnd=Math.random(); if(rnd>0.7){s.textContent='SHIPPED';s.style.background='var(--green-bg)';s.style.color='var(--green)';}});
+  },15000);
+});
+</script>
+
 </body>
 </html>
