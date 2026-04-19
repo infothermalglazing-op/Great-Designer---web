@@ -965,5 +965,55 @@ window.addEventListener('scroll',()=>{
   }, 100);
 })();
 </script>
+
+<!-- ENHANCED JS - ADDED BY META AI -->
+<script>
+// 1. Animated counters
+function animateCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target = +el.dataset.count;
+    let cur=0;
+    const inc = Math.ceil(target/60);
+    const timer=setInterval(()=>{
+      cur+=inc;
+      if(cur>=target){cur=target;clearInterval(timer);}
+      el.textContent = cur+'+';
+    },30);
+  });
+}
+// Add data-count to existing stats (200+,10+,4+)
+document.addEventListener('DOMContentLoaded',()=>{
+  const stats = document.querySelectorAll('.hero-stats .hs-num, .about-stats .as-num');
+  if(stats[0]){stats[0].setAttribute('data-count','200');stats[0].textContent='0+';}
+  if(stats[1]){stats[1].setAttribute('data-count','10');stats[1].textContent='0+';}
+  if(stats[2]){stats[2].setAttribute('data-count','4');stats[2].textContent='0+';}
+  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animateCounters();obs.disconnect();}});},{threshold:.5});
+  if(stats[0]) obs.observe(stats[0].parentElement.parentElement);
+});
+
+// 2. WhatsApp floating button with tracking
+const waBtn=document.createElement('a');
+waBtn.href='https://wa.me/947XXXXXXXX?text=Hi%20Great%20Designer,%20I%20want%20a%20quotation';
+waBtn.target='_blank';
+waBtn.innerHTML='💬';
+Object.assign(waBtn.style,{position:'fixed',bottom:'22px',right:'22px',width:'56px',height:'56px',background:'#25D366',color:'#fff',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'26px',boxShadow:'0 6px 20px rgba(0,0,0,.2)',zIndex:999,textDecoration:'none'});
+waBtn.title='Chat on WhatsApp';
+waBtn.addEventListener('click',()=>{localStorage.setItem('gd_wa_click',Date.now());});
+document.body.appendChild(waBtn);
+
+// 3. Lazy load images
+document.querySelectorAll('img').forEach(img=>{if(!img.loading)img.loading='lazy';});
+
+// 4. Dynamic year
+const yearEl=document.querySelector('.foot-copy'); if(yearEl){yearEl.innerHTML=yearEl.innerHTML.replace('2025',new Date().getFullYear());}
+
+// 5. Save last visited page
+localStorage.setItem('gd_last_page','home');
+localStorage.setItem('gd_last_visit',new Date().toISOString());
+
+// 6. Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});});
+</script>
+
 </body>
 </html>
